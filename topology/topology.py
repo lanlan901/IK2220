@@ -18,15 +18,44 @@ class MyTopo(Topo):
         ### COMPLETE THIS PART ###
 
         # Initialize hosts
-        h1 = self.addHost('h1', ip='100.0.0.10/24')
-        h2 = self.addHost('h2', ip='100.0.0.11/24')
+        h1 = self.addHost('h1', ip = '100.0.0.10/24')
+        h2 = self.addHost('h2', ip = '100.0.0.11/24')
+        h3 = self.addHost('h3', ip = '10.0.0.50/24')
+        h4 = self .addHost('h4', ip = '10.0.0.51/24')
 
         # Initial switches
-        sw1 = self.addSwitch('sw1', dpid="1")
+        sw1 = self.addSwitch('sw1')
+        sw2 = self.addSwitch('sw2')
+        sw3 = self.addSwitch('sw3')
+        sw4 = self.addSwitch('sw4')
+
+        # Web servers
+        sw1 = self.addHost('ws1', ip = '100.0.0.40/24')
+        sw2 = self.addHost('ws2', ip = '100.0.0.41/24')
+        sw3 = self.addHost('ws3', ip = '100.0.0.42/24')
+
+        # Firewalls
+        fw1 = self.addSwitch('fw1', dpid = '11')
+        fw2 = self.addSwitch('fw2', dpid = '12')
 
         # Defining links
-        self.addLink(h1, sw1)
-        self.addLink(h2, sw1)
+        # Public zone
+        self.addLink(sw1, h1, port1 = 1, port2 = 0)
+        self.addLink(sw1, h2, port1 = 2, port2 = 0)
+
+        # Private zone
+        self.addLink(sw3, h3, port1 = 1, port2 = 0)
+        self.addLink(sw3, h4, port1 = 2, port2 = 0)
+
+        # Demilitarized Zone
+        self.addLink(sw4, sw1, port1 = 1, port2 = 0)
+        self.addLink(sw4, sw2, port1 = 2, port2 = 0)
+        self.addLink(sw4, sw3, port1 = 3, port2 = 0)
+
+        # Firewall
+        self.addLink(sw1, fw1, port1 = 3, port2 = 1)
+        self.addLink(sw2, fw1, port1 = 1, port2 = 2)
+        self.addLink(sw2, fw2, port1 = 2, port2 = 1)
 
 def startup_services(net):
     # Start http services and executing commands you require on each host...

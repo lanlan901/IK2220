@@ -62,13 +62,8 @@ def startup_services(net):
     ### COMPLETE THIS PART ###
     pass
 
-
-
-topos = {'mytopo': (lambda: MyTopo())}
-
-if __name__ == "__main__":
-
-    # Create topology
+def testNetwork():
+# Create topology
     topo = MyTopo()
 
     ctrl = RemoteController("c0", ip="127.0.0.1", port=6633)
@@ -89,7 +84,17 @@ if __name__ == "__main__":
     # Start the CLI
     CLI(net)
 
-    # You may need some commands before stopping the network! If you don't, leave it empty
-    ### COMPLETE THIS PART ###
-
+    print("network start")
+    print("test h1 ping h2")
+    net.ping([net.get('h1'), net.get('h2')])
+    print("test h1 ping h3")
+    net.ping([net.get('h1'), net.get('h3')])
+    
+    # 停止网络
     net.stop()
+
+topos = {'mytopo': (lambda: MyTopo())}
+
+if __name__ == "__main__":
+    # 运行测试
+    testNetwork()

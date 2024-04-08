@@ -24,10 +24,10 @@ class MyTopo(Topo):
         h4 = self.addHost('h4', ip = '10.0.0.51/24')
 
         # Initial switches
-        sw1 = self.addSwitch('sw1')
-        sw2 = self.addSwitch('sw2')
-        sw3 = self.addSwitch('sw3')
-        sw4 = self.addSwitch('sw4')
+        sw1 = self.addSwitch('sw1', dpid = '1')
+        sw2 = self.addSwitch('sw2', dpid = '2')
+        sw3 = self.addSwitch('sw3', dpid = '3')
+        sw4 = self.addSwitch('sw4', dpid = '4')
 
         # Web servers
         ws1 = self.addHost('ws1', ip = '100.0.0.40/24')
@@ -55,7 +55,9 @@ class MyTopo(Topo):
         # Firewall
         self.addLink(sw1, fw1, port1 = 3, port2 = 1)
         self.addLink(sw2, fw1, port1 = 1, port2 = 2)
+        
         self.addLink(sw2, fw2, port1 = 2, port2 = 1)
+        self.addLink(sw3, fw2, port1 = 3, port2 = 2)
 
 def startup_services(net):
     # Start http services and executing commands you require on each host...
@@ -85,5 +87,9 @@ if __name__ == "__main__":
     # Start the CLI
     CLI(net)
     
-    # 停止网络
+    #delete the links
+    for link in net.links:
+        net.delLink(link)
+    
+    # stop the network
     net.stop()

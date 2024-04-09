@@ -2,7 +2,8 @@ from pox.core import core
 import pox.openflow.libopenflow_01 as of
 from pox.lib.addresses import IPAddr
 import pox.lib.packet as pkt
-from forwarding import l2_learning
+from forwarding.l2_learning import LearningSwitch
+import struct 
 log = core.getLogger()
 
 
@@ -54,19 +55,25 @@ class Firewall (l2_learning.LearningSwitch):
                     continue
 
             # 检查源IP地址
-            if src_ip != 'any' and not self.ip_match(src_ip, ip_packet.srcip):
+            if src_ip != 'any' and not self.ip_match(src_ip, str(ip_packet.srcip)):
                 continue  # 源IP不匹配
 
             # 检查目的IP地址
-            if dst_ip != 'any' and not self.ip_match(dst_ip, ip_packet.dstip):
+            if dst_ip != 'any' and not self.ip_match(dst_ip, str(ip_packet.dstip)):
                 continue  # 目的IP不匹配
         
             # 判断动作
-            return action == 'allow'
+            if action == 'allow':
+                return True
+            elif action == 'block':
+                return False
 
         return False  #默认不通过
 
     def ip_match(self, rule_ip, packet_ip):
+        if rule_ip == 'any':
+            return True
+        
         ip, mask = rule_ip.split('/')
         mask = int(mask)
         # 将IP地址转换为整数进行比较
@@ -81,19 +88,23 @@ class Firewall (l2_learning.LearningSwitch):
     def _handle_PacketIn(self, event):
 
         packet = event.parsed
+        input_port = event.port
+
         if not packet.parsed:
             print(self.name, ": Incomplete packet received! controller ignores that")
             return
         ofp_msg = event.ofp
 
         ### COMPLETE THIS PART ###
-        if self.has_access(packet, input_port):
-            log.debug(f"{self.name}: Packet allowed.")
-            # 处理允许通过的数据包
-            self.act_like_switch(packet, event.ofp)
+        ip_packet = packet.find('ipv4')
+        if ip_packet:
+            if self.has_access(packet, input_port):
+                log.debug(f"{self.name}: Packet allowed.")
+                # 处理允许通过的数据包
+                self.act_like_switch(packet, event.ofp)
+            else:
+                log.debug(f"{self.name}: Packet dropped based on firewall rules.")
         else:
-            log.debug(f"{self.name}: Packet dropped based on firewall rules.")
-            
-        super(Firewall, self)._handle_PacketIn(event)
+            super(Firewall, self)._handle_PacketIn(event)
 
     # You are allowed to add more functions to this file as your need (e.g., a function for installing OF rules)

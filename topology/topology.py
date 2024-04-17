@@ -55,7 +55,9 @@ class MyTopo(Topo):
         # Firewall
         self.addLink(sw1, fw1, port1 = 3, port2 = 1)
         self.addLink(sw2, fw1, port1 = 1, port2 = 2)
+        
         self.addLink(sw2, fw2, port1 = 2, port2 = 1)
+        self.addLink(sw3, fw2, port1 = 3, port2 = 2)
 
 def startup_services(net):
     # Start http services and executing commands you require on each host...
@@ -85,5 +87,12 @@ if __name__ == "__main__":
     # Start the CLI
     CLI(net)
     
+<<<<<<< HEAD
+=======
+    #delete the links
+    for link in net.links:
+        net.delLink(link)
+    
+>>>>>>> refs/remotes/origin/main
     # stop the network
     net.stop()

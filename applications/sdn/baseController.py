@@ -90,9 +90,12 @@ class controller (object):
 
         self.firstSeenAt.clear()
 
-        for connection in core.openflow._connection.values():
-            connection.send(of.ofp_flow_mod(command=of.OFPFC_DELETE))
-            
+        msg = of.ofp_flow_mod(command=of.OFPFC_DELETE)
+
+        for connection in core.openflow.connections:
+            connection.send(msg)
+            log.debug("Clearing all flows from %s." % (dpidToStr(connection.dpid),))
+                
         return
 
 

@@ -24,10 +24,10 @@ class MyTopo(Topo):
         h4 = self.addHost('h4', ip = '10.0.0.51/24')
 
         # Initial switches
-        sw1 = self.addSwitch('sw1')
-        sw2 = self.addSwitch('sw2')
-        sw3 = self.addSwitch('sw3')
-        sw4 = self.addSwitch('sw4')
+        sw1 = self.addSwitch('sw1', dpid = '1')
+        sw2 = self.addSwitch('sw2', dpid = '2')
+        sw3 = self.addSwitch('sw3', dpid = '3')
+        sw4 = self.addSwitch('sw4', dpid = '4')
 
         # Web servers
         ws1 = self.addHost('ws1', ip = '100.0.0.40/24')
@@ -35,8 +35,8 @@ class MyTopo(Topo):
         ws3 = self.addHost('ws3', ip = '100.0.0.42/24')
 
         # Firewalls
-        fw1 = self.addSwitch('fw1', dpid = '11')
-        fw2 = self.addSwitch('fw2', dpid = '12')
+        fw1 = self.addSwitch('fw1', dpid = '5')
+        fw2 = self.addSwitch('fw2', dpid = '6')
 
         # Defining links
         # Public zone
@@ -85,5 +85,5 @@ if __name__ == "__main__":
     # Start the CLI
     CLI(net)
     
-    # 停止网络
+    # stop the network
     net.stop()

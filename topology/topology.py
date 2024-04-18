@@ -35,8 +35,8 @@ class MyTopo(Topo):
         ws3 = self.addHost('ws3', ip = '100.0.0.42/24')
 
         # Firewalls
-        fw1 = self.addSwitch('fw1', dpid = '11')
-        fw2 = self.addSwitch('fw2', dpid = '12')
+        fw1 = self.addSwitch('fw1', dpid = '5')
+        fw2 = self.addSwitch('fw2', dpid = '6')
 
         # Defining links
         # Public zone

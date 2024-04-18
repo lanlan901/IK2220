@@ -22,3 +22,6 @@ Restarts topology, and the sdn controller. Then it runs provided test scenarios.
 
 Removes all junks added to different directories to run the application.
 
+
+sudo lsof -i:6633
+sudo kill -9 1444

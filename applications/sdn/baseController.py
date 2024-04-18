@@ -47,12 +47,12 @@ class controller (object):
             self.devices[dpid] = learning_sw
             print(f"LearningSwitch instance created and added to devices dictionary, DPID: {dpid}.")
 
-        if dpid == 11: ## Firewall 1
+        if dpid == 5: ## Firewall 1
             fw1 = networkFirewalls.FW1(event.connection)
             self.devices[dpid] = fw1
             print(f"FW1 instance created and added to devices dictionary, DPID: {dpid}.")
 
-        if dpid == 12: ## Firewall 2
+        if dpid == 6: ## Firewall 2
             fw2 = networkFirewalls.FW2(event.connection)
             self.devices[dpid] = fw2
             print(f"FW2 instance created and added to devices dictionary, DPID: {dpid}.")

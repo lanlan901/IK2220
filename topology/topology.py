@@ -61,7 +61,7 @@ class MyTopo(Topo):
 
 def startup_services(net):
     # Start http services and executing commands you require on each host...
-    ### COMPLETE THIS PART ###
+
     pass
 
 topos = {'mytopo': (lambda: MyTopo())}

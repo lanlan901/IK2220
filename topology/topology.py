@@ -87,9 +87,12 @@ if __name__ == "__main__":
     # Start the CLI
     CLI(net)
     
+<<<<<<< HEAD
+=======
     #delete the links
     for link in net.links:
         net.delLink(link)
     
+>>>>>>> refs/remotes/origin/main
     # stop the network
     net.stop()

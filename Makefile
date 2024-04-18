@@ -25,6 +25,3 @@ clean:
 	sudo killall click
 	kill $(shell sudo lsof -t -i:8080)
 	sudo cp /opt/pox/ext/results/* ./results
-
-
-

@@ -15,7 +15,7 @@ log = core.getLogger()
 # [input_HW_port, protocol, src_ip, src_port, dst_ip, dst_port, allow/block]
 # Checkout networkFirewalls.py file for detailed structure.
 
-class Firewall (l2_learning.LearningSwitch):
+class Firewall (LearningSwitch):
 
     rules = []
 

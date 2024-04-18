@@ -5,7 +5,7 @@ OUT_LOG_TEST_RESULT="./results/output_test_prog.txt"
 # Complete the makefile as you prefer!
 topo:
 	@echo "starting the topology! (i.e., running mininet)"
-	sudo python ./topology/topology.py
+	sudo python /opt/IK2220/topology/topology.py
 
 app:
 	@echo "starting the baseController!"

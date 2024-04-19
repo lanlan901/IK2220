@@ -33,6 +33,10 @@ def run_tests(net):
 
     # Launch some tests
     testing.ping(h1, h2, True)
+    testing.ping(h1, h3, False)
+    testing.ping(h3, h1, True)
+    testing.ping(h3, h2, True)
+    testing.ping(h2, h3, False)
     #testing.curl(h1, h2, expected=False)
 
 

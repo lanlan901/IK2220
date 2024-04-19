@@ -13,7 +13,7 @@ log = core.getLogger()
 # After processing packets you should install the correct OF rule on the device to threat similar packets the same way on dataplane (without forwarding packets to the controller) for a specific period of time.
 
 # rules format:
-# [input_HW_port, protocol, src_ip, src_port, dst_ip, dst_port, allow/block]
+# [input_HW_port, protocol, src_subnet, src_port, dst_subnet, dst_port, allow/block]
 # Checkout networkFirewalls.py file for detailed structure.
 
 class Firewall (LearningSwitch):
@@ -88,50 +88,66 @@ class Firewall (LearningSwitch):
     def has_access(self, ip_packet, input_port):
         ### COMPLETE THIS PART ###
         packet_protocol = ""
-        packet_src_ip = ip_packet.srcip
-        packet_dst_ip = ip_packet.dstip
+        src_ip = ip_packet.srcip
+        dst_ip = ip_packet.dstip
         packet_src_port = -1
         packet_dst_port = -1
-
         if ip_packet.find('tcp'):
             packet_protocol = 'TCP'
             packet_src_port = ip_packet.find('tcp').srcport
             packet_dst_port = ip_packet.find('tcp').dstport
-        
-        if ip_packet.find('udp'):
+        elif ip_packet.find('udp'):
             packet_protocol = 'UDP'
-        
-        #check ICMP
-        icmp_packet = ip_packet.find('icmp')
-        if icmp_packet:
+            udp_pkt = ip_packet.find('udp')
+            packet_src_port = udp_pkt.srcport
+            packet_dst_port = udp_pkt.dstport
+        elif ip_packet.find('icmp'):
+            packet_protocol = 'ICMP'
+            icmp_packet = ip_packet.find('icmp')
             icmp_type = icmp_packet.type
-            if icmp_type == 0:
+            if icmp_type == 0:  # ping reply
                 return True
+            if icmp_type == 8: #ping request
+                pass
+
+        print(f"packet protocol = {packet_protocol}, src ip = {src_ip}, dst ip ={dst_ip}")
             
         for rule in self.rules:
-            rule_port, protocol, src_ip, src_port, dst_ip, dst_port, action = rule
-            if rule_port != 'any' and rule_port != input_port:
-                continue 
-        
-            #检查协议
-            protocol_result = self.check_protocol(protocol, packet_protocol)
+            hw_port, protocol, src_subnet, src_port, dst_subnet, dst_port, action = rule
+            print(f"Rule details: HW Port: {hw_port}, Protocol: {protocol}, Source IP: {src_subnet}, "
+                  f"Source Port: {src_port}, Destination IP: {dst_subnet}, Destination Port: {dst_port}, Action: {action}")
             
-            #检查ip
-            src_ip_res = self.check_subnet(src_ip, packet_src_ip)
-            dst_ip_res = self.check_subnet(dst_ip, packet_dst_ip)
+            if hw_port != 'any' and hw_port != input_port:
+                continue 
+            if protocol != 'any' and protocol != packet_protocol:
+                continue     
 
-            #检查端口
+            # 检查IP
+            src_subnet_res = self.check_subnet(src_subnet, src_ip)
+            print(f"Checking source IP subnet: Rule subnet = {src_subnet}, Packet IP = {src_ip}, Result = {src_subnet_res}")
+
+            dst_subnet_res = self.check_subnet(dst_subnet, dst_ip)
+            print(f"Checking destination IP subnet: Rule subnet = {dst_subnet}, Packet IP = {dst_ip}, Result = {dst_subnet_res}")
+            if not (src_subnet_res and dst_subnet_res):
+                continue
+
+            # 检查端口
             src_port_res = self.check_port(src_port, packet_src_port)
-            dst_port_res = self.check_port(dst_port, packet_dst_port)
+            print(f"Checking source port: Rule port = {src_port}, Packet port = {packet_src_port}, Result = {src_port_res}")
 
-            if(protocol_result and src_ip_res and dst_ip_res and src_port_res and dst_port_res):
-                #判断动作
-                if action == 'allow':
-                    print("allow")
-                    return True
-                elif action == 'block':
-                    print("block")
-                    return False
+            dst_port_res = self.check_port(dst_port, packet_dst_port)
+            print(f"Checking destination port: Rule port = {dst_port}, Packet port = {packet_dst_port}, Result = {dst_port_res}")
+
+            if not (src_port_res and dst_port_res):
+                continue
+            print(f"checking allow or block = {action}")
+
+            if action == 'allow':
+                print("allow")
+                return True
+            elif action == 'block':
+                print("block")
+                return False
         print("NO RULES MATCH")
         return False  #默认不通过
 
@@ -150,7 +166,7 @@ class Firewall (LearningSwitch):
             print(self.name, ": Incomplete packet received! controller ignores that")
             return
         
-        packet_in = event.ofp
+        #packet_in = event.ofp
 
         ### COMPLETE THIS PART ###
         ip_packet = packet.find('ipv4')
@@ -164,7 +180,7 @@ class Firewall (LearningSwitch):
                 return
         else:
             # handle non-IP packets normally
-            self.do_firewall(packet, packet_in, action='allow')
+            self.do_firewall(packet, input_port)
         
         super(Firewall, self)._handle_PacketIn(event)
 

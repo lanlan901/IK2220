@@ -31,9 +31,9 @@ class FW1 (Firewall):
         ##[硬件端口号；协议；源ip；TCP/UDP源端口号；目的ip；TCP/UDP目的端口号；允许或禁止]
         Firewall.__init__(self, connection, "FW1")
         self.rules = [
-            [2, 'TCP', 'any', 'any', '100.0.0.40/24', 'any', 'allow'], ## prz -> webserver
-            [2, 'any', 'any', 'any', 'any', 'any', 'block'], ##禁止流向dmz
-            [1, 'any', 'any', 'any', 'any', 'any', 'allow'] ## 默认
+            [1, 'TCP', 'any', 'any', '100.0.0.40/24', '80', 'allow'], ## pbz -> webserver
+            #[1, 'any', 'any', 'any', 'any', 'any', 'block'], ##禁止流向dmz
+            [2, 'any', 'any', 'any', 'any', 'any', 'allow'] ## 默认
         ]
 
 
@@ -50,6 +50,6 @@ class FW2 (Firewall):
         Firewall.__init__(self, connection, "FW2")
         self.rules = [
             [2, 'TCP', 'any', 'any', '100.0.0.40/24', '80', 'allow'], ## prz -> webserver
-            [1, 'any', 'any', 'any', 'any', 'any', 'block'], ## 禁止流向dmz
+            #[1, 'any', 'any', 'any', 'any', 'any', 'block'], ## 禁止流向dmz
             [2, 'any', 'any', 'any', 'any', 'any', 'allow'] ## 默认
         ]

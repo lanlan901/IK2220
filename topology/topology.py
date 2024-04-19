@@ -61,8 +61,11 @@ class MyTopo(Topo):
 
 def startup_services(net):
     # Start http services and executing commands you require on each host...
-
-    pass
+     # start web servers
+    for ws in ["ws1", "ws2", "ws3"]:
+        print("Starting HTTP server %s on port 80" % ws.upper()) 
+        server = net.get(ws)
+        server.cmd("python2 -m SimpleHTTPServer 80 &")
 
 topos = {'mytopo': (lambda: MyTopo())}
 
@@ -83,6 +86,8 @@ if __name__ == "__main__":
     startup_services(net)
     # Start the network
     net.start()
+    #webservers
+    startup_services(net)
 
     # Start the CLI
     CLI(net)

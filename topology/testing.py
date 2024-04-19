@@ -9,7 +9,7 @@ import topology
 #     # TODO: Here you should compare the return value "ret" with the expected value
 #     # (consider both failures
 #     return True  # True means "everyhing went as expected"/
-def ping(client, server, interface, expected, count=1, wait=1, timeout=5, pcap_file='capture.pcap'):
+def ping(client, server, expected, count=1, wait=1):
     """
     Executes a ping command from a client to a server, while capturing packets on the specified interface.
 
@@ -24,28 +24,22 @@ def ping(client, server, interface, expected, count=1, wait=1, timeout=5, pcap_f
     :return: True if the actual result matches the expected result, False otherwise.
     """
     # Build the tcpdump command to capture ICMP packets related to the ping
-    capture_cmd = f"tcpdump -i {interface} icmp and host {server} -w {pcap_file} &"
-    client.cmd(capture_cmd)
+    # capture_cmd = f"tcpdump -i {interface} icmp and host {server} -w {pcap_file} &"
+    # client.cmd(capture_cmd)
 
     # Build the ping command with timeout
-    ping_cmd = f"timeout {timeout} ping {server} -c {count} -i {wait} >/dev/null 2>&1; echo $?"
+    ping_cmd = f"ping {server} -c {count} -W {wait} >/dev/null 2>&1; echo $?"
+    
 
     # Execute the ping command
-    ret = client.cmd(ping_cmd).strip()
-
-    # Stop tcpdump after the ping has completed
-    client.cmd('kill %tcpdump')
-
-    # Check if the ping command was successful
-    success = (ret == "0")
+    ret = client.cmd(ping_cmd)
 
     # Return True if the outcome matches what was expected, False otherwise
-    if expected and success:
-        return True
-    elif not expected and not success:
-        return True
+    if (int(ret) == 0 and expected) or (int(ret) !=0 and expected == False):
+        print(client.name, "ping", server.name, f"working as expected, ping {str(expected)}")
     else:
-        return False
+        print(client.name, "ping", server.name, "NOT WORKING AS EXPECTED")
+
     
 def curl(client, server, method="GET", payload="", port=80, expected=True):
         """

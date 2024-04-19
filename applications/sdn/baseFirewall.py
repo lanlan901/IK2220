@@ -4,6 +4,7 @@ from pox.lib.addresses import IPAddr
 import pox.lib.packet as pkt
 from forwarding.l2_learning import LearningSwitch
 import struct 
+import ipaddress
 log = core.getLogger()
 
 
@@ -31,65 +32,33 @@ class Firewall (LearningSwitch):
         # This binds the PacketIn event listener
         connection.addListeners(self)
 
-    def do_firewall(self, packet, packet_in, action = 'allow'):
-        # The section will execute for every single packet
+    def do_firewall(self, packet, received_port):
         msg = of.ofp_flow_mod()                        # create a flow_mod to send packets
-        msg.match = of.ofp_match.from_packet(packet)   # setting the match
-        check_icmp = packet.find('icmp')               # is packet icmp? (boolean variable)
-        check_arp = packet.find('arp')                 # is packet arp? (boolean variable)
-        check_tcp = packet.find('tcp')                 # is packet tcp? (boolean variable)
-        check_ipv4 = packet.find('ipv4')               # is packet ipv4? (boolean variable)
+        msg.match = of.ofp_match.from_packet(packet, received_port)   # setting the match
+
+        dstAddr = packet.dst
+        out_port = -1
+
+        if dstAddr in self.macToPort:
+            out_port = self.macToPort[dstAddr]
+        else:
+            out_port = of.OFPP_FLOOD
+
+        print(f"Rule Installed on Output Port: {out_port}")
+
         msg.idle_timeout = 10
         msg.hard_timeout = 30
-        if action == 'allow':
-            # Allow the packet through by outputting it to a normal port
-            msg.actions.append(of.ofp_action_output(port = of.OFPP_NORMAL))
-        else:
-            # Drop the packet by not setting any output actions
-            msg.actions = []
 
-        # Case 1: ICMP packet
-        if check_icmp is not None:
-            msg.data = packet_in              # allow switch to transmit the packet to the controller
-            msg.nw_proto = 1                  # network protocol for ICMP is 1
-            out_action = of.ofp_action_output(port = of.OFPP_FLOOD) # flood packet: send to all ports
-            msg.actions.append(out_action)
-            self.connection.send(msg)         # flood if packet is ICMP
-    
-        # Case 2: ARP packet
-        elif check_arp is not None:
-            msg.data = packet_in              # allow switch to transmit the packet to the controller
-            msg.dl_type = 0x0806              # datalink layer uses ARP
-            out_action = of.ofp_action_output(port = of.OFPP_FLOOD) # flood (send to all ports)
-            msg.actions.append(out_action)    # append the action (flood)
-            self.connection.send(msg)         # flood if packet is ARP
-    
-        # Case 3: TCP packet
-        elif check_tcp is not None:
-            if ((check_ipv4.dstip == '10.0.0.50' and check_ipv4.srcip == '100.0.0.10') 
-            or (check_ipv4.dstip == '10.0.0.51' and check_ipv4.srcip == '100.0.0.10')):
-            # allow switch to transmit the packet to the controller
-                msg.data = packet_in
-                out_action = of.ofp_action_output(port = of.OFPP_FLOOD)   # flood (send to all ports)
-                msg.actions.append(out_action)                            # append the action
-                self.connection.send(msg)               # flood if packet is TCP to all ports)
+        self.connection.send(msg)
+        return
 
 
     def check_subnet(self, subnet, ip):
         if subnet == 'any':
             return True
         else:
-            # 分割子网为IP地址和掩码
-            net_ip, mask = subnet.split('/')
-            net_ip = IPAddr(net_ip)
-            ip = IPAddr(ip)
-            mask = int(mask)
-
-            # 将掩码转换为32位二进制数
-            mask_bin = (0xffffffff << (32 - mask)) & 0xffffffff
-
-            # 检查子网是否匹配
-            if int(net_ip) & mask_bin == int(ip) & mask_bin:
+            ip = str(ip)
+            if ipaddress.ip_address(ip) in ipaddress.ip_network(subnet):
                 return True
             else:
                 return False
@@ -118,8 +87,6 @@ class Firewall (LearningSwitch):
     # You should call this function during the _handle_packetIn event to make the right decision for the incoming packet.
     def has_access(self, ip_packet, input_port):
         ### COMPLETE THIS PART ###
-        #检查数据包类型
-        payload = ip_packet.payload
         packet_protocol = ""
         packet_src_ip = ip_packet.srcip
         packet_dst_ip = ip_packet.dstip
@@ -154,8 +121,8 @@ class Firewall (LearningSwitch):
             dst_ip_res = self.check_subnet(dst_ip, packet_dst_ip)
 
             #检查端口
-            src_port_res = self.check_port(src_port,packet_src_port)
-            dst_port_res = self.check_port(dst_port,packet_dst_port)
+            src_port_res = self.check_port(src_port, packet_src_port)
+            dst_port_res = self.check_port(dst_port, packet_dst_port)
 
             if(protocol_result and src_ip_res and dst_ip_res and src_port_res and dst_port_res):
                 #判断动作
@@ -191,10 +158,10 @@ class Firewall (LearningSwitch):
             access_allowed = self.has_access(ip_packet, event.port)
             if access_allowed:
                 log.debug(f"{self.name}: Packet allowed.")
-                self.do_firewall(packet, packet_in, action='allow')
+                self.do_firewall(packet, input_port)
             else:
                 log.debug(f"{self.name}: Packet dropped.")
-                self.do_firewall(packet, packet_in, action='block')
+                return
         else:
             # handle non-IP packets normally
             self.do_firewall(packet, packet_in, action='allow')

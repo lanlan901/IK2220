@@ -44,17 +44,17 @@ class controller (object):
 
         if dpid in [1,2,3,4]:
             learning_sw =  LearningSwitch(event.connection, False) ## false -> 不会转发
-            self.devices[dpid] = learning_sw
+            self.devices[len(self.devices)] = learning_sw
             print(f"LearningSwitch instance created and added to devices dictionary, DPID: {dpid}.")
 
         if dpid == 5: ## Firewall 1
             fw1 = networkFirewalls.FW1(event.connection)
-            self.devices[dpid] = fw1
+            self.devices[len(self.devices)] = fw1
             print(f"FW1 instance created and added to devices dictionary, DPID: {dpid}.")
 
         if dpid == 6: ## Firewall 2
             fw2 = networkFirewalls.FW2(event.connection)
-            self.devices[dpid] = fw2
+            self.devices[len(self.devices)] = fw2
             print(f"FW2 instance created and added to devices dictionary, DPID: {dpid}.")
         
         return

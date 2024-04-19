@@ -28,6 +28,52 @@ class Firewall (LearningSwitch):
         ### COMPLETE THIS PART ###
         self.connection = connection
         self.name = name
+        # This binds the PacketIn event listener
+        connection.addListeners(self)
+
+    def do_firewall(self, packet, packet_in, action = 'allow'):
+        # The section will execute for every single packet
+        msg = of.ofp_flow_mod()                        # create a flow_mod to send packets
+        msg.match = of.ofp_match.from_packet(packet)   # setting the match
+        check_icmp = packet.find('icmp')               # is packet icmp? (boolean variable)
+        check_arp = packet.find('arp')                 # is packet arp? (boolean variable)
+        check_tcp = packet.find('tcp')                 # is packet tcp? (boolean variable)
+        check_ipv4 = packet.find('ipv4')               # is packet ipv4? (boolean variable)
+        msg.idle_timeout = 10
+        msg.hard_timeout = 30
+        if action == 'allow':
+            # Allow the packet through by outputting it to a normal port
+            msg.actions.append(of.ofp_action_output(port = of.OFPP_NORMAL))
+        else:
+            # Drop the packet by not setting any output actions
+            msg.actions = []
+
+        # Case 1: ICMP packet
+        if check_icmp is not None:
+            msg.data = packet_in              # allow switch to transmit the packet to the controller
+            msg.nw_proto = 1                  # network protocol for ICMP is 1
+            out_action = of.ofp_action_output(port = of.OFPP_FLOOD) # flood packet: send to all ports
+            msg.actions.append(out_action)
+            self.connection.send(msg)         # flood if packet is ICMP
+    
+        # Case 2: ARP packet
+        elif check_arp is not None:
+            msg.data = packet_in              # allow switch to transmit the packet to the controller
+            msg.dl_type = 0x0806              # datalink layer uses ARP
+            out_action = of.ofp_action_output(port = of.OFPP_FLOOD) # flood (send to all ports)
+            msg.actions.append(out_action)    # append the action (flood)
+            self.connection.send(msg)         # flood if packet is ARP
+    
+        # Case 3: TCP packet
+        elif check_tcp is not None:
+            if ((check_ipv4.dstip == '10.0.0.50' and check_ipv4.srcip == '100.0.0.10') 
+            or (check_ipv4.dstip == '10.0.0.51' and check_ipv4.srcip == '100.0.0.10')):
+            # allow switch to transmit the packet to the controller
+                msg.data = packet_in
+                out_action = of.ofp_action_output(port = of.OFPP_FLOOD)   # flood (send to all ports)
+                msg.actions.append(out_action)                            # append the action
+                self.connection.send(msg)               # flood if packet is TCP to all ports)
+
 
     def check_subnet(self, subnet, ip):
         if subnet == 'any':
@@ -71,10 +117,7 @@ class Firewall (LearningSwitch):
     # It returns a boolean as if the packet is allowed to pass the firewall or not.
     # You should call this function during the _handle_packetIn event to make the right decision for the incoming packet.
     def has_access(self, ip_packet, input_port):
-
-
         ### COMPLETE THIS PART ###
-
         #检查数据包类型
         payload = ip_packet.payload
         packet_protocol = ""
@@ -104,24 +147,25 @@ class Firewall (LearningSwitch):
                 continue 
         
             #检查协议
-            self.check_protocol(protocol, packet_protocol)
+            protocol_result = self.check_protocol(protocol, packet_protocol)
             
             #检查ip
-            self.check_subnet(src_ip, packet_src_ip)
-            self.check_subnet(dst_ip, packet_dst_ip)
+            src_ip_res = self.check_subnet(src_ip, packet_src_ip)
+            dst_ip_res = self.check_subnet(dst_ip, packet_dst_ip)
 
             #检查端口
-            self.check_port(src_port,packet_src_port)
-            self.check_port(dst_port,packet_dst_port)
-        
-            #判断动作
-            if action == 'allow':
-                print("allow")
-                return True
-            elif action == 'block':
-                print("block")
-                return False
+            src_port_res = self.check_port(src_port,packet_src_port)
+            dst_port_res = self.check_port(dst_port,packet_dst_port)
 
+            if(protocol_result and src_ip_res and dst_ip_res and src_port_res and dst_port_res):
+                #判断动作
+                if action == 'allow':
+                    print("allow")
+                    return True
+                elif action == 'block':
+                    print("block")
+                    return False
+        print("NO RULES MATCH")
         return False  #默认不通过
 
     # On receiving a packet from dataplane, your firewall should process incoming event and apply the correct OF rule on the device.
@@ -139,39 +183,24 @@ class Firewall (LearningSwitch):
             print(self.name, ": Incomplete packet received! controller ignores that")
             return
         
-        ofp_msg = event.ofp
+        packet_in = event.ofp
 
         ### COMPLETE THIS PART ###
         ip_packet = packet.find('ipv4')
         if ip_packet:
-            if self.has_access(packet, input_port):
+            access_allowed = self.has_access(ip_packet, event.port)
+            if access_allowed:
                 log.debug(f"{self.name}: Packet allowed.")
-                # 处理允许通过的数据包
-                self.allow(packet, input_port)
+                self.do_firewall(packet, packet_in, action='allow')
             else:
-                log.debug(f"{self.name}: Packet dropped based on firewall rules.")
+                log.debug(f"{self.name}: Packet dropped.")
+                self.do_firewall(packet, packet_in, action='block')
+        else:
+            # handle non-IP packets normally
+            self.do_firewall(packet, packet_in, action='allow')
         
         super(Firewall, self)._handle_PacketIn(event)
 
     # You are allowed to add more functions to this file as your need (e.g., a function for installing OF rules)
-    def allow(self, packet, input_port):
-        match_obj = of.ofp_match.from_packet(packet, input_port)
-        msg = of.ofp_flow_mod()
-        msg.match = match_obj
-        out_port = -1
-
-        dst_mac = packet.dst
-        
-        if dst_mac in self.macToPort:
-            out_port = self.macToPort[dst_mac]
-        
-        else:
-            out_port = of.OFPP_FLOOD 	
-        print("Rule Installed on Output Port: {}", out_port)
-        msg.actions.append(of.ofp_action_output(port = out_port))
-        msg.idle_timeout = 10
-        msg.hard_timeout = 30
-        self.connection.send(msg)
-        return
 
                 

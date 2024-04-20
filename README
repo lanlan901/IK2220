@@ -25,3 +25,6 @@ Removes all junks added to different directories to run the application.
 
 sudo lsof -i:6633
 sudo kill -9 1444
+
+fw1 killall tcpdump
+fw1 tcpdump -i fw1-eth2 -w pcap/fw1-eth2.pcap &

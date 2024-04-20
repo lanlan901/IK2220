@@ -44,8 +44,8 @@ class Firewall (LearningSwitch):
         else:
             out_port = of.OFPP_FLOOD
 
-        print(f"Rule Installed on Output Port: {out_port}")
-
+        print(f"On {self.name} Rule Installed on Output Port: {out_port}")
+        msg.actions.append(of.ofp_action_output(port = out_port))
         msg.idle_timeout = 10
         msg.hard_timeout = 30
 
@@ -165,7 +165,8 @@ class Firewall (LearningSwitch):
         if not packet.parsed:
             print(self.name, ": Incomplete packet received! controller ignores that")
             return
-        
+        else:
+            print(self.name, ": packet received! ")
         #packet_in = event.ofp
 
         ### COMPLETE THIS PART ###
@@ -178,9 +179,9 @@ class Firewall (LearningSwitch):
             else:
                 log.debug(f"{self.name}: Packet dropped.")
                 return
-        else:
+        #else:
             # handle non-IP packets normally
-            self.do_firewall(packet, input_port)
+            #self.do_firewall(packet, input_port)
         
         super(Firewall, self)._handle_PacketIn(event)
 

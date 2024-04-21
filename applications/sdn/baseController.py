@@ -94,7 +94,7 @@ class controller (object):
 
         for connection in core.openflow.connections:
             connection.send(msg)
-            log.debug("Clearing all flows from %s." % (dpidToStr(connection.dpid),))
+            log.debug("Clearing all flows from %s." % (dpid_to_str(connection.dpid),))
                 
         return
 

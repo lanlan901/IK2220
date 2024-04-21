@@ -3,6 +3,7 @@ import pox.openflow.libopenflow_01 as of
 from pox.lib.addresses import IPAddr
 import pox.lib.packet as pkt
 from forwarding import l2_learning
+import ipaddress
 log = core.getLogger()
 
 
@@ -32,10 +33,13 @@ class Firewall (l2_learning.LearningSwitch):
         if subnet == 'any':
             return True
         else:
-            ip = str(ip)
-            if ipaddress.ip_address(ip) in ipaddress.ip_network(subnet):
-                return True
-            else:
+            # 将 IPAddr 对象用于 IP 地址，确保格式正确
+            try:
+                ip_addr = ipaddress.ip_address(str(ip))
+                network = ipaddress.ip_network(str(subnet), strict=False)  # 转换成字符串进行网络定义
+                return ip_addr in network
+            except ValueError as e:
+                print(f"Error processing subnet {subnet} and IP {ip}: {e}")
                 return False
     
     def check_protocol(self, rule, protocol):
@@ -131,6 +135,11 @@ class Firewall (l2_learning.LearningSwitch):
     def _handle_PacketIn(self, event):
 
         packet = event.parsed
+        dpid = event.connection.dpid
+        mac_addr = packet.src
+        where = f"switch {dpid} - port {event.port}" 
+        core.controller.updatefirstSeenAt(mac_addr, where)
+
         if not packet.parsed:
             print(self.name, ": Incomplete packet received! controller ignores that")
             return

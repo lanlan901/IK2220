@@ -2,9 +2,7 @@ from pox.core import core
 import pox.openflow.libopenflow_01 as of
 from pox.lib.addresses import IPAddr
 import pox.lib.packet as pkt
-from forwarding.l2_learning import LearningSwitch
-import struct 
-import ipaddress
+from forwarding import l2_learning
 log = core.getLogger()
 
 
@@ -13,10 +11,10 @@ log = core.getLogger()
 # After processing packets you should install the correct OF rule on the device to threat similar packets the same way on dataplane (without forwarding packets to the controller) for a specific period of time.
 
 # rules format:
-# [input_HW_port, protocol, src_subnet, src_port, dst_subnet, dst_port, allow/block]
+# [input_HW_port, protocol, src_ip, src_port, dst_ip, dst_port, allow/block]
 # Checkout networkFirewalls.py file for detailed structure.
 
-class Firewall (LearningSwitch):
+class Firewall (l2_learning.LearningSwitch):
 
     rules = []
 
@@ -25,32 +23,9 @@ class Firewall (LearningSwitch):
         # Initialization of your Firewall. You may want to keep track of the connection, device name and etc.
 
         super(Firewall, self).__init__(connection, False)
-
-        ### COMPLETE THIS PART ###
-        self.connection = connection
         self.name = name
-        # This binds the PacketIn event listener
-        connection.addListeners(self)
-
-    def do_firewall(self, packet, received_port):
-        msg = of.ofp_flow_mod()                        # create a flow_mod to send packets
-        msg.match = of.ofp_match.from_packet(packet, received_port)   # setting the match
-
-        dstAddr = packet.dst
-        out_port = -1
-
-        if dstAddr in self.macToPort:
-            out_port = self.macToPort[dstAddr]
-        else:
-            out_port = of.OFPP_FLOOD
-
-        print(f"On {self.name} Rule Installed on Output Port: {out_port}")
-        msg.actions.append(of.ofp_action_output(port = out_port))
-        msg.idle_timeout = 10
-        msg.hard_timeout = 30
-
-        self.connection.send(msg)
-        return
+        
+        ### COMPLETE THIS PART ###
 
 
     def check_subnet(self, subnet, ip):
@@ -156,35 +131,24 @@ class Firewall (LearningSwitch):
     def _handle_PacketIn(self, event):
 
         packet = event.parsed
-        input_port = event.port
-        dpid = event.connection.dpid
-        mac_addr = packet.src
-        where = f"switch {dpid} - port {input_port}" 
-        core.controller.updatefirstSeenAt(mac_addr, where)
-
         if not packet.parsed:
             print(self.name, ": Incomplete packet received! controller ignores that")
             return
-        else:
-            print(self.name, ": packet received! ")
-        #packet_in = event.ofp
+        
+        ofp_msg = event.ofp
 
-        ### COMPLETE THIS PART ###
         ip_packet = packet.find('ipv4')
         if ip_packet:
             access_allowed = self.has_access(ip_packet, event.port)
             if access_allowed:
                 log.debug(f"{self.name}: Packet allowed.")
-                self.do_firewall(packet, input_port)
+                super(Firewall, self)._handle_PacketIn(event)
+
             else:
-                log.debug(f"{self.name}: Packet dropped.")
                 return
-        #else:
-            # handle non-IP packets normally
-            #self.do_firewall(packet, input_port)
+        ### COMPLETE THIS PART ###
+        #log.debug(packet)
+        print("111")
         
-        super(Firewall, self)._handle_PacketIn(event)
 
     # You are allowed to add more functions to this file as your need (e.g., a function for installing OF rules)
-
-                

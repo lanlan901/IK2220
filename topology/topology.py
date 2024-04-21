@@ -51,6 +51,7 @@ class MyTopo(Topo):
         self.addLink(sw4, ws1, port1 = 1, port2 = 0)
         self.addLink(sw4, ws2, port1 = 2, port2 = 0)
         self.addLink(sw4, ws3, port1 = 3, port2 = 0)
+        self.addLink(sw2, sw4, port1 = 3, port2 = 4)
 
         # Firewall
         self.addLink(sw1, fw1, port1 = 3, port2 = 1)

@@ -154,6 +154,7 @@ class Firewall (l2_learning.LearningSwitch):
                 super(Firewall, self)._handle_PacketIn(event)
 
             else:
+                log.debug(f"{self.name}: Packet blocked.")
                 return
         ### COMPLETE THIS PART ###
         #log.debug(packet)

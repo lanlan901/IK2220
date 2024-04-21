@@ -32,3 +32,4 @@ fw2 tcpdump -i fw2-eth1 -w pcap/fw2-eth1.pcap &
 sw3 tcpdump -i sw3-eth1 -w pcap/sw3-eth1.pcap &
 sw3 tcpdump -i sw3-eth2 -w pcap/sw3-eth2.pcap &
 sw3 tcpdump -i sw3-eth3 -w pcap/sw3-eth3.pcap &
+sw4 tcpdump -i sw4-eth4 -w pcap/sw4-eth4.pcap &

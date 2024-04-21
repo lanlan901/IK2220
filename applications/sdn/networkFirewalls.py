@@ -34,6 +34,7 @@ class FW1 (Firewall):
             [1, 'TCP', 'any', 'any', '100.0.0.40/24', '80', 'allow'], ## pbz -> webserver
             [1, 'ICMP', '100.0.0.0/24', 'any', '100.0.0.0/24', 'any', 'allow'], 
             [2, 'ICMP', '100.0.0.0/24', 'any', '100.0.0.0/24', 'any', 'allow'], 
+            [2, 'TCP', 'any', '100.0.0.40/24', 'any', 'any', 'allow'],
             [2, 'any', 'any', 'any', 'any', 'any', 'block'], 
             [1, 'any', 'any', 'any', 'any', 'any', 'block']
         ]
@@ -52,6 +53,7 @@ class FW2 (Firewall):
         Firewall.__init__(self, connection, "FW2")
         self.rules = [
             [2, 'TCP', 'any', 'any', '100.0.0.40/24', '80', 'allow'], ## prz -> webserver
+            [1, 'TCP', 'any', '100.0.0.40/24', 'any', 'any', 'allow'],
             [1, 'any', 'any', 'any', 'any', 'any', 'block'],           # 阻止从 DMZ 到 PrZ 的所有其他流量
             [2, 'any', 'any', 'any', 'any', 'any', 'allow']            # 阻止从 PrZ 到 DMZ 的所有其他流量
         ]

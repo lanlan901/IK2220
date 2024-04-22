@@ -18,8 +18,6 @@ test:
 	@echo "starting test scenarios!"
 	make app
 	sleep 5 
-	make topo
-	sleep 5 
 	sudo python ./topology/topology_test.py 2>&1 | tee ${OUT_LOG_TEST_RESULT}
 
 clean:

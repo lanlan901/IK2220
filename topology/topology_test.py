@@ -32,6 +32,7 @@ def run_tests(net):
 
 
     # Launch some tests
+    print(f"-----ping test------")
     testing.ping(h1, h2, True)
     testing.ping(h1, h3, False)
     testing.ping(h3, h1, True)
@@ -39,8 +40,25 @@ def run_tests(net):
     testing.ping(h2, h3, False)
 
     testing.ping(h1, ws1, False)
+    testing.ping(h2, ws1, False)
     testing.ping(h3, ws1, False)
-    testing.curl(h1, h2, expected=False)
+    testing.ping(h4, ws1, False)
+
+    print("\n")
+    print(f"-----curl test------")
+    testing.curl(h1, ws1, expected=200)
+    testing.curl(h1, ws2, expected=200)
+    testing.curl(h1, ws3, expected=200)
+    testing.curl(h2, ws1, expected=200)
+    testing.curl(h2, ws2, expected=200)
+    testing.curl(h2, ws3, expected=200)
+    testing.curl(h1, ws1, expected=200)
+    testing.curl(h3, ws2, expected=200)
+    testing.curl(h3, ws3, expected=200)
+    testing.curl(h4, ws1, expected=200)
+    testing.curl(h4, ws2, expected=200)
+    testing.curl(h4, ws3, expected=200)
+    print("\n")
 
 
 if __name__ == "__main__":
@@ -70,5 +88,7 @@ if __name__ == "__main__":
 
     # You may need some commands before stopping the network! If you don't, leave it empty
     ### COMPLETE THIS PART ###
-
+    for link in net.links:
+        net.delLink(link)
+        
     net.stop()

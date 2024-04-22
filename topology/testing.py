@@ -38,33 +38,34 @@ def ping(client, server, expected, count=1, wait=1,timeout=3):
     success = (ret == "0" and expected) or (ret != "0" and not expected)
     if success:
         print(f"{client.name} ping to {server.name}: Expected {expected}, Result: Success")
+        print("\n")
     else:
         print(f"{client.name} ping to {server.name}: Expected {expected}, Result: Failure")
+        print("\n")
 
     return success
 
     
-def curl(client, server, method="GET", payload="test", port=80, expected=True):
-        """
-        run curl for HTTP request. Request method and payload should be specified
-        Server can either be a host or a string
-        return True in case of success, False if not
-        """
+def curl(client, server, method="GET", payload="test", port=80, expected=200):
+    """
+    Run curl for HTTP request. Request method and payload should be specified.
+    Server can either be a host or a string.
+    Return True in case of success, False if not.
+    """
+    if isinstance(server, str):
+        server_ip = server
+    else:
+        server_ip = server.IP()
 
-        if (isinstance(server, str) == 0):
-            server_ip = str(server.IP())
-        else:
-            # If it's a string it should be the IP address of the node (e.g., the load balancer)
-            server_ip = server
+    # Build curl command with HTTP method, data payload, and output format for HTTP status code
+    cmd = f"curl -s -o /dev/null -w '%{{http_code}}' -X {method} -d '{payload}' http://{server_ip}:{port}"
+    ret = client.cmd(cmd).strip()
 
-        # TODO: Specify HTTP method
-        # TODO: Pass some payload (a.k.a. data). You may have to add some escaped quotes!
-        # The magic string at the end reditect everything to the black hole and just print the return code
-        cmd = f"curl -s -o /dev/null -w '%{{http_code}}' -X {method} -d '{payload}' http://{server_ip}:{port}"
-        ret = client.cmd(cmd).strip()
-        if int(ret) == expected:
-            print(f"{client.name} curl to {server.name}:{port}: Expected HTTP {expected}, Result: Success")
-            return True
-        else:
-            print(f"{client.name} curl to {server.name}:{port}: Expected HTTP {expected}, Result: Failure, Received: {ret}")
-            return False
+    # Compare the returned HTTP status code with the expected status code
+    if int(ret) == expected:
+        print(f"{client.name} curl to {server_ip}:{port}: Expected HTTP {expected}, Result: Success")
+        return True
+    else:
+        print(f"{client.name} curl to {server_ip}:{port}: Expected HTTP {expected}, Result: Failure, Received: {ret}")
+        return False
+

@@ -7,11 +7,15 @@ from time import sleep
 from datetime import datetime
 import json
 import struct
+import logging
+
+
+
 
 controller = None
 app = Flask(__name__)
-
-
+logging.basicConfig(level=logging.DEBUG)
+app.logger.setLevel(logging.DEBUG)
 def htmlify(content, req, replace=True):
     # Feel free to update this function in case you want have a different HTML style
     s = "<html><body>"
@@ -77,6 +81,13 @@ def index():
     s += "<a href='flush'> Flush rules from all switches. Be careful! </a><br></n>"
     return s
 
+@app.errorhandler(Exception)
+def handle_exception(e):
+    # pass through HTTP errors
+    if isinstance(e, HTTPException):
+        return e
+    app.logger.error('Unhandled exception', exc_info=e)
+    return jsonify(error=str(e)), 500
 
 def webserver(contr):
     global controller

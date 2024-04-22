@@ -66,7 +66,7 @@ def startup_services(net):
     for ws in ["ws1", "ws2", "ws3"]:
         print("Starting web server %s on port 80" % ws.upper()) 
         server = net.get(ws)
-        server.cmd("python3 -m SimpleHTTPServer 80 &")
+        server.cmd("python3 -m http.server 80 &")
 
 topos = {'mytopo': (lambda: MyTopo())}
 

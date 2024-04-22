@@ -37,7 +37,10 @@ def run_tests(net):
     testing.ping(h3, h1, True)
     testing.ping(h3, h2, True)
     testing.ping(h2, h3, False)
-    #testing.curl(h1, h2, expected=False)
+
+    testing.ping(h1, ws1, False)
+    testing.ping(h3, ws1, False)
+    testing.curl(h1, h2, expected=False)
 
 
 if __name__ == "__main__":

@@ -7,10 +7,11 @@ import networkFirewalls
 import webserver
 import subprocess
 import shlex
+from forwarding.l2_learning import LearningSwitch
 import datetime
 
 # import click_wrapper
-from l2_learning import LearningSwitch
+
 
 log = core.getLogger()
 

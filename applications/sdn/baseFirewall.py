@@ -89,7 +89,7 @@ class Firewall (l2_learning.LearningSwitch):
             if icmp_type == 8: #ping request
                 pass
 
-        print(f"packet protocol = {packet_protocol}, src ip = {src_ip}, dst ip ={dst_ip}")
+        print(f"input port = {input_port}, packet protocol = {packet_protocol}, src ip = {src_ip}, dst ip ={dst_ip}")
             
         for rule in self.rules:
             hw_port, protocol, src_subnet, src_port, dst_subnet, dst_port, action = rule
@@ -152,10 +152,11 @@ class Firewall (l2_learning.LearningSwitch):
             if access_allowed:
                 log.debug(f"{self.name}: Packet allowed.")
                 super(Firewall, self)._handle_PacketIn(event)
-
             else:
                 log.debug(f"{self.name}: Packet blocked.")
                 return
+            
+        
         ### COMPLETE THIS PART ###
         #log.debug(packet)
         print("111")

@@ -9,7 +9,7 @@ import topology
 #     # TODO: Here you should compare the return value "ret" with the expected value
 #     # (consider both failures
 #     return True  # True means "everyhing went as expected"/
-def ping(client, server, expected, count=1, wait=1):
+def ping(client, server, expected, count=1, wait=1,timeout=3):
     """
     Executes a ping command from a client to a server, while capturing packets on the specified interface.
 
@@ -28,20 +28,23 @@ def ping(client, server, expected, count=1, wait=1):
     # client.cmd(capture_cmd)
 
     # Build the ping command with timeout
-    ping_cmd = f"ping {server} -c {count} -W {wait} >/dev/null 2>&1; echo $?"
+    ping_cmd = f"ping -c {count} -W {wait} -w {timeout} {server.IP()} >/dev/null 2>&1; echo $?"
     
 
     # Execute the ping command
-    ret = client.cmd(ping_cmd)
+    ret = client.cmd(ping_cmd).strip()
 
     # Return True if the outcome matches what was expected, False otherwise
-    if (int(ret) == 0 and expected) or (int(ret) !=0 and expected == False):
-        print(client.name, "ping", server.name, f"working as expected, ping {str(expected)}")
+    success = (ret == "0" and expected) or (ret != "0" and not expected)
+    if success:
+        print(f"{client.name} ping to {server.name}: Expected {expected}, Result: Success")
     else:
-        print(client.name, "ping", server.name, "NOT WORKING AS EXPECTED")
+        print(f"{client.name} ping to {server.name}: Expected {expected}, Result: Failure")
+
+    return success
 
     
-def curl(client, server, method="GET", payload="", port=80, expected=True):
+def curl(client, server, method="GET", payload="test", port=80, expected_code=200):
         """
         run curl for HTTP request. Request method and payload should be specified
         Server can either be a host or a string
@@ -57,9 +60,11 @@ def curl(client, server, method="GET", payload="", port=80, expected=True):
         # TODO: Specify HTTP method
         # TODO: Pass some payload (a.k.a. data). You may have to add some escaped quotes!
         # The magic string at the end reditect everything to the black hole and just print the return code
-        cmd = f"curl --connect-timeout 3 --max-time 3 -s {server}:{port} > /dev/null 2>&1; echo $?"
-        ret = client.cmd(cmd).strip()
-        print(f"`{cmd}` on {client} returned {ret}")
-
-        # TODO: What value do you expect?
-        return True  # True means "everyhing went as expected"
+        cmd = f"curl -s -o /dev/null -w '%{{http_code}}' -X {method} -d '{payload}' http://{server_ip}:{port}"
+        ret_code = client.cmd(cmd).strip()
+        if int(ret_code) == expected_code:
+            print(f"{client.name} curl to {server.name}:{port}: Expected HTTP {expected_code}, Result: Success")
+            return True
+        else:
+            print(f"{client.name} curl to {server.name}:{port}: Expected HTTP {expected_code}, Result: Failure, Received: {ret_code}")
+            return False

@@ -44,7 +44,7 @@ def ping(client, server, expected, count=1, wait=1,timeout=3):
     return success
 
     
-def curl(client, server, method="GET", payload="test", port=80, expected_code=200):
+def curl(client, server, method="GET", payload="test", port=80, expected=True):
         """
         run curl for HTTP request. Request method and payload should be specified
         Server can either be a host or a string
@@ -61,10 +61,10 @@ def curl(client, server, method="GET", payload="test", port=80, expected_code=20
         # TODO: Pass some payload (a.k.a. data). You may have to add some escaped quotes!
         # The magic string at the end reditect everything to the black hole and just print the return code
         cmd = f"curl -s -o /dev/null -w '%{{http_code}}' -X {method} -d '{payload}' http://{server_ip}:{port}"
-        ret_code = client.cmd(cmd).strip()
-        if int(ret_code) == expected_code:
-            print(f"{client.name} curl to {server.name}:{port}: Expected HTTP {expected_code}, Result: Success")
+        ret = client.cmd(cmd).strip()
+        if int(ret) == expected:
+            print(f"{client.name} curl to {server.name}:{port}: Expected HTTP {expected}, Result: Success")
             return True
         else:
-            print(f"{client.name} curl to {server.name}:{port}: Expected HTTP {expected_code}, Result: Failure, Received: {ret_code}")
+            print(f"{client.name} curl to {server.name}:{port}: Expected HTTP {expected}, Result: Failure, Received: {ret}")
             return False

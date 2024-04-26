@@ -31,12 +31,12 @@ class FW1 (Firewall):
         ##[硬件端口号；协议；源ip；TCP/UDP源端口号；目的ip；TCP/UDP目的端口号；允许或禁止]
         Firewall.__init__(self, connection, "FW1")
         self.rules = [
-            [1, 'TCP', 'any', 'any', '100.0.0.40/24', '80', 'allow'], ## pbz -> webserver
+            #webserver - pbz
+            [1, 'TCP', 'any', 'any', '100.0.0.40/24', '80', 'allow'], 
             [2, 'TCP', '100.0.0.40/24', 'any', 'any', 'any', 'allow'],
-            [1, 'ICMP', '100.0.0.0/24', 'any', '100.0.0.0/24', 'any', 'allow'], 
-            [2, 'ICMP', '100.0.0.0/24', 'any', '100.0.0.0/24', 'any', 'allow'], 
-            [2, 'any', 'any', 'any', 'any', 'any', 'block'], 
-            [1, 'any', 'any', 'any', 'any', 'any', 'block']
+            [1, 'any', 'any', 'any', '100.0.0.40/24', 'any', 'block'], 
+            [2, 'any', 'any', 'any', 'any', 'any', 'block'],
+            [1, 'any', 'any', 'any', 'any', 'any', 'allow']
         ]
 
 
@@ -52,8 +52,10 @@ class FW2 (Firewall):
         ##[硬件端口号；协议；源ip；TCP/UDP源端口号；目的ip；TCP/UDP目的端口号；允许或禁止]
         Firewall.__init__(self, connection, "FW2")
         self.rules = [
-            [2, 'TCP', 'any', 'any', '100.0.0.40/24', '80', 'allow'], ## prz -> webserver
+            ## prz - webserver
+            [2, 'TCP', 'any', 'any', '100.0.0.40/24', '80', 'allow'], 
             [1, 'TCP', '100.0.0.40/24', 'any', 'any', 'any', 'allow'],
-            [1, 'any', 'any', 'any', 'any', 'any', 'block'],           # 阻止从 DMZ 到 PrZ 的所有其他流量
-            [2, 'any', 'any', 'any', 'any', 'any', 'allow']            # 阻止从 PrZ 到 DMZ 的所有其他流量
+            [2, 'any', 'any', 'any', '100.0.0.40/24', 'any', 'block'], 
+            [1, 'any', 'any', 'any', 'any', 'any', 'block'],
+            [2, 'any', 'any', 'any', 'any', 'any', 'allow'] 
         ]

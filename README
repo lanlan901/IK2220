@@ -22,10 +22,6 @@ Restarts topology, and the sdn controller. Then it runs provided test scenarios.
 
 Removes all junks added to different directories to run the application.
 
-
-sudo lsof -i:6633
-sudo kill -9 1444
-
 fw2 killall tcpdump
 fw2 tcpdump -i fw2-eth2 -w pcap/fw2-eth2.pcap &
 fw2 tcpdump -i fw2-eth1 -w pcap/fw2-eth1.pcap &

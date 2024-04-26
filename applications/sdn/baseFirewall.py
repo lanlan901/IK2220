@@ -27,6 +27,10 @@ class Firewall (l2_learning.LearningSwitch):
         self.name = name
         
         ### COMPLETE THIS PART ###
+        self.pbztable = {str('00:00:00:00:00:01'), str('00:00:00:00:00:02')}
+        self.prztable = {str('00:00:00:00:00:03'), str('00:00:00:00:00:04')}
+        self.webserver = {str('00:00:00:00:00:05'), str('00:00:00:00:00:06'), str('00:00:00:00:00:07')}
+        self.allowtable = set()
 
 
     def check_subnet(self, subnet, ip):
@@ -135,31 +139,62 @@ class Firewall (l2_learning.LearningSwitch):
     def _handle_PacketIn(self, event):
 
         packet = event.parsed
-        dpid = event.connection.dpid
-        mac_addr = packet.src
-        where = f"switch {dpid} - port {event.port}" 
-        core.controller.updatefirstSeenAt(mac_addr, where)
-
         if not packet.parsed:
             print(self.name, ": Incomplete packet received! controller ignores that")
             return
         
-        ofp_msg = event.ofp
+        dpid = event.connection.dpid
+
+        #src &dst
+        src_mac = str(packet.src).upper()
+        dst_mac = str(packet.dst).upper()
+        print(f"src address: {src_mac}, dst address: {dst_mac}")
+        self.add_to_allowtable(src_mac, dst_mac)
+        # self.print_allowtable()
+
+        #update first seen at
+        where = f"switch {dpid} - port {event.port}" 
+        core.controller.updatefirstSeenAt(src_mac, where)
 
         ip_packet = packet.find('ipv4')
         if ip_packet:
             access_allowed = self.has_access(ip_packet, event.port)
-            if access_allowed:
-                log.debug(f"{self.name}: Packet allowed.")
-                super(Firewall, self)._handle_PacketIn(event)
-            else:
-                log.debug(f"{self.name}: Packet blocked.")
+            if(src_mac, dst_mac) not in self.allowtable:
+                print(f"{self.name}: Packet blocked for mac.")
                 return
-            
+            else:
+                if access_allowed:
+                    super(Firewall, self)._handle_PacketIn(event)
+                    print(f"{self.name}: Packet allowed.")
+                else:
+                    log.debug(f"{self.name}: Packet blocked.")
+                    return
+    
+    def add_to_allowtable(self, src_mac, dst_mac):
+        src_mac = str(src_mac).upper()  #EtherAddr -> str
+        dst_mac = str(dst_mac).upper() 
+        #webserver route
+        if dst_mac in self.webserver:
+            self.allowtable.add((src_mac, dst_mac))
+            self.allowtable.add((dst_mac, src_mac))
+            print(f"Added ({src_mac} -> {dst_mac}) and ({dst_mac} -> {src_mac}) to the allowtable.")
+            return
         
-        ### COMPLETE THIS PART ###
-        #log.debug(packet)
-        print("111")
-        
+        #prz: add response route
+        if src_mac in self.prztable: 
+            self.allowtable.add((src_mac, dst_mac))
+            self.allowtable.add((dst_mac, src_mac))
+            print(f"Added ({src_mac} -> {dst_mac}) and ({dst_mac} -> {src_mac}) to the allowtable.")
+            return
+        else:
+            print(f"Attempt to add from non-PRZ source {src_mac} to {dst_mac}")
+            return
 
-    # You are allowed to add more functions to this file as your need (e.g., a function for installing OF rules)
+    # def print_allowtable(self):
+    #     print("Current Allow Table:")
+    #     for src_dst_pair in self.allowtable:
+    #         print(f"Allowed pair: {src_dst_pair[0]} -> {src_dst_pair[1]}")
+
+    def flush_allowtable(self):
+        print("flush allow table")
+        self.allowtable.clear()

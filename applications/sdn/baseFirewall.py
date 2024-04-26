@@ -158,11 +158,11 @@ class Firewall (l2_learning.LearningSwitch):
 
         ip_packet = packet.find('ipv4')
         if ip_packet:
-            access_allowed = self.has_access(ip_packet, event.port)
             if(src_mac, dst_mac) not in self.allowtable:
                 print(f"{self.name}: Packet blocked for mac.")
                 return
             else:
+                access_allowed = self.has_access(ip_packet, event.port)
                 if access_allowed:
                     super(Firewall, self)._handle_PacketIn(event)
                     print(f"{self.name}: Packet allowed.")
@@ -173,6 +173,11 @@ class Firewall (l2_learning.LearningSwitch):
     def add_to_allowtable(self, src_mac, dst_mac):
         src_mac = str(src_mac).upper()  #EtherAddr -> str
         dst_mac = str(dst_mac).upper() 
+        # dst in prz
+        if dst_mac in self.prztable:
+            print("not allow to private zone")
+            return
+
         #webserver route
         if dst_mac in self.webserver:
             self.allowtable.add((src_mac, dst_mac))

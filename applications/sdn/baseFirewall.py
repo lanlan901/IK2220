@@ -175,7 +175,7 @@ class Firewall (l2_learning.LearningSwitch):
                     log.debug(f"{self.name}: Packet blocked.")
                     return
                 
-    def add_to_allowtable(self, src_mac, dst_mac, duration=5):
+    def add_to_allowtable(self, src_mac, dst_mac, duration=1):
         current_time = time.time()
         print(f"current time:{current_time}")
         expiration = current_time + duration

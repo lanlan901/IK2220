@@ -4,6 +4,7 @@ from pox.lib.addresses import IPAddr
 import pox.lib.packet as pkt
 from forwarding import l2_learning
 import ipaddress
+import time
 log = core.getLogger()
 
 
@@ -30,7 +31,7 @@ class Firewall (l2_learning.LearningSwitch):
         self.pbztable = {str('00:00:00:00:00:01'), str('00:00:00:00:00:02')}
         self.prztable = {str('00:00:00:00:00:03'), str('00:00:00:00:00:04')}
         self.webserver = {str('00:00:00:00:00:05'), str('00:00:00:00:00:06'), str('00:00:00:00:00:07')}
-        self.allowtable = set()
+        self.allowtable = dict()
 
 
     def check_subnet(self, subnet, ip):
@@ -142,7 +143,11 @@ class Firewall (l2_learning.LearningSwitch):
         if not packet.parsed:
             print(self.name, ": Incomplete packet received! controller ignores that")
             return
-        
+
+        self.process_packet(event, packet)
+        self.flush_allowtable()
+
+    def process_packet(self, event, packet):
         dpid = event.connection.dpid
 
         #src &dst
@@ -169,31 +174,28 @@ class Firewall (l2_learning.LearningSwitch):
                 else:
                     log.debug(f"{self.name}: Packet blocked.")
                     return
-    
-    def add_to_allowtable(self, src_mac, dst_mac):
+                
+    def add_to_allowtable(self, src_mac, dst_mac, duration=5):
+        current_time = time.time()
+        print(f"current time:{current_time}")
+        expiration = current_time + duration
         src_mac = str(src_mac).upper()  #EtherAddr -> str
         dst_mac = str(dst_mac).upper() 
-        # dst in prz
-        if dst_mac in self.prztable:
-            print("not allow to private zone")
-            return
-
-        #webserver route
-        if dst_mac in self.webserver:
-            self.allowtable.add((src_mac, dst_mac))
-            self.allowtable.add((dst_mac, src_mac))
-            print(f"Added ({src_mac} -> {dst_mac}) and ({dst_mac} -> {src_mac}) to the allowtable.")
-            return
         
-        #prz: add response route
-        if src_mac in self.prztable: 
-            self.allowtable.add((src_mac, dst_mac))
-            self.allowtable.add((dst_mac, src_mac))
-            print(f"Added ({src_mac} -> {dst_mac}) and ({dst_mac} -> {src_mac}) to the allowtable.")
-            return
-        else:
-            print(f"Attempt to add from non-PRZ source {src_mac} to {dst_mac}")
-            return
+        #webserver
+        if dst_mac in self.webserver:
+            self.allowtable[(src_mac, dst_mac)] = expiration
+            self.allowtable[(dst_mac, src_mac)] = expiration
+            print(f"Added ({src_mac} -> {dst_mac}) and ({dst_mac} -> {src_mac}) to the allowtable. expiation time:{expiration}" )
+
+        #prz往外任意发
+        elif src_mac in self.prztable:
+            self.allowtable[(src_mac, dst_mac)] = expiration
+            self.allowtable[(dst_mac, src_mac)] = expiration
+            print(f"Added ({src_mac} -> {dst_mac}) and ({dst_mac} -> {src_mac}) to the allowtable. expiation time:{expiration}")
+        return
+
+
 
     # def print_allowtable(self):
     #     print("Current Allow Table:")
@@ -201,5 +203,8 @@ class Firewall (l2_learning.LearningSwitch):
     #         print(f"Allowed pair: {src_dst_pair[0]} -> {src_dst_pair[1]}")
 
     def flush_allowtable(self):
-        print("flush allow table")
-        self.allowtable.clear()
+        current_time = time.time()
+        expired_keys = [key for key, expiration in self.allowtable.items() if expiration < current_time]
+        for key in expired_keys:
+            del self.allowtable[key]
+            print(f"Expired and removed {key} from allowtable.")

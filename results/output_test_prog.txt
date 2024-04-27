@@ -1,0 +1,116 @@
+Starting web server WS1 on port 80
+Starting web server WS2 on port 80
+Starting web server WS3 on port 80
+-----ping test------
+-----h1------
+h1 ping to h2: Expected True, Result: Success
+
+
+h1 ping to h3: Expected False, Result: Success
+
+
+h1 ping to h4: Expected False, Result: Success
+
+
+-----h1------
+h2 ping to h1: Expected True, Result: Success
+
+
+h2 ping to h3: Expected False, Result: Success
+
+
+h2 ping to h4: Expected False, Result: Success
+
+
+-----h3------
+h3 ping to h1: Expected True, Result: Success
+
+
+h3 ping to h2: Expected True, Result: Success
+
+
+h3 ping to h4: Expected True, Result: Success
+
+
+-----h4------
+h4 ping to h1: Expected True, Result: Success
+
+
+h4 ping to h2: Expected True, Result: Success
+
+
+h4 ping to h3: Expected True, Result: Success
+
+
+
+
+-----webserver------
+h1 ping to ws1: Expected False, Result: Success
+
+
+h2 ping to ws1: Expected False, Result: Success
+
+
+h3 ping to ws1: Expected False, Result: Success
+
+
+h4 ping to ws1: Expected False, Result: Success
+
+
+-----ws1------
+h1 ping to ws1: Expected False, Result: Success
+
+
+h2 ping to ws1: Expected False, Result: Success
+
+
+h3 ping to ws1: Expected False, Result: Success
+
+
+h4 ping to ws1: Expected False, Result: Success
+
+
+-----ws2------
+h1 ping to ws2: Expected False, Result: Success
+
+
+h2 ping to ws2: Expected False, Result: Success
+
+
+h3 ping to ws2: Expected False, Result: Success
+
+
+h4 ping to ws2: Expected False, Result: Success
+
+
+-----ws3------
+h1 ping to ws3: Expected False, Result: Success
+
+
+h2 ping to ws3: Expected False, Result: Success
+
+
+h3 ping to ws3: Expected False, Result: Success
+
+
+h4 ping to ws3: Expected False, Result: Success
+
+
+
+
+-----curl test------
+h1 curl to 100.0.0.40:80: Expected HTTP 200, Result: Success
+h1 curl to 100.0.0.41:80: Expected HTTP 200, Result: Success
+h1 curl to 100.0.0.42:80: Expected HTTP 200, Result: Success
+h2 curl to 100.0.0.40:80: Expected HTTP 200, Result: Success
+h2 curl to 100.0.0.41:80: Expected HTTP 200, Result: Success
+h2 curl to 100.0.0.42:80: Expected HTTP 200, Result: Success
+h1 curl to 100.0.0.40:80: Expected HTTP 200, Result: Success
+h3 curl to 100.0.0.41:80: Expected HTTP 200, Result: Success
+h3 curl to 100.0.0.42:80: Expected HTTP 200, Result: Success
+h4 curl to 100.0.0.40:80: Expected HTTP 200, Result: Success
+h4 curl to 100.0.0.41:80: Expected HTTP 200, Result: Success
+h4 curl to 100.0.0.42:80: Expected HTTP 200, Result: Success
+
+
+mininet> 

@@ -89,10 +89,10 @@ class Firewall (l2_learning.LearningSwitch):
             packet_protocol = 'ICMP'
             icmp_packet = ip_packet.find('icmp')
             icmp_type = icmp_packet.type
-            if icmp_type == 0:  # ping reply
-                return True
-            if icmp_type == 8: #ping request
-                pass
+            # if icmp_type == 0:  # ping reply
+            #     return True
+            # if icmp_type == 8: #ping request
+            #     pass
 
         print(f"input port = {input_port}, packet protocol = {packet_protocol}, src ip = {src_ip}, dst ip ={dst_ip}")
             
@@ -145,7 +145,7 @@ class Firewall (l2_learning.LearningSwitch):
             return
 
         self.process_packet(event, packet)
-        self.flush_allowtable()
+        #self.flush_allowtable()
 
     def process_packet(self, event, packet):
         dpid = event.connection.dpid
@@ -153,8 +153,25 @@ class Firewall (l2_learning.LearningSwitch):
         #src &dst
         src_mac = str(packet.src).upper()
         dst_mac = str(packet.dst).upper()
+        # src_mac = packet.src
+        # dst_mac = packet.dst
         print(f"src address: {src_mac}, dst address: {dst_mac}")
-        self.add_to_allowtable(src_mac, dst_mac)
+        if src_mac in self.prztable and dst_mac in self.pbztable:
+            log.debug(f"On {self.name} : src address: {src_mac}, dst address: {dst_mac} creat returnrule")
+            self.add_return_rule(packet.src, packet.dst, event)
+        
+            msg2 = of.ofp_flow_mod()
+            msg2.match = of.ofp_match.from_packet(packet, event.port)
+            msg2.idle_timeout = 10
+            msg2.hard_timeout = 30
+            msg2.actions.append(of.ofp_action_output(port = 2 if event.port == 1 else 1))
+            msg2.data = event.ofp # 6a
+            self.connection.send(msg2)
+            
+            
+            return
+
+        #self.add_to_allowtable(src_mac, dst_mac)
         # self.print_allowtable()
 
         #update first seen at
@@ -163,18 +180,38 @@ class Firewall (l2_learning.LearningSwitch):
 
         ip_packet = packet.find('ipv4')
         if ip_packet:
-            if(src_mac, dst_mac) not in self.allowtable:
-                print(f"{self.name}: Packet blocked for mac.")
-                return
+            # if(src_mac, dst_mac) not in self.allowtable:
+            #     print(f"{self.name}: Packet blocked for mac.")
+            #     return
+            # else:
+            access_allowed = self.has_access(ip_packet, event.port)
+            if access_allowed:
+                super(Firewall, self)._handle_PacketIn(event)
+                print(f"{self.name}: Packet allowed.")
             else:
-                access_allowed = self.has_access(ip_packet, event.port)
-                if access_allowed:
-                    super(Firewall, self)._handle_PacketIn(event)
-                    print(f"{self.name}: Packet allowed.")
-                else:
-                    log.debug(f"{self.name}: Packet blocked.")
-                    return
-                
+                log.debug(f"{self.name}: Packet blocked.")
+                return
+    
+    def add_return_rule(self, src_mac, dst_mac, event):        
+        msg1 = of.ofp_flow_mod()
+        #msg.match = of.ofp_match.from_packet(packet, event.port)
+        msg1.match = of.ofp_match()
+        msg1.match.dl_src = dst_mac  # 反转MAC地址，匹配原始目的MAC作为源MAC
+        msg1.match.dl_dst = src_mac
+
+        msg1.match.in_port = 2 if event.port == 1 else 1
+
+        msg1.idle_timeout = 2
+        msg1.hard_timeout = 30
+        
+        # msg.actions.append(of.ofp_action_dl_addr.set_dst(src_mac))
+        # msg.actions.append(of.ofp_action_dl_addr.set_src(dst_mac))
+        msg1.actions.append(of.ofp_action_output(port = event.port))
+        #msg.data = event.ofp # 6a
+        self.connection.send(msg1)
+    
+
+
     def add_to_allowtable(self, src_mac, dst_mac, duration=1):
         current_time = time.time()
         print(f"current time:{current_time}")

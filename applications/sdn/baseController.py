@@ -85,9 +85,15 @@ class controller (object):
         2) clear the mac learning table in each l2_learning switch (Python side) 
         3) clear the firstSeenAt dictionary: it's like starting from an empty state
         """
-
-        for key,value in self.devices.items():
-            value.mactoPort = {}
+        for key, value in self.devices.items():
+            # 打印每个设备的类和继承关系
+            print(f"{key} is an instance of {type(value)}, base classes: {type(value).__bases__}")
+            # 检查是否有mactoPort属性
+            if hasattr(value, 'macToPort'):
+                print(f"{key}: {value.macToPort}")
+                value.macToPort = {}
+            else:
+                print(f"Error: {key} does not have a macToPort attribute")
 
         self.firstSeenAt.clear()
 

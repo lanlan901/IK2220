@@ -5,6 +5,7 @@ import threading
 from pprint import pprint, pformat
 from time import sleep
 from datetime import datetime
+from werkzeug.exceptions import HTTPException
 import json
 import struct
 import logging
@@ -37,8 +38,9 @@ def htmlify(content, req, replace=True):
 def macs_map():
     res = ""
     res += f"Global MAC table\n"
+    print("Devices:", controller.devices)
     for key, value in controller.firstSeenAt.items():
-        res += f"dpid{key} : {value[0]} @ {value[1]}\n"
+        res += f"device{key} : {value[0]} @ {value[1]}\n"
     return htmlify(res, request, True)
 
 

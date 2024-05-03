@@ -145,103 +145,77 @@ class Firewall (l2_learning.LearningSwitch):
             return
 
         self.process_packet(event, packet)
-        #self.flush_allowtable()
 
     def process_packet(self, event, packet):
         dpid = event.connection.dpid
 
         #src &dst
-        src_mac = str(packet.src).upper()
-        dst_mac = str(packet.dst).upper()
+        src_mac = packet.src
+        dst_mac = packet.dst
         # src_mac = packet.src
         # dst_mac = packet.dst
         print(f"src address: {src_mac}, dst address: {dst_mac}")
-        if src_mac in self.prztable and dst_mac in self.pbztable:
-            log.debug(f"On {self.name} : src address: {src_mac}, dst address: {dst_mac} creat returnrule")
-            self.add_return_rule(packet.src, packet.dst, event)
-        
-            msg2 = of.ofp_flow_mod()
-            msg2.match = of.ofp_match.from_packet(packet, event.port)
-            msg2.idle_timeout = 10
-            msg2.hard_timeout = 30
-            msg2.actions.append(of.ofp_action_output(port = 2 if event.port == 1 else 1))
-            msg2.data = event.ofp # 6a
-            self.connection.send(msg2)
-            
-            
-            return
-
-        #self.add_to_allowtable(src_mac, dst_mac)
-        # self.print_allowtable()
-
         #update first seen at
         where = f"switch {dpid} - port {event.port}" 
         core.controller.updatefirstSeenAt(src_mac, where)
 
+        access_allowed = False #default block
         ip_packet = packet.find('ipv4')
         if ip_packet:
-            # if(src_mac, dst_mac) not in self.allowtable:
-            #     print(f"{self.name}: Packet blocked for mac.")
-            #     return
-            # else:
+            log.debug(f"IP Protocol: {ip_packet.protocol}")
             access_allowed = self.has_access(ip_packet, event.port)
+            if event.port == 2 & ip_packet.protocol == 1: #ICMP
+                log.debug(f"On {self.name} : src address: {src_mac}, dst address: {dst_mac} create returnrule")
+                msg1 = of.ofp_flow_mod()
+                msg1.match = of.ofp_match()
+                msg1.match.dl_type = 0x0800
+                msg1.match.nw_proto = 1 #ICMP
+                msg1.match.dl_src = src_mac
+                msg1.match.dl_dst = dst_mac
+                msg1.match.flip() #反转匹配规则, 包括MAC 地址、IP 地址、TCP/UDP 端口等
+                msg1.match.in_port = 1
+                msg1.idle_timeout = 2
+                msg1.hard_timeout = 30
+                msg1.actions.append(of.ofp_action_output(port = event.port))
+                self.connection.send(msg1)
+                #self.add_return_rule(packet.src, packet.dst, event)
+                
+            if ip_packet.protocol == 6:  #TCP
+                log.debug(f"On {self.name} for TCP : src address: {src_mac}, dst address: {dst_mac} create return rule")
+                msg2 = of.ofp_flow_mod()
+                msg2.match = of.ofp_match()
+                msg2.match.dl_type = 0x0800
+                msg2.match.nw_proto = 6  # TCP
+                msg2.match.in_port = event.port
+                msg2.match.dl_src = src_mac
+                msg2.match.dl_dst = dst_mac
+                msg2.match.tp_dst = 80
+                log.debug(f"match conditions: {msg2.match}")
+
+                msg2.idle_timeout = 2
+                msg2.hard_timeout = 30
+
+                msg2.actions.append(of.ofp_action_output(port = 1))
+                msg2.data = event.ofp # 6a
+                self.connection.send(msg2)
+
+                msg3 = of.ofp_flow_mod()
+                msg3.match.flip(msg2.match)
+                msg3.match.in_port = 1
+                msg3.actions.append(of.ofp_action_output(port = 2))
+                msg3.idle_timeout = 2
+                msg3.hard_timeout = 30
+                self.connection.send(msg3)
+                
             if access_allowed:
                 super(Firewall, self)._handle_PacketIn(event)
                 print(f"{self.name}: Packet allowed.")
             else:
                 log.debug(f"{self.name}: Packet blocked.")
                 return
+
+            return
+
+
+
     
-    def add_return_rule(self, src_mac, dst_mac, event):        
-        msg1 = of.ofp_flow_mod()
-        #msg.match = of.ofp_match.from_packet(packet, event.port)
-        msg1.match = of.ofp_match()
-        msg1.match.dl_src = dst_mac  # 反转MAC地址，匹配原始目的MAC作为源MAC
-        msg1.match.dl_dst = src_mac
-
-        msg1.match.in_port = 2 if event.port == 1 else 1
-
-        msg1.idle_timeout = 2
-        msg1.hard_timeout = 30
-        
-        # msg.actions.append(of.ofp_action_dl_addr.set_dst(src_mac))
-        # msg.actions.append(of.ofp_action_dl_addr.set_src(dst_mac))
-        msg1.actions.append(of.ofp_action_output(port = event.port))
-        #msg.data = event.ofp # 6a
-        self.connection.send(msg1)
-    
-
-
-    def add_to_allowtable(self, src_mac, dst_mac, duration=1):
-        current_time = time.time()
-        print(f"current time:{current_time}")
-        expiration = current_time + duration
-        src_mac = str(src_mac).upper()  #EtherAddr -> str
-        dst_mac = str(dst_mac).upper() 
-        
-        #webserver
-        if dst_mac in self.webserver:
-            self.allowtable[(src_mac, dst_mac)] = expiration
-            self.allowtable[(dst_mac, src_mac)] = expiration
-            print(f"Added ({src_mac} -> {dst_mac}) and ({dst_mac} -> {src_mac}) to the allowtable. expiation time:{expiration}" )
-
-        #prz往外任意发
-        elif src_mac in self.prztable:
-            self.allowtable[(src_mac, dst_mac)] = expiration
-            self.allowtable[(dst_mac, src_mac)] = expiration
-            print(f"Added ({src_mac} -> {dst_mac}) and ({dst_mac} -> {src_mac}) to the allowtable. expiation time:{expiration}")
-        return
-
-
-
-    # def print_allowtable(self):
-    #     print("Current Allow Table:")
-    #     for src_dst_pair in self.allowtable:
-    #         print(f"Allowed pair: {src_dst_pair[0]} -> {src_dst_pair[1]}")
-
-    def flush_allowtable(self):
-        current_time = time.time()
-        expired_keys = [key for key, expiration in self.allowtable.items() if expiration < current_time]
-        for key in expired_keys:
-            del self.allowtable[key]
-            print(f"Expired and removed {key} from allowtable.")

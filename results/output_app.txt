@@ -9,130 +9,2370 @@ WARNING:version:You're running Python 3.10.
 WARNING:version:If you run into problems, try using a supported version.
 INFO:core:POX 0.7.0 (gar) is up.
 DEBUG:openflow.of_01:Listening on 0.0.0.0:6633
-INFO:openflow.of_01:[00-00-00-00-00-05 1] connected
-INFO:openflow.of_01:[00-00-00-00-00-02 2] connected
-INFO:openflow.of_01:[00-00-00-00-00-06 3] connected
-INFO:openflow.of_01:[00-00-00-00-00-01 4] connected
-INFO:openflow.of_01:[00-00-00-00-00-03 5] connected
-INFO:openflow.of_01:[00-00-00-00-00-04 6] connected
 INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:8080
  * Running on http://10.0.2.15:8080
 INFO:werkzeug:[33mPress CTRL+C to quit[0m
-INFO:werkzeug:10.0.2.2 - - [03/May/2024 19:55:52] "GET / HTTP/1.1" 200 -
-INFO:werkzeug:10.0.2.2 - - [03/May/2024 19:55:53] "GET / HTTP/1.1" 200 -
-INFO:werkzeug:10.0.2.2 - - [03/May/2024 19:55:53] "GET /macs HTTP/1.1" 200 -
-INFO:werkzeug:10.0.2.2 - - [03/May/2024 19:55:54] "GET / HTTP/1.1" 200 -
-INFO:werkzeug:10.0.2.2 - - [03/May/2024 19:55:55] "GET /macs_map HTTP/1.1" 200 -
-INFO:werkzeug:10.0.2.2 - - [03/May/2024 19:55:55] "GET / HTTP/1.1" 200 -
-DEBUG:baseController:Clearing all flows from 00-00-00-00-00-05.
-DEBUG:baseController:Clearing all flows from 00-00-00-00-00-02.
-DEBUG:baseController:Clearing all flows from 00-00-00-00-00-06.
-DEBUG:baseController:Clearing all flows from 00-00-00-00-00-01.
-DEBUG:baseController:Clearing all flows from 00-00-00-00-00-03.
-DEBUG:baseController:Clearing all flows from 00-00-00-00-00-04.
-INFO:werkzeug:10.0.2.2 - - [03/May/2024 19:55:56] "GET /flush HTTP/1.1" 200 -
-INFO:werkzeug:10.0.2.2 - - [03/May/2024 19:55:57] "GET / HTTP/1.1" 200 -
-INFO:werkzeug:10.0.2.2 - - [03/May/2024 19:55:58] "GET /macs HTTP/1.1" 200 -
-FW1 instance created and added to devices dictionary, DPID: 5.
-LearningSwitch instance created and added to devices dictionary, DPID: 2.
-FW2 instance created and added to devices dictionary, DPID: 6.
-LearningSwitch instance created and added to devices dictionary, DPID: 1.
+INFO:openflow.of_01:[00-00-00-00-00-03 5] connected
+INFO:openflow.of_01:[00-00-00-00-00-04 7] connected
+INFO:openflow.of_01:[00-00-00-00-00-05 2] connected
+INFO:openflow.of_01:[00-00-00-00-00-01 3] connected
+INFO:openflow.of_01:[00-00-00-00-00-06 4] connected
+INFO:openflow.of_01:[00-00-00-00-00-02 6] connected
 LearningSwitch instance created and added to devices dictionary, DPID: 3.
 LearningSwitch instance created and added to devices dictionary, DPID: 4.
-src address: 00:00:00:00:00:03, dst address: 33:33:00:00:00:02
-MAC address 00:00:00:00:00:03 first seen at switch 6 - port 2, time: 2024-05-03T19:55:51.366691.
-src address: CA:23:CA:40:6F:73, dst address: 33:33:00:00:00:02
-MAC address CA:23:CA:40:6F:73 first seen at switch 5 - port 1, time: 2024-05-03T19:55:51.622080.
-src address: 76:C6:C5:42:37:F9, dst address: 33:33:00:00:00:02
-MAC address 76:C6:C5:42:37:F9 first seen at switch 6 - port 2, time: 2024-05-03T19:55:51.622278.
+FW1 instance created and added to devices dictionary, DPID: 5.
+LearningSwitch instance created and added to devices dictionary, DPID: 1.
+FW2 instance created and added to devices dictionary, DPID: 6.
+LearningSwitch instance created and added to devices dictionary, DPID: 2.
+src address: 00:00:00:00:00:05, dst address: 33:33:ff:00:00:05
+MAC address 00:00:00:00:00:05 first seen at switch 5 - port 2, time: 2024-05-03T23:02:09.247272.
+src address: 00:00:00:00:00:05, dst address: 33:33:ff:00:00:05
+src address: 2e:9f:09:9d:c0:e5, dst address: 33:33:ff:9d:c0:e5
+MAC address 2e:9f:09:9d:c0:e5 first seen at switch 5 - port 1, time: 2024-05-03T23:02:09.254696.
+src address: 76:72:10:e3:44:44, dst address: 33:33:ff:e3:44:44
+MAC address 76:72:10:e3:44:44 first seen at switch 6 - port 2, time: 2024-05-03T23:02:09.254784.
+src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:16
+MAC address 00:00:00:00:00:06 first seen at switch 5 - port 2, time: 2024-05-03T23:02:09.255578.
+src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:16
+src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:16
+src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:16
+src address: b2:c7:93:7f:1a:4a, dst address: 33:33:00:00:00:16
+MAC address b2:c7:93:7f:1a:4a first seen at switch 5 - port 2, time: 2024-05-03T23:02:09.381989.
+src address: 16:9f:f5:ef:03:a8, dst address: 33:33:ff:ef:03:a8
+MAC address 16:9f:f5:ef:03:a8 first seen at switch 5 - port 2, time: 2024-05-03T23:02:09.383239.
+src address: 16:9f:f5:ef:03:a8, dst address: 33:33:ff:ef:03:a8
+src address: 00:00:00:00:00:01, dst address: 33:33:ff:00:00:01
+MAC address 00:00:00:00:00:01 first seen at switch 5 - port 1, time: 2024-05-03T23:02:09.447271.
+src address: 00:00:00:00:00:02, dst address: 33:33:00:00:00:16
+MAC address 00:00:00:00:00:02 first seen at switch 5 - port 1, time: 2024-05-03T23:02:09.478455.
+src address: be:56:08:ad:d3:a8, dst address: 33:33:00:00:00:16
+MAC address be:56:08:ad:d3:a8 first seen at switch 6 - port 1, time: 2024-05-03T23:02:09.546439.
+src address: be:56:08:ad:d3:a8, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:07, dst address: 33:33:ff:00:00:07
+MAC address 00:00:00:00:00:07 first seen at switch 5 - port 2, time: 2024-05-03T23:02:09.574513.
+src address: 00:00:00:00:00:07, dst address: 33:33:ff:00:00:07
+src address: 00:00:00:00:00:04, dst address: 33:33:ff:00:00:04
+MAC address 00:00:00:00:00:04 first seen at switch 6 - port 2, time: 2024-05-03T23:02:09.714984.
+src address: 00:00:00:00:00:02, dst address: 33:33:00:00:00:16
 src address: 00:00:00:00:00:02, dst address: 33:33:00:00:00:02
-MAC address 00:00:00:00:00:02 first seen at switch 5 - port 1, time: 2024-05-03T19:55:51.623073.
-src address: 6A:6D:8C:B5:33:84, dst address: 33:33:00:00:00:02
-MAC address 6A:6D:8C:B5:33:84 first seen at switch 6 - port 1, time: 2024-05-03T19:55:51.623714.
-src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:02
-MAC address 00:00:00:00:00:05 first seen at switch 6 - port 1, time: 2024-05-03T19:55:51.623771.
-src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:02
-src address: 1A:88:A3:B6:7C:D0, dst address: 33:33:00:00:00:02
-MAC address 1A:88:A3:B6:7C:D0 first seen at switch 5 - port 2, time: 2024-05-03T19:55:51.878631.
-src address: 00:00:00:00:00:01, dst address: 33:33:00:00:00:02
-MAC address 00:00:00:00:00:01 first seen at switch 5 - port 1, time: 2024-05-03T19:55:51.878707.
-src address: 1A:88:A3:B6:7C:D0, dst address: 33:33:00:00:00:02
-src address: 00:00:00:00:00:04, dst address: 33:33:00:00:00:02
-MAC address 00:00:00:00:00:04 first seen at switch 6 - port 2, time: 2024-05-03T19:55:51.878802.
-src address: F2:E0:41:C7:9F:32, dst address: 33:33:00:00:00:02
-MAC address F2:E0:41:C7:9F:32 first seen at switch 5 - port 2, time: 2024-05-03T19:55:52.134103.
-src address: 1A:6C:33:90:62:ED, dst address: 33:33:00:00:00:02
-MAC address 1A:6C:33:90:62:ED first seen at switch 6 - port 1, time: 2024-05-03T19:55:52.135155.
-src address: 5A:7E:9B:1B:FB:33, dst address: 33:33:00:00:00:02
-MAC address 5A:7E:9B:1B:FB:33 first seen at switch 5 - port 2, time: 2024-05-03T19:55:52.135377.
+src address: e2:04:0f:9c:a1:7b, dst address: 33:33:00:00:00:16
+MAC address e2:04:0f:9c:a1:7b first seen at switch 6 - port 1, time: 2024-05-03T23:02:09.865539.
+src address: e2:04:0f:9c:a1:7b, dst address: 33:33:00:00:00:02
+src address: be:56:08:ad:d3:a8, dst address: 33:33:00:00:00:16
+src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:16
 src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:02
-MAC address 00:00:00:00:00:06 first seen at switch 5 - port 2, time: 2024-05-03T19:55:52.391049.
+src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:16
 src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:02
-src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:02
-MAC address 00:00:00:00:00:07 first seen at switch 5 - port 2, time: 2024-05-03T19:55:52.647189.
-src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:02
-Devices: {0: <networkFirewalls.FW1 object at 0x7f7e8d160850>, 1: <forwarding.l2_learning.LearningSwitch object at 0x7f7e8d1608e0>, 2: <networkFirewalls.FW2 object at 0x7f7e8d160910>, 3: <forwarding.l2_learning.LearningSwitch object at 0x7f7e8d1609a0>, 4: <forwarding.l2_learning.LearningSwitch object at 0x7f7e8d1608b0>, 5: <forwarding.l2_learning.LearningSwitch object at 0x7f7e8d160970>}
-0 is an instance of <class 'networkFirewalls.FW1'>, base classes: (<class 'baseFirewall.Firewall'>,)
-0: {}
-1 is an instance of <class 'forwarding.l2_learning.LearningSwitch'>, base classes: (<class 'object'>,)
-1: {EthAddr('6a:6d:8c:b5:33:84'): 1, EthAddr('00:00:00:00:00:05'): 3, EthAddr('1a:88:a3:b6:7c:d0'): 3, EthAddr('5a:7e:9b:1b:fb:33'): 2, EthAddr('00:00:00:00:00:06'): 3, EthAddr('00:00:00:00:00:07'): 3}
-2 is an instance of <class 'networkFirewalls.FW2'>, base classes: (<class 'baseFirewall.Firewall'>,)
-2: {}
-3 is an instance of <class 'forwarding.l2_learning.LearningSwitch'>, base classes: (<class 'object'>,)
-3: {EthAddr('00:00:00:00:00:02'): 2, EthAddr('c2:06:c3:0a:b1:42'): 3, EthAddr('00:00:00:00:00:01'): 1}
-4 is an instance of <class 'forwarding.l2_learning.LearningSwitch'>, base classes: (<class 'object'>,)
-4: {EthAddr('00:00:00:00:00:03'): 1, EthAddr('00:00:00:00:00:04'): 2, EthAddr('de:ee:c0:2b:3f:2c'): 3}
-5 is an instance of <class 'forwarding.l2_learning.LearningSwitch'>, base classes: (<class 'object'>,)
-5: {EthAddr('00:00:00:00:00:05'): 1, EthAddr('7a:5a:10:9f:5a:ff'): 4, EthAddr('6a:6d:8c:b5:33:84'): 4, EthAddr('5a:7e:9b:1b:fb:33'): 4, EthAddr('00:00:00:00:00:06'): 2, EthAddr('00:00:00:00:00:07'): 3}
+src address: b2:c7:93:7f:1a:4a, dst address: 33:33:00:00:00:16
+src address: b2:c7:93:7f:1a:4a, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:02, dst address: 33:33:00:00:00:16
+src address: 5a:7e:07:f3:3f:e4, dst address: 33:33:00:00:00:16
+MAC address 5a:7e:07:f3:3f:e4 first seen at switch 5 - port 2, time: 2024-05-03T23:02:10.060558.
+src address: 5a:7e:07:f3:3f:e4, dst address: 33:33:00:00:00:02
+src address: b2:c7:93:7f:1a:4a, dst address: 33:33:00:00:00:16
+src address: 00:00:00:00:00:03, dst address: 33:33:00:00:00:16
+MAC address 00:00:00:00:00:03 first seen at switch 6 - port 2, time: 2024-05-03T23:02:10.182543.
 src address: 00:00:00:00:00:03, dst address: 33:33:00:00:00:02
-MAC address 00:00:00:00:00:03 first seen at switch 6 - port 2, time: 2024-05-03T19:55:58.790286.
+src address: 5a:7e:07:f3:3f:e4, dst address: 33:33:00:00:00:16
+src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:16
+src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:16
+src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:02
+src address: 2e:9f:09:9d:c0:e5, dst address: 33:33:00:00:00:16
+src address: 2e:9f:09:9d:c0:e5, dst address: 33:33:00:00:00:02
+src address: 76:72:10:e3:44:44, dst address: 33:33:00:00:00:16
+src address: 76:72:10:e3:44:44, dst address: 33:33:00:00:00:02
+src address: 16:9f:f5:ef:03:a8, dst address: 33:33:00:00:00:16
+src address: 16:9f:f5:ef:03:a8, dst address: 33:33:00:00:00:02
+src address: 16:9f:f5:ef:03:a8, dst address: 33:33:00:00:00:16
+src address: 16:9f:f5:ef:03:a8, dst address: 33:33:00:00:00:02
+src address: 16:9f:f5:ef:03:a8, dst address: 33:33:00:00:00:16
+src address: 16:9f:f5:ef:03:a8, dst address: 33:33:00:00:00:16
+src address: 00:00:00:00:00:01, dst address: 33:33:00:00:00:16
 src address: 00:00:00:00:00:01, dst address: 33:33:00:00:00:02
-MAC address 00:00:00:00:00:01 first seen at switch 5 - port 1, time: 2024-05-03T19:55:59.303352.
-src address: 00:00:00:00:00:02, dst address: 33:33:00:00:00:02
-MAC address 00:00:00:00:00:02 first seen at switch 5 - port 1, time: 2024-05-03T19:55:59.303434.
-src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:02
-MAC address 00:00:00:00:00:05 first seen at switch 5 - port 2, time: 2024-05-03T19:55:59.558913.
-src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:02
-src address: F2:E0:41:C7:9F:32, dst address: 33:33:00:00:00:02
-MAC address F2:E0:41:C7:9F:32 first seen at switch 5 - port 2, time: 2024-05-03T19:55:59.814015.
-src address: CA:23:CA:40:6F:73, dst address: 33:33:00:00:00:02
-MAC address CA:23:CA:40:6F:73 first seen at switch 5 - port 1, time: 2024-05-03T19:55:59.814105.
-src address: 76:C6:C5:42:37:F9, dst address: 33:33:00:00:00:02
-MAC address 76:C6:C5:42:37:F9 first seen at switch 6 - port 2, time: 2024-05-03T19:55:59.814811.
-src address: 1A:88:A3:B6:7C:D0, dst address: 33:33:00:00:00:02
-MAC address 1A:88:A3:B6:7C:D0 first seen at switch 6 - port 1, time: 2024-05-03T19:55:59.814891.
-src address: 6A:6D:8C:B5:33:84, dst address: 33:33:00:00:00:02
-MAC address 6A:6D:8C:B5:33:84 first seen at switch 6 - port 1, time: 2024-05-03T19:55:59.814949.
-src address: 1A:88:A3:B6:7C:D0, dst address: 33:33:00:00:00:02
-src address: 1A:6C:33:90:62:ED, dst address: 33:33:00:00:00:02
-MAC address 1A:6C:33:90:62:ED first seen at switch 6 - port 1, time: 2024-05-03T19:56:00.325602.
-src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:02
-MAC address 00:00:00:00:00:06 first seen at switch 5 - port 2, time: 2024-05-03T19:56:00.326572.
-src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:16
+src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:16
+src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:16
+src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:16
+src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:16
+src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:16
+src address: e2:04:0f:9c:a1:7b, dst address: 33:33:00:00:00:16
+src address: 00:00:00:00:00:04, dst address: 33:33:00:00:00:16
 src address: 00:00:00:00:00:04, dst address: 33:33:00:00:00:02
-MAC address 00:00:00:00:00:04 first seen at switch 6 - port 2, time: 2024-05-03T19:56:00.583451.
-src address: 5A:7E:9B:1B:FB:33, dst address: 33:33:00:00:00:02
-MAC address 5A:7E:9B:1B:FB:33 first seen at switch 5 - port 2, time: 2024-05-03T19:56:00.838253.
-src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:02
-MAC address 00:00:00:00:00:07 first seen at switch 5 - port 2, time: 2024-05-03T19:56:01.095710.
-src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:04, dst address: 33:33:00:00:00:16
+src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:16
+src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:16
+src address: 76:72:10:e3:44:44, dst address: 33:33:00:00:00:16
+src address: 2e:9f:09:9d:c0:e5, dst address: 33:33:00:00:00:16
+src address: 00:00:00:00:00:03, dst address: 33:33:00:00:00:16
+src address: 00:00:00:00:00:01, dst address: 33:33:00:00:00:16
+src address: b2:c7:93:7f:1a:4a, dst address: 33:33:00:00:00:02
+src address: e2:04:0f:9c:a1:7b, dst address: 33:33:00:00:00:02
+src address: be:56:08:ad:d3:a8, dst address: 33:33:00:00:00:02
+src address: 76:72:10:e3:44:44, dst address: 33:33:00:00:00:02
 src address: 00:00:00:00:00:02, dst address: 33:33:00:00:00:02
-src address: 00:00:00:00:00:01, dst address: 33:33:00:00:00:02
+src address: 16:9f:f5:ef:03:a8, dst address: 33:33:00:00:00:02
+src address: 5a:7e:07:f3:3f:e4, dst address: 33:33:00:00:00:02
+src address: 16:9f:f5:ef:03:a8, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:02
 src address: 00:00:00:00:00:03, dst address: 33:33:00:00:00:02
-src address: 1A:88:A3:B6:7C:D0, dst address: 33:33:00:00:00:02
-src address: 1A:88:A3:B6:7C:D0, dst address: 33:33:00:00:00:02
-src address: F2:E0:41:C7:9F:32, dst address: 33:33:00:00:00:02
-src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:02
-src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:02
-src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:02
-src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:02
+src address: 2e:9f:09:9d:c0:e5, dst address: 33:33:00:00:00:02
 src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:02
 src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:02
-src address: CA:23:CA:40:6F:73, dst address: 33:33:00:00:00:02
-src address: 1A:6C:33:90:62:ED, dst address: 33:33:00:00:00:02
-src address: 76:C6:C5:42:37:F9, dst address: 33:33:00:00:00:02
-src address: 6A:6D:8C:B5:33:84, dst address: 33:33:00:00:00:02
-src address: 5A:7E:9B:1B:FB:33, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:01, dst address: 33:33:00:00:00:02
 src address: 00:00:00:00:00:04, dst address: 33:33:00:00:00:02
+src address: b2:c7:93:7f:1a:4a, dst address: 33:33:00:00:00:02
+src address: e2:04:0f:9c:a1:7b, dst address: 33:33:00:00:00:02
+src address: 76:72:10:e3:44:44, dst address: 33:33:00:00:00:02
+src address: 16:9f:f5:ef:03:a8, dst address: 33:33:00:00:00:02
+src address: 16:9f:f5:ef:03:a8, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:02
+src address: 5a:7e:07:f3:3f:e4, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:02
+src address: 2e:9f:09:9d:c0:e5, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:03, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:02, dst address: 33:33:00:00:00:02
+DEBUG:openflow.of_01:1 connection aborted
+DEBUG:forwarding.l2_learning:Port for 00:00:00:00:00:06 unknown -- flooding
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW1 for TCP : src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:06 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 1
+  dl_src: 00:00:00:00:00:01
+  dl_dst: 00:00:00:00:00:06
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:Port for 00:00:00:00:00:06 unknown -- flooding
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:01.1 -> 00:00:00:00:00:06.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:01.4 -> 00:00:00:00:00:06.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.2 -> 00:00:00:00:00:01.4
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:01.1
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW1 for TCP : src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:01 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 2
+  dl_src: 00:00:00:00:00:06
+  dl_dst: 00:00:00:00:00:01
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.2 -> 00:00:00:00:00:01.1
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW1 for TCP : src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:01 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 2
+  dl_src: 00:00:00:00:00:06
+  dl_dst: 00:00:00:00:00:01
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.2 -> 00:00:00:00:00:01.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:01.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:01.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:01.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:01.1 -> 00:00:00:00:00:06.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:01.1 -> 00:00:00:00:00:06.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:01.1 -> 00:00:00:00:00:06.3
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW1 for TCP : src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:06 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 1
+  dl_src: 00:00:00:00:00:01
+  dl_dst: 00:00:00:00:00:06
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:01.1 -> 00:00:00:00:00:06.2
+DEBUG:forwarding.l2_learning:Port for 00:00:00:00:00:07 unknown -- flooding
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW1 for TCP : src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:07 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 1
+  dl_src: 00:00:00:00:00:01
+  dl_dst: 00:00:00:00:00:07
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:Port for 00:00:00:00:00:07 unknown -- flooding
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:01.1 -> 00:00:00:00:00:07.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:01.4 -> 00:00:00:00:00:07.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.3 -> 00:00:00:00:00:01.4
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.3 -> 00:00:00:00:00:01.1
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW1 for TCP : src address: 00:00:00:00:00:07, dst address: 00:00:00:00:00:01 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 2
+  dl_src: 00:00:00:00:00:07
+  dl_dst: 00:00:00:00:00:01
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.2 -> 00:00:00:00:00:01.1
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW1 for TCP : src address: 00:00:00:00:00:07, dst address: 00:00:00:00:00:01 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 2
+  dl_src: 00:00:00:00:00:07
+  dl_dst: 00:00:00:00:00:01
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.2 -> 00:00:00:00:00:01.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.3 -> 00:00:00:00:00:01.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.3 -> 00:00:00:00:00:01.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.3 -> 00:00:00:00:00:01.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:01.1 -> 00:00:00:00:00:07.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:01.1 -> 00:00:00:00:00:07.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:01.1 -> 00:00:00:00:00:07.3
+DEBUG:baseFirewall:IP Protocol: 6
+src address: be:56:08:ad:d3:a8, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:01, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:04, dst address: 33:33:00:00:00:02
+src address: b2:c7:93:7f:1a:4a, dst address: 33:33:00:00:00:02
+src address: e2:04:0f:9c:a1:7b, dst address: 33:33:00:00:00:02
+src address: 76:72:10:e3:44:44, dst address: 33:33:00:00:00:02
+src address: 16:9f:f5:ef:03:a8, dst address: 33:33:00:00:00:02
+src address: 16:9f:f5:ef:03:a8, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:02
+src address: 5a:7e:07:f3:3f:e4, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:02
+src address: 2e:9f:09:9d:c0:e5, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:03, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:01, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:02, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:04, dst address: 33:33:00:00:00:02
+src address: be:56:08:ad:d3:a8, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:06
+input port = 1, packet protocol = TCP, src ip = 100.0.0.10, dst ip =100.0.0.41
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking destination IP subnet: Rule subnet = 100.0.0.40/29, Packet IP = 100.0.0.41, Result = True
+Checking source port: Rule port = any, Packet port = 51418, Result = True
+Checking destination port: Rule port = 80, Packet port = 80, Result = True
+checking allow or block = allow
+allow
+FW1: Packet allowed.
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:01
+input port = 2, packet protocol = TCP, src ip = 100.0.0.41, dst ip =100.0.0.10
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Checking source IP subnet: Rule subnet = 100.0.0.40/24, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking source port: Rule port = any, Packet port = 80, Result = True
+Checking destination port: Rule port = any, Packet port = 51418, Result = True
+checking allow or block = allow
+allow
+FW1: Packet allowed.
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:01
+input port = 2, packet protocol = TCP, src ip = 100.0.0.41, dst ip =100.0.0.10
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Checking source IP subnet: Rule subnet = 100.0.0.40/24, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking source port: Rule port = any, Packet port = 80, Result = True
+Checking destination port: Rule port = any, Packet port = 51418, Result = True
+checking allow or block = allow
+allow
+FW1: Packet allowed.
+src address: b2:c7:93:7f:1a:4a, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:06
+input port = 1, packet protocol = TCP, src ip = 100.0.0.10, dst ip =100.0.0.41
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking destination IP subnet: Rule subnet = 100.0.0.40/29, Packet IP = 100.0.0.41, Result = True
+Checking source port: Rule port = any, Packet port = 51418, Result = True
+Checking destination port: Rule port = 80, Packet port = 80, Result = True
+checking allow or block = allow
+allow
+FW1: Packet allowed.
+src address: e2:04:0f:9c:a1:7b, dst address: 33:33:00:00:00:02
+src address: 16:9f:f5:ef:03:a8, dst address: 33:33:00:00:00:02
+src address: 16:9f:f5:ef:03:a8, dst address: 33:33:00:00:00:02
+src address: 76:72:10:e3:44:44, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:02
+src address: 5a:7e:07:f3:3f:e4, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:07
+input port = 1, packet protocol = TCP, src ip = 100.0.0.10, dst ip =100.0.0.42
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking destination IP subnet: Rule subnet = 100.0.0.40/29, Packet IP = 100.0.0.42, Result = True
+Checking source port: Rule port = any, Packet port = 42772, Result = True
+Checking destination port: Rule port = 80, Packet port = 80, Result = True
+checking allow or block = allow
+allow
+FW1: Packet allowed.
+src address: 00:00:00:00:00:07, dst address: 00:00:00:00:00:01
+input port = 2, packet protocol = TCP, src ip = 100.0.0.42, dst ip =100.0.0.10
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Checking source IP subnet: Rule subnet = 100.0.0.40/24, Packet IP = 100.0.0.42, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking source port: Rule port = any, Packet port = 80, Result = True
+Checking destination port: Rule port = any, Packet port = 42772, Result = True
+checking allow or block = allow
+allow
+FW1: Packet allowed.
+src address: 00:00:00:00:00:07, dst address: 00:00:00:00:00:01
+input port = 2, packet protocol = TCP, src ip = 100.0.0.42, dst ip =100.0.0.10
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Checking source IP subnet: Rule subnet = 100.0.0.40/24, Packet IP = 100.0.0.42, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking source port: Rule port = any, Packet port = 80, Result = True
+Checking destination port: Rule port = any, Packet port = 42772, Result = True
+checking allow or block = allow
+allow
+FW1: Packet allowed.
+src address: 00:00:00:00:00:03, dst address: 33:33:00:00:00:02
+src address: 2e:9f:09:9d:c0:e5, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:01, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:07
+input port = 1, packet protocol = TCP, src ip = 100.0.0.10, dst ip =100.0.0.42
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking destination IP subnet: Rule subnet = 100.0.0.40/29, Packet IP = 100.0.0.42, Result = True
+DEBUG:baseFirewall:On FW1 for TCP : src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:07 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 1
+  dl_src: 00:00:00:00:00:01
+  dl_dst: 00:00:00:00:00:07
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:01.1 -> 00:00:00:00:00:07.2
+DEBUG:forwarding.l2_learning:Port for 00:00:00:00:00:05 unknown -- flooding
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW1 for TCP : src address: 00:00:00:00:00:02, dst address: 00:00:00:00:00:05 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 1
+  dl_src: 00:00:00:00:00:02
+  dl_dst: 00:00:00:00:00:05
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:Port for 00:00:00:00:00:05 unknown -- flooding
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:02.1 -> 00:00:00:00:00:05.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:02.4 -> 00:00:00:00:00:05.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:05.1 -> 00:00:00:00:00:02.4
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:05.3 -> 00:00:00:00:00:02.1
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW1 for TCP : src address: 00:00:00:00:00:05, dst address: 00:00:00:00:00:02 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 2
+  dl_src: 00:00:00:00:00:05
+  dl_dst: 00:00:00:00:00:02
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:05.2 -> 00:00:00:00:00:02.1
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW1 for TCP : src address: 00:00:00:00:00:05, dst address: 00:00:00:00:00:02 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 2
+  dl_src: 00:00:00:00:00:05
+  dl_dst: 00:00:00:00:00:02
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:05.2 -> 00:00:00:00:00:02.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:05.3 -> 00:00:00:00:00:02.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:05.3 -> 00:00:00:00:00:02.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:05.3 -> 00:00:00:00:00:02.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:02.2 -> 00:00:00:00:00:05.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:02.2 -> 00:00:00:00:00:05.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:02.2 -> 00:00:00:00:00:05.3
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW1 for TCP : src address: 00:00:00:00:00:02, dst address: 00:00:00:00:00:05 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 1
+  dl_src: 00:00:00:00:00:02
+  dl_dst: 00:00:00:00:00:05
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:02.1 -> 00:00:00:00:00:05.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:02.2 -> 00:00:00:00:00:06.3
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW1 for TCP : src address: 00:00:00:00:00:02, dst address: 00:00:00:00:00:06 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 1
+  dl_src: 00:00:00:00:00:02
+  dl_dst: 00:00:00:00:00:06
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:02.1 -> 00:00:00:00:00:06.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:02.1 -> 00:00:00:00:00:06.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:02.4 -> 00:00:00:00:00:06.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.2 -> 00:00:00:00:00:02.4
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:02.1
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW1 for TCP : src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:02 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 2
+  dl_src: 00:00:00:00:00:06
+  dl_dst: 00:00:00:00:00:02
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.2 -> 00:00:00:00:00:02.1
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW1 for TCP : src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:02 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 2
+  dl_src: 00:00:00:00:00:06
+  dl_dst: 00:00:00:00:00:02
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.2 -> 00:00:00:00:00:02.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:02.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:02.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:02.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:02.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:02.2 -> 00:00:00:00:00:07.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:02.1 -> 00:00:00:00:00:07.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:02.4 -> 00:00:00:00:00:07.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.3 -> 00:00:00:00:00:02.4
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.3 -> 00:00:00:00:00:02.1
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW1 for TCP : src address: 00:00:00:00:00:07, dst address: 00:00:00:00:00:02 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 2
+  dl_src: 00:00:00:00:00:07
+  dl_dst: 00:00:00:00:00:02
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.2 -> 00:00:00:00:00:02.1
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW1 for TCP : src address: 00:00:00:00:00:07, dst address: 00:00:00:00:00:02 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 2
+  dl_src: 00:00:00:00:00:07
+  dl_dst: 00:00:00:00:00:02
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.2 -> 00:00:00:00:00:02.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.3 -> 00:00:00:00:00:02.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.3 -> 00:00:00:00:00:02.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.3 -> 00:00:00:00:00:02.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.3 -> 00:00:00:00:00:02.2
+DEBUG:forwarding.l2_learning:Port for 00:00:00:00:00:05 unknown -- flooding
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW2 for TCP : src address: 00:00:00:00:00:03, dst address: 00:00:00:00:00:05 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 2
+  dl_src: 00:00:00:00:00:03
+  dl_dst: 00:00:00:00:00:05
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:Port for 00:00:00:00:00:05 unknown -- flooding
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.2 -> 00:00:00:00:00:05.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.4 -> 00:00:00:00:00:05.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:05.1 -> 00:00:00:00:00:03.4
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:05.3 -> 00:00:00:00:00:03.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:05.3 -> 00:00:00:00:00:03.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.1 -> 00:00:00:00:00:05.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.1 -> 00:00:00:00:00:05.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:05.3 -> 00:00:00:00:00:03.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:05.3 -> 00:00:00:00:00:03.1
+Checking source port: Rule port = any, Packet port = 42772, Result = True
+Checking destination port: Rule port = 80, Packet port = 80, Result = True
+checking allow or block = allow
+allow
+FW1: Packet allowed.
+src address: 00:00:00:00:00:04, dst address: 33:33:00:00:00:02
+src address: be:56:08:ad:d3:a8, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:02, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:02, dst address: 00:00:00:00:00:05
+input port = 1, packet protocol = TCP, src ip = 100.0.0.11, dst ip =100.0.0.40
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.11, Result = True
+Checking destination IP subnet: Rule subnet = 100.0.0.40/29, Packet IP = 100.0.0.40, Result = True
+Checking source port: Rule port = any, Packet port = 37500, Result = True
+Checking destination port: Rule port = 80, Packet port = 80, Result = True
+checking allow or block = allow
+allow
+FW1: Packet allowed.
+src address: 00:00:00:00:00:05, dst address: 00:00:00:00:00:02
+input port = 2, packet protocol = TCP, src ip = 100.0.0.40, dst ip =100.0.0.11
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Checking source IP subnet: Rule subnet = 100.0.0.40/24, Packet IP = 100.0.0.40, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.11, Result = True
+Checking source port: Rule port = any, Packet port = 80, Result = True
+Checking destination port: Rule port = any, Packet port = 37500, Result = True
+checking allow or block = allow
+allow
+FW1: Packet allowed.
+src address: 00:00:00:00:00:05, dst address: 00:00:00:00:00:02
+input port = 2, packet protocol = TCP, src ip = 100.0.0.40, dst ip =100.0.0.11
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Checking source IP subnet: Rule subnet = 100.0.0.40/24, Packet IP = 100.0.0.40, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.11, Result = True
+Checking source port: Rule port = any, Packet port = 80, Result = True
+Checking destination port: Rule port = any, Packet port = 37500, Result = True
+checking allow or block = allow
+allow
+FW1: Packet allowed.
+src address: 00:00:00:00:00:02, dst address: 00:00:00:00:00:05
+input port = 1, packet protocol = TCP, src ip = 100.0.0.11, dst ip =100.0.0.40
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.11, Result = True
+Checking destination IP subnet: Rule subnet = 100.0.0.40/29, Packet IP = 100.0.0.40, Result = True
+Checking source port: Rule port = any, Packet port = 37500, Result = True
+Checking destination port: Rule port = 80, Packet port = 80, Result = True
+checking allow or block = allow
+allow
+FW1: Packet allowed.
+src address: 00:00:00:00:00:02, dst address: 00:00:00:00:00:06
+input port = 1, packet protocol = TCP, src ip = 100.0.0.11, dst ip =100.0.0.41
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.11, Result = True
+Checking destination IP subnet: Rule subnet = 100.0.0.40/29, Packet IP = 100.0.0.41, Result = True
+Checking source port: Rule port = any, Packet port = 40358, Result = True
+Checking destination port: Rule port = 80, Packet port = 80, Result = True
+checking allow or block = allow
+allow
+FW1: Packet allowed.
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:02
+input port = 2, packet protocol = TCP, src ip = 100.0.0.41, dst ip =100.0.0.11
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Checking source IP subnet: Rule subnet = 100.0.0.40/24, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.11, Result = True
+Checking source port: Rule port = any, Packet port = 80, Result = True
+Checking destination port: Rule port = any, Packet port = 40358, Result = True
+checking allow or block = allow
+allow
+FW1: Packet allowed.
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:02
+input port = 2, packet protocol = TCP, src ip = 100.0.0.41, dst ip =100.0.0.11
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Checking source IP subnet: Rule subnet = 100.0.0.40/24, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.11, Result = True
+Checking source port: Rule port = any, Packet port = 80, Result = True
+Checking destination port: Rule port = any, Packet port = 40358, Result = True
+checking allow or block = allow
+allow
+FW1: Packet allowed.
+src address: 00:00:00:00:00:07, dst address: 00:00:00:00:00:02
+input port = 2, packet protocol = TCP, src ip = 100.0.0.42, dst ip =100.0.0.11
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Checking source IP subnet: Rule subnet = 100.0.0.40/24, Packet IP = 100.0.0.42, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.11, Result = True
+Checking source port: Rule port = any, Packet port = 80, Result = True
+Checking destination port: Rule port = any, Packet port = 48190, Result = True
+checking allow or block = allow
+allow
+FW1: Packet allowed.
+src address: 00:00:00:00:00:07, dst address: 00:00:00:00:00:02
+input port = 2, packet protocol = TCP, src ip = 100.0.0.42, dst ip =100.0.0.11
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Checking source IP subnet: Rule subnet = 100.0.0.40/24, Packet IP = 100.0.0.42, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.11, Result = True
+Checking source port: Rule port = any, Packet port = 80, Result = True
+Checking destination port: Rule port = any, Packet port = 48190, Result = True
+checking allow or block = allow
+allow
+FW1: Packet allowed.
+src address: b2:c7:93:7f:1a:4a, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:03, dst address: 00:00:00:00:00:05
+input port = 2, packet protocol = TCP, src ip = 100.0.0.50, dst ip =100.0.0.40
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking destination IP subnet: Rule subnet = 100.0.0.40/29, Packet IP = 100.0.0.40, Result = True
+Checking source port: Rule port = any, Packet port = 37782, Result = True
+Checking destination port: Rule port = 80, Packet port = 80, Result = True
+checking allow or block = allow
+allow
+FW2: Packet allowed.
+src address: 16:9f:f5:ef:03:a8, dst address: 33:33:00:00:00:02
+DEBUG:forwarding.l2_learning:Port for 00:00:00:00:00:06 unknown -- flooding
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW2 for TCP : src address: 00:00:00:00:00:03, dst address: 00:00:00:00:00:06 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 2
+  dl_src: 00:00:00:00:00:03
+  dl_dst: 00:00:00:00:00:06
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:Port for 00:00:00:00:00:06 unknown -- flooding
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.2 -> 00:00:00:00:00:06.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.4 -> 00:00:00:00:00:06.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.2 -> 00:00:00:00:00:03.4
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:03.2
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW2 for TCP : src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 1
+  dl_src: 00:00:00:00:00:06
+  dl_dst: 00:00:00:00:00:03
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.1 -> 00:00:00:00:00:03.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.2 -> 00:00:00:00:00:06.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:03.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.1 -> 00:00:00:00:00:06.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.1 -> 00:00:00:00:00:06.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:03.1
+DEBUG:forwarding.l2_learning:Port for 00:00:00:00:00:07 unknown -- flooding
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW2 for TCP : src address: 00:00:00:00:00:03, dst address: 00:00:00:00:00:07 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 2
+  dl_src: 00:00:00:00:00:03
+  dl_dst: 00:00:00:00:00:07
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:Port for 00:00:00:00:00:07 unknown -- flooding
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.2 -> 00:00:00:00:00:07.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.4 -> 00:00:00:00:00:07.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.3 -> 00:00:00:00:00:03.4
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.3 -> 00:00:00:00:00:03.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.3 -> 00:00:00:00:00:03.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.1 -> 00:00:00:00:00:07.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:04.2 -> 00:00:00:00:00:07.3
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW2 for TCP : src address: 00:00:00:00:00:04, dst address: 00:00:00:00:00:07 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 2
+  dl_src: 00:00:00:00:00:04
+  dl_dst: 00:00:00:00:00:07
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:Port for 00:00:00:00:00:07 unknown -- flooding
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:04.2 -> 00:00:00:00:00:07.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:04.4 -> 00:00:00:00:00:07.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.3 -> 00:00:00:00:00:04.4
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.3 -> 00:00:00:00:00:04.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.3 -> 00:00:00:00:00:04.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:07.3 -> 00:00:00:00:00:04.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:04.2 -> 00:00:00:00:00:06.3
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW2 for TCP : src address: 00:00:00:00:00:04, dst address: 00:00:00:00:00:06 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 2
+  dl_src: 00:00:00:00:00:04
+  dl_dst: 00:00:00:00:00:06
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:04.2 -> 00:00:00:00:00:06.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:04.2 -> 00:00:00:00:00:06.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:04.4 -> 00:00:00:00:00:06.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:04.4 -> 00:00:00:00:00:06.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.2 -> 00:00:00:00:00:04.4
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:04.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.2 -> 00:00:00:00:00:04.4
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:04.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:04.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:04.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:04.2 -> 00:00:00:00:00:05.3
+DEBUG:baseFirewall:IP Protocol: 6
+DEBUG:baseFirewall:On FW2 for TCP : src address: 00:00:00:00:00:04, dst address: 00:00:00:00:00:05 create return rule
+DEBUG:baseFirewall:match conditions: ofp_match
+  in_port: 2
+  dl_src: 00:00:00:00:00:04
+  dl_dst: 00:00:00:00:00:05
+  dl_type: 0x800
+  nw_proto: 6
+  tp_dst: 80
+DEBUG:forwarding.l2_learning:Port for 00:00:00:00:00:05 unknown -- flooding
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:04.2 -> 00:00:00:00:00:05.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:04.4 -> 00:00:00:00:00:05.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:05.1 -> 00:00:00:00:00:04.4
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:05.3 -> 00:00:00:00:00:04.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:05.3 -> 00:00:00:00:00:04.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:05.3 -> 00:00:00:00:00:04.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:05.3 -> 00:00:00:00:00:04.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:01.1 -> 00:00:00:00:00:05.3
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW1: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW1: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW1: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+src address: 76:72:10:e3:44:44, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:03, dst address: 00:00:00:00:00:06
+input port = 2, packet protocol = TCP, src ip = 100.0.0.50, dst ip =100.0.0.41
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking destination IP subnet: Rule subnet = 100.0.0.40/29, Packet IP = 100.0.0.41, Result = True
+Checking source port: Rule port = any, Packet port = 60326, Result = True
+Checking destination port: Rule port = 80, Packet port = 80, Result = True
+checking allow or block = allow
+allow
+FW2: Packet allowed.
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = TCP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Checking source IP subnet: Rule subnet = 100.0.0.40/24, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = 80, Result = True
+Checking destination port: Rule port = any, Packet port = 60326, Result = True
+checking allow or block = allow
+allow
+FW2: Packet allowed.
+src address: 00:00:00:00:00:03, dst address: 00:00:00:00:00:07
+input port = 2, packet protocol = TCP, src ip = 100.0.0.50, dst ip =100.0.0.42
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking destination IP subnet: Rule subnet = 100.0.0.40/29, Packet IP = 100.0.0.42, Result = True
+Checking source port: Rule port = any, Packet port = 53380, Result = True
+Checking destination port: Rule port = 80, Packet port = 80, Result = True
+checking allow or block = allow
+allow
+FW2: Packet allowed.
+src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:04, dst address: 00:00:00:00:00:07
+input port = 2, packet protocol = TCP, src ip = 100.0.0.51, dst ip =100.0.0.42
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.51, Result = True
+Checking destination IP subnet: Rule subnet = 100.0.0.40/29, Packet IP = 100.0.0.42, Result = True
+Checking source port: Rule port = any, Packet port = 59770, Result = True
+Checking destination port: Rule port = 80, Packet port = 80, Result = True
+checking allow or block = allow
+allow
+FW2: Packet allowed.
+src address: 5a:7e:07:f3:3f:e4, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:04, dst address: 00:00:00:00:00:06
+input port = 2, packet protocol = TCP, src ip = 100.0.0.51, dst ip =100.0.0.41
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.51, Result = True
+Checking destination IP subnet: Rule subnet = 100.0.0.40/29, Packet IP = 100.0.0.41, Result = True
+Checking source port: Rule port = any, Packet port = 40038, Result = True
+Checking destination port: Rule port = 80, Packet port = 80, Result = True
+checking allow or block = allow
+allow
+FW2: Packet allowed.
+src address: 00:00:00:00:00:04, dst address: 00:00:00:00:00:05
+input port = 2, packet protocol = TCP, src ip = 100.0.0.51, dst ip =100.0.0.40
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.51, Result = True
+Checking destination IP subnet: Rule subnet = 100.0.0.40/29, Packet IP = 100.0.0.40, Result = True
+Checking source port: Rule port = any, Packet port = 40026, Result = True
+Checking destination port: Rule port = 80, Packet port = 80, Result = True
+checking allow or block = allow
+allow
+FW2: Packet allowed.
+src address: 2e:9f:09:9d:c0:e5, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:03, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:06, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:01, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:04, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:02, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:05
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.10, dst ip =100.0.0.40
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.40, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: be:56:08:ad:d3:a8, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:05
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.10, dst ip =100.0.0.40
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.40, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:05
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.10, dst ip =100.0.0.40
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.40, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:05
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.10, dst ip =100.0.0.40
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+DEBUG:baseFirewall:FW1: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW1: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW1: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW1: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW1: Packet blocked.
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:01.1 -> 00:00:00:00:00:06.3
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW1: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW1: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW1: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW1: Packet blocked.
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.1 -> 00:00:00:00:00:06.3
+DEBUG:baseFirewall:IP Protocol: 1
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.40, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:05
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.10, dst ip =100.0.0.40
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.40, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:05
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.10, dst ip =100.0.0.40
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.40, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:05
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.10, dst ip =100.0.0.40
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.40, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:05
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.10, dst ip =100.0.0.40
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.40, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:06
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.10, dst ip =100.0.0.41
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:06
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.10, dst ip =100.0.0.41
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:06
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.10, dst ip =100.0.0.41
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:01, dst address: 00:00:00:00:00:06
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.10, dst ip =100.0.0.41
+Rule details: HW Port: 1, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 2, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.10, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:03, dst address: 00:00:00:00:00:06
+input port = 2, packet protocol = ICMP, src ip = 100.0.0.50, dst ip =100.0.0.41
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.2 -> 00:00:00:00:00:06.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.2 -> 00:00:00:00:00:06.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.4 -> 00:00:00:00:00:06.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.2 -> 00:00:00:00:00:03.4
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:03.2
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Rule details: HW Port: 2, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = allow
+allow
+FW2: Packet allowed.
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.1 -> 00:00:00:00:00:06.3
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.2 -> 00:00:00:00:00:06.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.2 -> 00:00:00:00:00:06.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.4 -> 00:00:00:00:00:06.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.2 -> 00:00:00:00:00:03.4
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:03.2
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:03, dst address: 00:00:00:00:00:06
+input port = 2, packet protocol = ICMP, src ip = 100.0.0.50, dst ip =100.0.0.41
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Rule details: HW Port: 2, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = allow
+allow
+FW2: Packet allowed.
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.1 -> 00:00:00:00:00:06.3
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.2 -> 00:00:00:00:00:06.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.2 -> 00:00:00:00:00:06.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.4 -> 00:00:00:00:00:06.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.2 -> 00:00:00:00:00:03.4
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:03.2
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+checking allow or block = block
+block
+src address: 00:00:00:00:00:03, dst address: 00:00:00:00:00:06
+input port = 2, packet protocol = ICMP, src ip = 100.0.0.50, dst ip =100.0.0.41
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Rule details: HW Port: 2, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = allow
+allow
+FW2: Packet allowed.
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: b2:c7:93:7f:1a:4a, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 16:9f:f5:ef:03:a8, dst address: 33:33:00:00:00:02
+src address: 16:9f:f5:ef:03:a8, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: e2:04:0f:9c:a1:7b, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 76:72:10:e3:44:44, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:07, dst address: 33:33:00:00:00:02
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.1 -> 00:00:00:00:00:06.3
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.2 -> 00:00:00:00:00:06.1
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.2 -> 00:00:00:00:00:06.3
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:03.4 -> 00:00:00:00:00:06.2
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.2 -> 00:00:00:00:00:03.4
+DEBUG:forwarding.l2_learning:installing flow for 00:00:00:00:00:06.3 -> 00:00:00:00:00:03.2
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:03, dst address: 00:00:00:00:00:06
+input port = 2, packet protocol = ICMP, src ip = 100.0.0.50, dst ip =100.0.0.41
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Rule details: HW Port: 2, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = allow
+allow
+FW2: Packet allowed.
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 5a:7e:07:f3:3f:e4, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:03, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:05, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 2e:9f:09:9d:c0:e5, dst address: 33:33:00:00:00:02
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+Rule details: HW Port: 2, Protocol: TCP, Source IP: any, Source Port: any, Destination IP: 100.0.0.40/29, Destination Port: 80, Action: allow
+Rule details: HW Port: 1, Protocol: TCP, Source IP: 100.0.0.40/24, Source Port: any, Destination IP: any, Destination Port: any, Action: allow
+Rule details: HW Port: 1, Protocol: any, Source IP: any, Source Port: any, Destination IP: any, Destination Port: any, Action: block
+Checking source IP subnet: Rule subnet = any, Packet IP = 100.0.0.41, Result = True
+Checking destination IP subnet: Rule subnet = any, Packet IP = 100.0.0.50, Result = True
+Checking source port: Rule port = any, Packet port = -1, Result = True
+Checking destination port: Rule port = any, Packet port = -1, Result = True
+checking allow or block = block
+block
+src address: 00:00:00:00:00:06, dst address: 00:00:00:00:00:03
+input port = 1, packet protocol = ICMP, src ip = 100.0.0.41, dst ip =100.0.0.50
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+DEBUG:baseFirewall:IP Protocol: 1
+DEBUG:baseFirewall:FW2: Packet blocked.
+INFO:openflow.of_01:[00-00-00-00-00-05 2] closed
+INFO:openflow.of_01:[00-00-00-00-00-01 3] closed
+INFO:openflow.of_01:[00-00-00-00-00-06 4] closed
+INFO:openflow.of_01:[00-00-00-00-00-03 5] closed
+INFO:openflow.of_01:[00-00-00-00-00-02 6] closed
+INFO:openflow.of_01:[00-00-00-00-00-04 7] closed

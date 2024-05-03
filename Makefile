@@ -22,6 +22,7 @@ test:
 
 clean:
 	@echo "project files removed from pox directory!"
+	
 	sudo mn --link=tc --topo=mytopo
 	kill $(shell sudo lsof -t -i:8080)
 	kill $(shell sudo lsof -t -i:6633)

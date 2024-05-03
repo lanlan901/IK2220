@@ -34,7 +34,6 @@ class FW1 (Firewall):
             #webserver - pbz
             [1, 'TCP', 'any', 'any', '100.0.0.40/29', '80', 'allow'], 
             [2, 'TCP', '100.0.0.40/24', 'any', 'any', 'any', 'allow'],
-            [1, 'any', 'any', 'any', '100.0.0.40/29', 'any', 'block'],
             [1, 'any', 'any', 'any', 'any', 'any', 'block'], 
             [2, 'any', 'any', 'any', 'any', 'any', 'allow'],
         ]
@@ -55,7 +54,6 @@ class FW2 (Firewall):
             ## prz - webserver
             [2, 'TCP', 'any', 'any', '100.0.0.40/29', '80', 'allow'], 
             [1, 'TCP', '100.0.0.40/24', 'any', 'any', 'any', 'allow'],
-            [2, 'any', 'any', 'any', '100.0.0.40/29', 'any', 'block'], 
             [1, 'any', 'any', 'any', 'any', 'any', 'block'],
             [2, 'any', 'any', 'any', 'any', 'any', 'allow'] 
         ]

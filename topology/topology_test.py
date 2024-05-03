@@ -79,7 +79,7 @@ def run_tests(net):
     testing.curl(h2, ws1, expected=200)
     testing.curl(h2, ws2, expected=200)
     testing.curl(h2, ws3, expected=200)
-    testing.curl(h1, ws1, expected=200)
+    testing.curl(h3, ws1, expected=200)
     testing.curl(h3, ws2, expected=200)
     testing.curl(h3, ws3, expected=200)
     testing.curl(h4, ws1, expected=200)

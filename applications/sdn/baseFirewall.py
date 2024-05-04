@@ -7,8 +7,7 @@ import ipaddress
 import time
 log = core.getLogger()
 
-    
-    
+
 # This is the basic Firewall class which implements all features of your firewall!
 # For upcoming packets, you should decide if the packet is allowed to pass according to the firewall rules (which you have provided in networkFirewalls file during initialization.)
 # After processing packets you should install the correct OF rule on the device to threat similar packets the same way on dataplane (without forwarding packets to the controller) for a specific period of time.
@@ -90,7 +89,9 @@ class Firewall (l2_learning.LearningSwitch):
             packet_protocol = 'ICMP'
             icmp_packet = ip_packet.find('icmp')
             icmp_type = icmp_packet.type
-            # if icmp_type == 0:  # ping reply
+            print(f"icmp type: {icmp_type}")
+            #if icmp_type == 0:  # ping reply
+                
             #     return True
             # if icmp_type == 8: #ping request
             #     pass
@@ -162,60 +163,88 @@ class Firewall (l2_learning.LearningSwitch):
 
         access_allowed = False #default block
         ip_packet = packet.find('ipv4')
-        if ip_packet:
-            log.debug(f"IP Protocol: {ip_packet.protocol}")
-            access_allowed = self.has_access(ip_packet, event.port)
-            if event.port == 2 & ip_packet.protocol == 1: #ICMP
-                log.debug(f"On {self.name} : src address: {src_mac}, dst address: {dst_mac} create returnrule")
-                msg1 = of.ofp_flow_mod()
-                msg1.match = of.ofp_match()
-                msg1.match.dl_type = 0x0800
-                msg1.match.nw_proto = 1 #ICMP
-                msg1.match.dl_src = src_mac
-                msg1.match.dl_dst = dst_mac
-                msg1.match.flip() #反转匹配规则, 包括MAC 地址、IP 地址、TCP/UDP 端口等
-                msg1.match.in_port = 1
-                msg1.idle_timeout = 2
-                msg1.hard_timeout = 30
-                msg1.actions.append(of.ofp_action_output(port = event.port))
-                self.connection.send(msg1)
-                #self.add_return_rule(packet.src, packet.dst, event)
-                
-            if ip_packet.protocol == 6:  #TCP
-                log.debug(f"On {self.name} for TCP : src address: {src_mac}, dst address: {dst_mac} create return rule")
-                msg2 = of.ofp_flow_mod()
-                msg2.match = of.ofp_match()
-                msg2.match.dl_type = 0x0800
-                msg2.match.nw_proto = 6  # TCP
-                msg2.match.in_port = event.port
-                msg2.match.dl_src = src_mac
-                msg2.match.dl_dst = dst_mac
-                msg2.match.tp_dst = 80
-                log.debug(f"match conditions: {msg2.match}")
-
-                msg2.idle_timeout = 2
-                msg2.hard_timeout = 30
-
-                msg2.actions.append(of.ofp_action_output(port = 1))
-                msg2.data = event.ofp # 6a
-                self.connection.send(msg2)
-
-                msg3 = of.ofp_flow_mod()
-                msg3.match.flip(msg2.match)
-                msg3.match.in_port = 1
-                msg3.actions.append(of.ofp_action_output(port = 2))
-                msg3.idle_timeout = 2
-                msg3.hard_timeout = 30
-                self.connection.send(msg3)
-                
-            if access_allowed:
-                super(Firewall, self)._handle_PacketIn(event)
-                print(f"{self.name}: Packet allowed.")
-            else:
-                log.debug(f"{self.name}: Packet blocked.")
-                return
-
+        
+        if not ip_packet:
+            log.debug(f"No IPv4 packet found.")
             return
+        
+        log.debug(f"IP Protocol: {ip_packet.protocol}")
+        print(ip_packet)
+        access_allowed = self.has_access(ip_packet, event.port)
+
+        protocol_handlers = {
+            1: self.handle_icmp,
+            6: self.handle_tcp
+        }
+        
+        handler = protocol_handlers.get(ip_packet.protocol)
+        if handler and event.port == 2:
+            handler(event, packet, src_mac, dst_mac)
+            return
+            
+
+        if access_allowed:
+            super(Firewall, self)._handle_PacketIn(event)
+            log.debug(f"{self.name}: Packet allowed.")
+        else:
+            log.debug(f"{self.name}: Packet blocked.")
+            return
+    
+    def handle_icmp(self, event, packet, src_mac, dst_mac):
+        log.debug(f"On {self.name} for ICMP : src address: {src_mac}, dst address: {dst_mac} create return rule")
+        msg1 = of.ofp_flow_mod()
+        msg1.match = of.ofp_match.from_packet(packet, event.port)
+        msg1.idle_timeout = 10
+        msg1.hard_timeout = 30
+        msg1.actions.append(of.ofp_action_output(port = 2 if event.port == 1 else 1))
+        msg1.data = event.ofp # 6a
+
+        ip_packet = packet.find('ipv4')
+        msg2 = of.ofp_flow_mod()
+
+        #msg2.match = msg1.match.clone()
+        msg2.match.in_port = 1
+        msg2.match.dl_type = 0x0800
+        msg2.match.nw_proto = 1
+        msg2.match.dl_src = dst_mac  # 反转MAC地址，匹配原始目的MAC作为源MAC
+        msg2.match.dl_dst = src_mac
+        msg2.match.nw_src = ip_packet.dstip
+        msg2.match.nw_dst = ip_packet.srcip
+        msg2.idle_timeout = 10
+        msg2.hard_timeout = 30
+        msg2.actions.append(of.ofp_action_output(port = event.port))
+        #msg2.data = event.ofp # 6a
+
+        self.connection.send(msg1)
+        log.debug(f"match conditions for msg1: {msg1.match}")
+        self.connection.send(msg2)
+        log.debug(f"match conditions for msg2: {msg2.match}")
+        pass
+
+    def handle_tcp(self, event, packet, src_mac, dst_mac):
+        log.debug(f"On {self.name} for TCP : src address: {src_mac}, dst address: {dst_mac} create return rule")
+
+        msg3 = of.ofp_flow_mod()
+        msg3.match = of.ofp_match.from_packet(packet, event.port)
+        msg3.match.tp_dst = 80
+        msg3.idle_timeout = 2
+        msg3.hard_timeout = 30
+        msg3.actions.append(of.ofp_action_output(port = 2 if event.port == 1 else 1))
+        msg3.data = event.ofp
+
+        msg4 = of.ofp_flow_mod()
+        msg4.match = msg3.match.flip(in_port = 1)
+        msg4.actions.append(of.ofp_action_output(port = event.port))
+        msg4.idle_timeout = 2
+        msg4.hard_timeout = 30
+        #msg4.data = event.ofp # 6a
+
+        self.connection.send(msg3)
+        log.debug(f"match conditions: {msg3.match}")
+        self.connection.send(msg4)
+        log.debug(f"match conditions: {msg4.match}")
+
+        pass
 
 
 

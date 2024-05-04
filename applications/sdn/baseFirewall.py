@@ -7,7 +7,8 @@ import ipaddress
 import time
 log = core.getLogger()
 
-
+    
+    
 # This is the basic Firewall class which implements all features of your firewall!
 # For upcoming packets, you should decide if the packet is allowed to pass according to the firewall rules (which you have provided in networkFirewalls file during initialization.)
 # After processing packets you should install the correct OF rule on the device to threat similar packets the same way on dataplane (without forwarding packets to the controller) for a specific period of time.
@@ -28,10 +29,10 @@ class Firewall (l2_learning.LearningSwitch):
         self.name = name
         
         ### COMPLETE THIS PART ###
-        self.pbztable = {str('00:00:00:00:00:01'), str('00:00:00:00:00:02')}
-        self.prztable = {str('00:00:00:00:00:03'), str('00:00:00:00:00:04')}
-        self.webserver = {str('00:00:00:00:00:05'), str('00:00:00:00:00:06'), str('00:00:00:00:00:07')}
-        self.allowtable = dict()
+        # self.pbztable = {str('00:00:00:00:00:01'), str('00:00:00:00:00:02')}
+        # self.prztable = {str('00:00:00:00:00:03'), str('00:00:00:00:00:04')}
+        # self.webserver = {str('00:00:00:00:00:05'), str('00:00:00:00:00:06'), str('00:00:00:00:00:07')}
+        # self.allowtable = dict()
 
 
     def check_subnet(self, subnet, ip):

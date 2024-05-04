@@ -23,20 +23,20 @@ h2 ping to h4: Expected False, Result: Success
 
 
 -----h3------
-h3 ping to h1: Expected True, Result: Failure
+h3 ping to h1: Expected True, Result: Success
 
 
-h3 ping to h2: Expected True, Result: Failure
+h3 ping to h2: Expected True, Result: Success
 
 
 h3 ping to h4: Expected True, Result: Success
 
 
 -----h4------
-h4 ping to h1: Expected True, Result: Failure
+h4 ping to h1: Expected True, Result: Success
 
 
-h4 ping to h2: Expected True, Result: Failure
+h4 ping to h2: Expected True, Result: Success
 
 
 h4 ping to h3: Expected True, Result: Success
@@ -105,7 +105,7 @@ h1 curl to 100.0.0.42:80: Expected HTTP 200, Result: Success
 h2 curl to 100.0.0.40:80: Expected HTTP 200, Result: Success
 h2 curl to 100.0.0.41:80: Expected HTTP 200, Result: Success
 h2 curl to 100.0.0.42:80: Expected HTTP 200, Result: Success
-h1 curl to 100.0.0.40:80: Expected HTTP 200, Result: Success
+h3 curl to 100.0.0.40:80: Expected HTTP 200, Result: Success
 h3 curl to 100.0.0.41:80: Expected HTTP 200, Result: Success
 h3 curl to 100.0.0.42:80: Expected HTTP 200, Result: Success
 h4 curl to 100.0.0.40:80: Expected HTTP 200, Result: Success
@@ -115,23 +115,6 @@ h4 curl to 100.0.0.42:80: Expected HTTP 200, Result: Success
 
 mininet> 
 Interrupt
-mininet> Traceback (most recent call last):
-  File "/opt/IK2220/./topology/topology_test.py", line 119, in <module>
-    net.delLink(link)
-  File "/usr/lib/python3/dist-packages/mininet/net.py", line 412, in delLink
-    link.delete()
-  File "/usr/lib/python3/dist-packages/mininet/link.py", line 506, in delete
-    self.intf1.delete()
-  File "/usr/lib/python3/dist-packages/mininet/link.py", line 208, in delete
-    self.cmd( 'ip link del ' + self.name )
-  File "/usr/lib/python3/dist-packages/mininet/link.py", line 70, in cmd
-    return self.node.cmd( *args, **kwargs )
-  File "/usr/lib/python3/dist-packages/mininet/node.py", line 387, in cmd
-    return self.waitOutput( verbose )
-  File "/usr/lib/python3/dist-packages/mininet/node.py", line 374, in waitOutput
-    data = self.monitor( findPid=findPid )
-  File "/usr/lib/python3/dist-packages/mininet/node.py", line 341, in monitor
-    data = self.read( 1024 )
-  File "/usr/lib/python3/dist-packages/mininet/node.py", line 249, in read
-    data = os.read( self.stdout.fileno(), size - count )
-KeyboardInterrupt
+mininet> 
+Interrupt
+mininet> 

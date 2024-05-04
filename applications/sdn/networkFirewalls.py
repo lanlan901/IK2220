@@ -33,9 +33,11 @@ class FW1 (Firewall):
         self.rules = [
             #webserver - pbz
             [1, 'TCP', 'any', 'any', '100.0.0.40/29', '80', 'allow'], 
-            [2, 'TCP', '100.0.0.40/24', 'any', 'any', 'any', 'allow'],
+            [1, 'any', 'any', 'any', '100.0.0.50/29', 'any', 'allow'], 
             [1, 'any', 'any', 'any', 'any', 'any', 'block'], 
-            [2, 'any', 'any', 'any', 'any', 'any', 'allow'],
+            
+            #[2, 'TCP', '100.0.0.40/24', 'any', 'any', 'any', 'allow'],
+            [2, 'any', 'any', 'any', 'any', 'any', 'allow']
         ]
 
 
@@ -49,12 +51,16 @@ class FW2 (Firewall):
 
         ### COMPLETE THIS PART ###
         ##[硬件端口号；协议；源ip；TCP/UDP源端口号；目的ip；TCP/UDP目的端口号；允许或禁止]
-        Firewall.__init__(self, connection, "FW2")
+        Firewall.__init__(self, connection, "FW2", True, '100.0.0.10/29')
         self.rules = [
             ## prz - webserver
             [2, 'TCP', 'any', 'any', '100.0.0.40/29', '80', 'allow'], 
-            [1, 'TCP', '100.0.0.40/24', 'any', 'any', 'any', 'allow'],
             [2, 'any', 'any', 'any', '100.0.0.40/29', 'any', 'block'], 
-            [1, 'any', 'any', 'any', 'any', 'any', 'block'],
-            [2, 'any', 'any', 'any', 'any', 'any', 'allow'] 
+            [2, 'any', 'any', 'any', 'any', 'any', 'allow'],
+
+
+            [1, 'TCP', '100.0.0.40/24', 'any', 'any', 'any', 'allow'],
+            [1, 'any', 'any', 'any', 'any', 'any', 'block']
+
+            
         ]

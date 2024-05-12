@@ -36,7 +36,7 @@ class MyTopo(Topo):
         # phase2
         lb1 = self.addSwitch('lb1', dpid = '7')
         napt = self.addSwitch('napt', dpid = '8')
-        ids = self.addSwitch('ips', dpip = '9')
+        ids = self.addSwitch('ids', dpid = '9')
         insp = self.addHost('insp', ip = '100.0.0.30/24')
 
         # Web servers
@@ -58,14 +58,18 @@ class MyTopo(Topo):
         self.addLink(sw4, ws1, port1 = 1, port2 = 0)
         self.addLink(sw4, ws2, port1 = 2, port2 = 0)
         self.addLink(sw4, ws3, port1 = 3, port2 = 0)
-        self.addLink(sw2, sw4, port1 = 3, port2 = 4)
+        self.addLink(ids, sw2, port1 = 1, port2 = 3)
+        self.addLink(lb1, sw4, port1 = 1, port2 = 4)
+        self.addLink(ids, lb1, port1 = 2, port2 = 2)
+        self.addLink(ids, insp, port1 = 3, port2 = 0)
 
         # Firewall
         self.addLink(sw1, fw1, port1 = 3, port2 = 1)
         self.addLink(sw2, fw1, port1 = 1, port2 = 2)
         
         self.addLink(sw2, fw2, port1 = 2, port2 = 1)
-        self.addLink(sw3, fw2, port1 = 3, port2 = 2)
+        self.addLink(sw3, napt, port1 = 3, port2 = 2)
+        self.addLink(napt, fw2, port1 = 1, port2 = 2)
 
 def startup_services(net):
     # Start http services and executing commands you require on each host...

@@ -20,19 +20,20 @@ class Firewall (l2_learning.LearningSwitch):
 
     rules = []
 
-    def __init__(self, connection, name):
+    def __init__(self, connection, name, enable = False, dst_net = None):
 
         # Initialization of your Firewall. You may want to keep track of the connection, device name and etc.
 
         super(Firewall, self).__init__(connection, False)
         self.name = name
+        self.enable_tem_reverce = enable
+        self.dst_net = dst_net
         
         ### COMPLETE THIS PART ###
         # self.pbztable = {str('00:00:00:00:00:01'), str('00:00:00:00:00:02')}
         # self.prztable = {str('00:00:00:00:00:03'), str('00:00:00:00:00:04')}
         # self.webserver = {str('00:00:00:00:00:05'), str('00:00:00:00:00:06'), str('00:00:00:00:00:07')}
         # self.allowtable = dict()
-
 
     def check_subnet(self, subnet, ip):
         if subnet == 'any':
@@ -44,7 +45,7 @@ class Firewall (l2_learning.LearningSwitch):
                 network = ipaddress.ip_network(str(subnet), strict=False)  # 转换成字符串进行网络定义
                 return ip_addr in network
             except ValueError as e:
-                print(f"Error processing subnet {subnet} and IP {ip}: {e}")
+                log.debug(f"Error processing subnet {subnet} and IP {ip}: {e}")
                 return False
     
     def check_protocol(self, rule, protocol):
@@ -89,18 +90,18 @@ class Firewall (l2_learning.LearningSwitch):
             packet_protocol = 'ICMP'
             icmp_packet = ip_packet.find('icmp')
             icmp_type = icmp_packet.type
-            print(f"icmp type: {icmp_type}")
+            log.debug(f"icmp type: {icmp_type}")
             #if icmp_type == 0:  # ping reply
                 
             #     return True
             # if icmp_type == 8: #ping request
             #     pass
 
-        print(f"input port = {input_port}, packet protocol = {packet_protocol}, src ip = {src_ip}, dst ip ={dst_ip}")
+        log.debug(f"input port = {input_port}, packet protocol = {packet_protocol}, src ip = {src_ip}, dst ip ={dst_ip}")
             
         for rule in self.rules:
             hw_port, protocol, src_subnet, src_port, dst_subnet, dst_port, action = rule
-            print(f"Rule details: HW Port: {hw_port}, Protocol: {protocol}, Source IP: {src_subnet}, "
+            log.debug(f"Rule details: HW Port: {hw_port}, Protocol: {protocol}, Source IP: {src_subnet}, "
                   f"Source Port: {src_port}, Destination IP: {dst_subnet}, Destination Port: {dst_port}, Action: {action}")
             
             if hw_port != 'any' and hw_port != input_port:
@@ -110,31 +111,31 @@ class Firewall (l2_learning.LearningSwitch):
 
             # 检查IP
             src_subnet_res = self.check_subnet(src_subnet, src_ip)
-            print(f"Checking source IP subnet: Rule subnet = {src_subnet}, Packet IP = {src_ip}, Result = {src_subnet_res}")
+            log.debug(f"Checking source IP subnet: Rule subnet = {src_subnet}, Packet IP = {src_ip}, Result = {src_subnet_res}")
 
             dst_subnet_res = self.check_subnet(dst_subnet, dst_ip)
-            print(f"Checking destination IP subnet: Rule subnet = {dst_subnet}, Packet IP = {dst_ip}, Result = {dst_subnet_res}")
+            log.debug(f"Checking destination IP subnet: Rule subnet = {dst_subnet}, Packet IP = {dst_ip}, Result = {dst_subnet_res}")
             if not (src_subnet_res and dst_subnet_res):
                 continue
 
             # 检查端口
             src_port_res = self.check_port(src_port, packet_src_port)
-            print(f"Checking source port: Rule port = {src_port}, Packet port = {packet_src_port}, Result = {src_port_res}")
+            log.debug(f"Checking source port: Rule port = {src_port}, Packet port = {packet_src_port}, Result = {src_port_res}")
 
             dst_port_res = self.check_port(dst_port, packet_dst_port)
-            print(f"Checking destination port: Rule port = {dst_port}, Packet port = {packet_dst_port}, Result = {dst_port_res}")
+            log.debug(f"Checking destination port: Rule port = {dst_port}, Packet port = {packet_dst_port}, Result = {dst_port_res}")
 
             if not (src_port_res and dst_port_res):
                 continue
-            print(f"checking allow or block = {action}")
+            log.debug(f"checking allow or block = {action}")
 
             if action == 'allow':
-                print("allow")
+                log.debug("allow")
                 return True
             elif action == 'block':
-                print("block")
+                log.debug("block")
                 return False
-        print("NO RULES MATCH")
+        log.debug("NO RULES MATCH")
         return False  #默认不通过
 
     # On receiving a packet from dataplane, your firewall should process incoming event and apply the correct OF rule on the device.
@@ -143,7 +144,7 @@ class Firewall (l2_learning.LearningSwitch):
 
         packet = event.parsed
         if not packet.parsed:
-            print(self.name, ": Incomplete packet received! controller ignores that")
+            log.debug(self.name, ": Incomplete packet received! controller ignores that")
             return
 
         self.process_packet(event, packet)
@@ -156,7 +157,7 @@ class Firewall (l2_learning.LearningSwitch):
         dst_mac = packet.dst
         # src_mac = packet.src
         # dst_mac = packet.dst
-        print(f"src address: {src_mac}, dst address: {dst_mac}")
+        log.debug(f"src address: {src_mac}, dst address: {dst_mac}")
         #update first seen at
         where = f"switch {dpid} - port {event.port}" 
         core.controller.updatefirstSeenAt(src_mac, where)
@@ -169,7 +170,7 @@ class Firewall (l2_learning.LearningSwitch):
             return
         
         log.debug(f"IP Protocol: {ip_packet.protocol}")
-        print(ip_packet)
+        log.debug(ip_packet)
         access_allowed = self.has_access(ip_packet, event.port)
 
         protocol_handlers = {
@@ -178,10 +179,20 @@ class Firewall (l2_learning.LearningSwitch):
         }
         
         handler = protocol_handlers.get(ip_packet.protocol)
-        if handler and event.port == 2:
-            handler(event, packet, src_mac, dst_mac)
+        log.debug(f"{self.name}: handler and event.port == 2 and self.enable_tem_reverce = {handler and event.port == 2 and self.enable_tem_reverce}")
+        if handler and event.port == 2 and self.enable_tem_reverce:
+            #todo
+            if(self.check_subnet(self.dst_net, ip_packet.dstip)
+                # or ip_packet.find('tcp').dstport == 80
+                ):
+                handler(event, packet, src_mac, dst_mac)
+            elif access_allowed:
+                super(Firewall, self)._handle_PacketIn(event)
+                log.debug(f"{self.name}: Packet allowed.")
+                  
             return
-            
+        else:
+            log.debug(f"{self.name}: not enable reverse")
 
         if access_allowed:
             super(Firewall, self)._handle_PacketIn(event)

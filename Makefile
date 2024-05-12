@@ -13,6 +13,7 @@ app:
 	sudo cp -r /opt/IK2220/applications/nfv/* /opt/pox/ext
 	mkdir -p /opt/pox/ext/results
 	cd $(poxdir) && python ./pox.py log.level --DEBUG baseController 2>&1 | tee ${OUT_LOG_CTRL_PLANE} &
+#	cd $(poxdir) && python ./pox.py baseController 2>&1 | tee ${OUT_LOG_CTRL_PLANE} &
 
 test:
 	@echo "starting test scenarios!"

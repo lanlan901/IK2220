@@ -1,17 +1,17 @@
-poxdir ?= /opt/pox/
-OUT_LOG_CTRL_PLANE="/opt/IK2220/results/output_app.txt"
-OUT_LOG_TEST_RESULT="/opt/IK2220/results/output_test_prog.txt"
+poxdir ?= ../pox/
+OUT_LOG_CTRL_PLANE="../results/output_app.txt"
+OUT_LOG_TEST_RESULT="../results/output_test_prog.txt"
 
 # Complete the makefile as you prefer!
 topo:
 	@echo "starting the topology! (i.e., running mininet)"
-	sudo python /opt/IK2220/topology/topology.py
+	sudo python topology/topology.py
 
 app:
 	@echo "starting the baseController!"
-	sudo cp -r /opt/IK2220/applications/sdn/* /opt/pox/ext
-	sudo cp -r /opt/IK2220/applications/nfv/* /opt/pox/ext
-	mkdir -p /opt/pox/ext/results
+	sudo cp -r ./applications/sdn/* $(poxdir)ext
+	sudo cp -r ./applications/nfv/* $(poxdir)ext
+	mkdir -p $(poxdir)ext/results
 	cd $(poxdir) && python ./pox.py log.level --DEBUG baseController 2>&1 | tee ${OUT_LOG_CTRL_PLANE} &
 #	cd $(poxdir) && python ./pox.py baseController 2>&1 | tee ${OUT_LOG_CTRL_PLANE} &
 
@@ -23,8 +23,8 @@ test:
 
 clean:
 	@echo "project files removed from pox directory!"
-	sudo rm -rf ${POXDIR}ext/*
+	sudo rm -rf ../pox/ext/*
 	sudo mn --link=tc --topo=mytopo
 	kill $(shell sudo lsof -t -i:8080)
 	kill $(shell sudo lsof -t -i:6633)
-	sudo cp /opt/pox/ext/results/* ./results
+	sudo cp ../pox/ext/results/* ./results

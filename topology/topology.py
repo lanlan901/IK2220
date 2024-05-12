@@ -28,15 +28,22 @@ class MyTopo(Topo):
         sw2 = self.addSwitch('sw2', dpid = '2')
         sw3 = self.addSwitch('sw3', dpid = '3')
         sw4 = self.addSwitch('sw4', dpid = '4')
+        
+        # Firewalls
+        fw1 = self.addSwitch('fw1', dpid = '5')
+        fw2 = self.addSwitch('fw2', dpid = '6')
+
+        # phase2
+        lb1 = self.addSwitch('lb1', dpid = '7')
+        napt = self.addSwitch('napt', dpid = '8')
+        ids = self.addSwitch('ips', dpip = '9')
+        insp = self.addHost('insp', ip = '100.0.0.30/24')
 
         # Web servers
         ws1 = self.addHost('ws1', ip = '100.0.0.40/24')
         ws2 = self.addHost('ws2', ip = '100.0.0.41/24')
         ws3 = self.addHost('ws3', ip = '100.0.0.42/24')
 
-        # Firewalls
-        fw1 = self.addSwitch('fw1', dpid = '5')
-        fw2 = self.addSwitch('fw2', dpid = '6')
 
         # Defining links
         # Public zone

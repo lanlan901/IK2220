@@ -20,8 +20,8 @@ class MyTopo(Topo):
         # Initialize hosts
         h1 = self.addHost('h1', ip = '100.0.0.10/24')
         h2 = self.addHost('h2', ip = '100.0.0.11/24')
-        h3 = self.addHost('h3', ip = '100.0.0.50/24')
-        h4 = self.addHost('h4', ip = '100.0.0.51/24')
+        h3 = self.addHost('h3', ip = '10.0.0.50/24')
+        h4 = self.addHost('h4', ip = '10.0.0.51/24')
 
         # Initial switches
         sw1 = self.addSwitch('sw1', dpid = '1')

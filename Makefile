@@ -1,4 +1,4 @@
-poxdir ?= ../pox/
+poxdir ?= /opt/pox/
 OUT_LOG_CTRL_PLANE="../results/output_app.txt"
 OUT_LOG_TEST_RESULT="../results/output_test_prog.txt"
 

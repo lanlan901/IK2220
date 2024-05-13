@@ -57,6 +57,13 @@ class controller (object):
             fw2 = networkFirewalls.FW2(event.connection)
             self.devices[len(self.devices)] = fw2
             print(f"FW2 instance created and added to devices dictionary, DPID: {dpid}.")
+
+        if dpid == 7: ##lb
+            log.info("Starting a Click process for %d" % event.dpid)
+            cmd = "sudo click ../applications/nfv/lb.click &"
+            log.info("Launching click with command " + cmd)
+            p = subprocess.Popen(cmd, shell=True)
+            log.info("Click launched with PID " + str(p.pid))
         
         return
 

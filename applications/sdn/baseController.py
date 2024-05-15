@@ -60,11 +60,24 @@ class controller (object):
 
         if dpid == 7: ##lb
             log.info("Starting a Click process for %d" % event.dpid)
-            cmd = "sudo click ../applications/nfv/lb.click &"
+            cmd = "sudo click /opt/pox/ext/lb.click &"
             log.info("Launching click with command " + cmd)
             p = subprocess.Popen(cmd, shell=True)
             log.info("Click launched with PID " + str(p.pid))
-        
+
+        if dpid == 8: ##napt
+            log.info("Starting a Click process for %d" % event.dpid)
+            cmd = "sudo click /opt/pox/ext/napt.click &"
+            log.info("Launching click with command " + cmd)
+            p = subprocess.Popen(cmd, shell=True)
+            log.info("Click launched with PID " + str(p.pid))
+
+        if dpid == 9: ##ids
+            log.info("Starting a Click process for %d" % event.dpid)
+            cmd = "sudo click /opt/pox/ext/ids.click &"
+            log.info("Launching click with command " + cmd)
+            p = subprocess.Popen(cmd, shell=True)
+            log.info("Click launched with PID " + str(p.pid))
         return
 
     # This should be called by each element in your application when a new source MAC is seen

@@ -18,48 +18,59 @@ to_switch :: Queue -> cnt_out1 -> ToDevice($PORT1, METHOD LINUX);
 to_server :: Queue -> cnt_out2-> ToDevice($PORT2, METHOD LINUX);
 to_insp :: Queue -> ToDevice($PORT3, METHOD LINUX);
 
-from_switch -> cnt_in1 -> packets_classifier;
-
 // classifier
-packets_classifier_to_server :: Classifier(12/0806 20/0001, 12/0800, -);
-packets_classifier_to_server[0] -> Print("ARP request, allow", -1) -> cnt_arp_req -> to_server;
-packets_classifier_to_server[1] -> Strip(14) -> CheckIPHeader -> cnt_ip1 -> ip_classifier_to_server;
-packets_classifier_to_server[2] -> Print("Unwanted packets, discard", -1) -> drop1 -> Discard;
+packets_classifier_from_switch :: Classifier(12/0806 20/0001, 12/0800, -);
 
-packets_classifier_to_switch :: Classifier(12/0806 20/0002, 12/0800, -);
-packets_classifier_to_switch[0] -> Print("ARP response, allow", -1) -> cnt_arp_res -> to_switch;
-packets_classifier_to_switch[1] -> Strip(14) -> CheckIPHeader -> Unstrip(14) -> cnt_ip2 -> to_switch;
-packets_classifier_to_switch[2] -> Print("Unwanted packets, discard", -1) -> drop2 -> Discard;
+packets_classifier_from_server :: Classifier(12/0806 20/0002, 12/0800, -);
 
 ip_classifier_to_server :: IPClassifier(proto icmp && icmp type echo, tcp, -);
-ip_classifier_to_server[0] -> Unstrip(14) -> Print("ICMP, allow") -> cnt_icmp -> to_server;
-ip_classifier_to_server[1] -> Unstrip(14) -> Print("TCP signal, allow") -> to_server;
-ip_classifier_to_server[2] -> Unstrip(14) -> http_classifier;
 
-//todo
 http_classifier :: Classifier(
     // PUT
-
+    505554,
     // POST
-
+    504F5354,
     // others
     -
 );
 
-http_classifier[0] -> cnt_PUT -> keywords_classfier;
-http_classifier[1] -> cnt_POST -> to_server;
-http_classifier[2] -> cnt_INSP -> to_insp;
-
-//todo
 keywords_classfier :: Classifier(
     // i. cat/etc/passwd
+    636174202F6574632F706173737764,
     // ii. cat/var/log/
+    636174202F7661722F6C6F672F,
     // iii. INSERT
+    494E53455254,
     // iv. UPDATE
+    555044415445,
     // v. DELETE
+    44454C455445,
     //others
     -
 );
+
+from_switch -> cnt_in1 -> packets_classifier_from_switch;
+from_server -> cnt_in2 -> packets_classifier_from_server;
+
+packets_classifier_from_switch[0] -> Print("ARP request, allow", -1) -> cnt_arp_req -> to_switch;
+packets_classifier_from_switch[1] -> Strip(14) -> CheckIPHeader -> cnt_ip1 -> ip_classifier_to_server;
+packets_classifier_from_switch[2] -> Print("Unwanted packets, discard", -1) -> drop1 -> Discard;
+
+packets_classifier_from_server[0] -> Print("ARP response, allow", -1) -> cnt_arp_res -> to_server;
+packets_classifier_from_server[1] -> Strip(14) -> CheckIPHeader -> Unstrip(14) -> cnt_ip2 -> to_switch;
+packets_classifier_from_server[2] -> Print("Unwanted packets, discard", -1) -> drop2 -> Discard;
+
+ip_classifier_to_server[0] -> Unstrip(14) -> Print("ICMP, allow") -> cnt_icmp -> to_server;
+ip_classifier_to_server[1] -> Unstrip(14) -> Print("TCP signal, allow") -> to_server;
+ip_classifier_to_server[2] -> Unstrip(14) -> http_classifier;
+
+s :: Search("\n\r\n\r")
+s[0] -> keywords_classfier;
+s[1] -> to_insp;
+
+http_classifier[0] -> cnt_PUT -> keywords_classfier;
+http_classifier[1] -> cnt_POST -> to_server;
+http_classifier[2] -> cnt_INSP -> to_insp;
 
 keywords_classfier[0] -> Print("keyword found - cat/etc/passwd", -1) -> to_insp -> to_insp;
 keywords_classfier[1] -> Print("keyword found - cat/var/log/", -1) -> to_insp -> to_insp;
@@ -68,9 +79,9 @@ keywords_classfier[3] -> Print("keyword found - UPDATE", -1) -> to_insp -> to_in
 keywords_classfier[4] -> Print("keyword found - DELETE", -1) -> to_insp -> to_insp;
 keywords_classfier[5] -> to_server;
 
-
-DriverManager(pause , print > /opt/pox/ext/results/ids.report  " 
-
+DriverManager(
+    pause, 
+    print > /opt/pox/ext/results/ids.report  "
       =================== IDS Report ===================
       Input Packet rate (pps): $(add $(cnt_in1.rate) $(cnt_in2.rate))
       Output Packet rate (pps): $(add $(cnt_out1.rate) $(cnt_out2.rate))
@@ -90,5 +101,5 @@ DriverManager(pause , print > /opt/pox/ext/results/ids.report  "
       Total # of to INSP packets:  $(cnt_INSP.count)
       Total # of dropped packets:  $(add $(drop1.count)$(drop2.count))
     =================================================
-
- " );
+    " 
+);

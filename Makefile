@@ -1,4 +1,4 @@
-poxdir ?= /opt/pox/
+poxdir = /opt/pox/
 OUT_LOG_CTRL_PLANE="../results/output_app.txt"
 OUT_LOG_TEST_RESULT="../results/output_test_prog.txt"
 
@@ -8,6 +8,7 @@ topo:
 	sudo python topology/topology.py
 
 app:
+
 	@echo "starting the baseController!"
 	sudo cp -r ./applications/sdn/* $(poxdir)ext
 	sudo cp -r ./applications/nfv/* $(poxdir)ext

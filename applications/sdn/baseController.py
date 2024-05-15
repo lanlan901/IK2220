@@ -6,11 +6,11 @@ import pox.lib.packet as pkt
 import networkFirewalls
 import webserver
 import subprocess
+import click_wrapper
 import shlex
 from forwarding.l2_learning import LearningSwitch
 import datetime
 
-# import click_wrapper
 
 
 log = core.getLogger()
@@ -59,25 +59,29 @@ class controller (object):
             print(f"FW2 instance created and added to devices dictionary, DPID: {dpid}.")
 
         if dpid == 7: ##lb
-            log.info("Starting a Click process for %d" % event.dpid)
-            cmd = "sudo click /opt/pox/ext/lb.click &"
-            log.info("Launching click with command " + cmd)
-            p = subprocess.Popen(cmd, shell=True)
-            log.info("Click launched with PID " + str(p.pid))
+            # log.info("Starting a Click process for %d" % event.dpid)
+            # cmd = "sudo click /opt/pox/ext/lb.click &"
+            # log.info("Launching click with command " + cmd)
+            # p = subprocess.Popen(cmd, shell=True)
+            # log.info("Click launched with PID " + str(p.pid))
+            click_wrapper.start_click("/opt/pox/ext/napt.click", "", "/tmp/lb.stdout", "/tmp/lb.stderr")
+
 
         if dpid == 8: ##napt
-            log.info("Starting a Click process for %d" % event.dpid)
-            cmd = "sudo click /opt/pox/ext/napt.click &"
-            log.info("Launching click with command " + cmd)
-            p = subprocess.Popen(cmd, shell=True)
-            log.info("Click launched with PID " + str(p.pid))
+            # log.info("Starting a Click process for %d" % event.dpid)
+            # cmd = "sudo click /opt/pox/ext/napt.click &"
+            # log.info("Launching click with command " + cmd)
+            # p = subprocess.Popen(cmd, shell=True)
+            # log.info("Click launched with PID " + str(p.pid))
+            click_wrapper.start_click("/opt/pox/ext/napt.click", "", "/tmp/napt.stdout", "/tmp/napt.stderr")
 
         if dpid == 9: ##ids
-            log.info("Starting a Click process for %d" % event.dpid)
-            cmd = "sudo click /opt/pox/ext/ids.click &"
-            log.info("Launching click with command " + cmd)
-            p = subprocess.Popen(cmd, shell=True)
-            log.info("Click launched with PID " + str(p.pid))
+            # log.info("Starting a Click process for %d" % event.dpid)
+            # cmd = "sudo click /opt/pox/ext/ids.click &"
+            # log.info("Launching click with command " + cmd)
+            # p = subprocess.Popen(cmd, shell=True)
+            # log.info("Click launched with PID " + str(p.pid))
+            click_wrapper.start_click("/opt/pox/ext/ids.click", "", "/tmp/ids.stdout", "/tmp/ids.stderr")
         return
 
     # This should be called by each element in your application when a new source MAC is seen

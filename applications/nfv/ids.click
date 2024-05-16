@@ -15,7 +15,7 @@ cnt_http ,cnt_PUT, cnt_POST, cnt_INSP :: Counter;
 from_switch :: FromDevice($PORT1, METHOD LINUX, SNIFFER false);
 from_server :: FromDevice($PORT2, METHOD LINUX, SNIFFER false);
 to_switch :: Queue -> cnt_out1 -> ToDevice($PORT1, METHOD LINUX);
-to_server :: Queue -> cnt_out2-> ToDevice($PORT2, METHOD LINUX);
+to_server :: Queue -> cnt_out2 -> Print("ids, out", -1) -> ToDevice($PORT2, METHOD LINUX);
 to_insp :: Queue -> ToDevice($PORT3, METHOD LINUX);
 
 // classifier

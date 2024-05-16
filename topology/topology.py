@@ -78,6 +78,10 @@ def startup_services(net):
         print("Starting web server %s on port 80" % ws.upper()) 
         server = net.get(ws)
         server.cmd("python3 -m http.server 80 &")
+        
+    for insp in ["insp"]:
+        print( "tcpdump on insp start")
+        net.get(insp).cmd("tcpdump -i insp-eth0 -w insp.pcap &")
 
 topos = {'mytopo': (lambda: MyTopo())}
 

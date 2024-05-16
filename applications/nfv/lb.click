@@ -20,7 +20,7 @@ from_ids :: FromDevice($PORT2, METHOD LINUX, SNIFFER false);
 to_ws :: Queue -> cnt_out1 -> ToDevice($PORT1, METHOD LINUX);
 // 2. toward clients
 from_ws :: FromDevice($PORT1, METHOD LINUX, SNIFFER false);
-to_ids :: Queue -> cnt_out2 -> ToDevice($PORT2, METHOD LINUX);
+to_ids :: Queue -> cnt_out2 -> Print("lb: out", -1) -> ToDevice($PORT2, METHOD LINUX);
 
 // classifier
 from_ws -> Print("packet from server", -1) -> cnt_in1 -> classifier_from_ws :: Classifier(

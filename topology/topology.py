@@ -101,6 +101,9 @@ if __name__ == "__main__":
     
     net.get("h3").cmd("ip route add default via 10.0.0.1")
     net.get("h4").cmd("ip route add default via 10.0.0.1")
+    net.get("ws1").cmd("ip route add default via 100.0.0.45 dev ws1-eth0")
+    net.get("ws2").cmd("ip route add default via 100.0.0.45 dev ws2-eth0")
+    net.get("ws3").cmd("ip route add default via 100.0.0.45 dev ws3-eth0")
 
     # Start the network
     net.start()

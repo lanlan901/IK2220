@@ -6,7 +6,7 @@
 
 define($PORT1 lb1-eth1, $PORT2 lb1-eth2)
 define($VIRTUAL_SERVICE_IP 100.0.0.45)
-define($VIRTUAL_MAC 12:34:56:12:34:56)
+define($VIRTUAL_MAC)
 
 // counters
 cnt_in1, cnt_in2, cnt_out1, cnt_out2 :: AverageCounter; 
@@ -17,7 +17,7 @@ drop1, drop2, drop3, drop4 :: Counter;
 // interfaces
 // 1. toward servers
 from_ids :: FromDevice($PORT2, METHOD LINUX, SNIFFER false);
-to_ws :: Queue -> cnt_out1 -> ToDevice($PORT1, METHOD LINUX);
+to_ws :: Queue -> cnt_out1 -> Print("lb: out", -1) -> ToDevice($PORT1, METHOD LINUX);
 // 2. toward clients
 from_ws :: FromDevice($PORT1, METHOD LINUX, SNIFFER false);
 to_ids :: Queue -> cnt_out2 -> Print("lb: out", -1) -> ToDevice($PORT2, METHOD LINUX);
@@ -58,32 +58,27 @@ roundRobin :: RoundRobinIPMapper(
     100.0.0.45 - 100.0.0.41 - 0 1,
     100.0.0.45 - 100.0.0.42 - 0 1);
 
-arp_req_ids :: ARPQuerier($VIRTUAL_SERVICE_IP, $VIRTUAL_MAC);
-arp_req_ws :: ARPQuerier($VIRTUAL_SERVICE_IP, $VIRTUAL_MAC);
-arp_res_ids :: ARPResponder($VIRTUAL_SERVICE_IP, $VIRTUAL_MAC);
-arp_res_ws :: ARPResponder($VIRTUAL_SERVICE_IP, $VIRTUAL_MAC);
+arp_req_ids :: ARPQuerier($VIRTUAL_SERVICE_IP, 12:34:56:12:34:56);
+arp_req_ws :: ARPQuerier($VIRTUAL_SERVICE_IP, 65:43:21:65:43:21);
+arp_res_ids :: ARPResponder($VIRTUAL_SERVICE_IP 12:34:56:12:34:56);
+arp_res_ws :: ARPResponder($VIRTUAL_SERVICE_IP 65:43:21:65:43:21);
 
 ipPacket_from_ws :: GetIPAddress(16) -> CheckIPHeader -> [0]arp_req_ws -> to_ids;
 ipPacket_from_ids :: GetIPAddress(16) -> CheckIPHeader -> [0]arp_req_ids -> to_ws;
 
-ipRewrite[0] -> ipPacket_from_ids;
+ipRewrite[0] -> Print("lb: IPrewrite", -1) -> ipPacket_from_ids;
 ipRewrite[1] -> ipPacket_from_ws;
 
-// ARP 
 classifier_from_ws[0] -> arp_req1 -> arp_res_ws -> to_ws;
 classifier_from_ws[1] -> arp_res1 -> [1]arp_req_ws;
-
-classifier_from_ids[0] -> arp_req2 -> ARPResponder($VIRTUAL_SERVICE_IP $VIRTUAL_MAC) -> to_ids;
-classifier_from_ids[1] -> arp_res2 -> [1]arp_req_ids;
-
-// IP
 classifier_from_ws[2] -> cnt_serv1 -> Strip(14) -> CheckIPHeader -> ip_classifier_from_ws;
-classifier_from_ids[2] -> cnt_serv2 -> Strip(14) -> CheckIPHeader -> ip_classifier_from_ids;
+classifier_from_ws[3] -> drop1 -> Discard;
 
-// discard
-classifier_from_ws[3] -> Print("Non IP packet, discard", -1) -> drop1 -> Discard;
-classifier_from_ids[3] -> Print("Non IP packet, discard", -1) -> drop2 -> Discard;
 
+classifier_from_ids[0] -> arp_req2 -> arp_res_ids -> to_ids;
+classifier_from_ids[1] -> arp_res2 -> [1]arp_req_ids;
+classifier_from_ids[2] -> cnt_serv2 -> Strip(14) -> CheckIPHeader -> Print("lb: IP packet", -1) -> ip_classifier_from_ids;
+classifier_from_ids[3] -> drop2 -> Discard;
 
 // TCP
 ip_classifier_from_ws[0] -> [0]ipRewrite;
@@ -94,8 +89,8 @@ ip_classifier_from_ws[1] -> cnt_icmp1 -> ICMPPingResponder -> ipPacket_from_ws;
 ip_classifier_from_ids[1] -> cnt_icmp2 -> ICMPPingResponder -> ipPacket_from_ids;
 
 // discard
-ip_classifier_from_ws[2] -> Print("unwanted IP packet", discard", -1) -> drop3 -> Discard;
-ip_classifier_from_ids[2] -> Print("unwanted IP packet", discard", -1) -> drop4 -> Discard;
+ip_classifier_from_ws[2] -> drop3 -> Discard;
+ip_classifier_from_ids[2] -> drop4 -> Discard;
 
 DriverManager(
     pause, 

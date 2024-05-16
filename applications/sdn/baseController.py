@@ -64,7 +64,7 @@ class controller (object):
             # log.info("Launching click with command " + cmd)
             # p = subprocess.Popen(cmd, shell=True)
             # log.info("Click launched with PID " + str(p.pid))
-            click_wrapper.start_click("/opt/pox/ext/napt.click", "", "/tmp/lb.stdout", "/tmp/lb.stderr")
+            click_wrapper.start_click("/opt/pox/ext/lb.click", "", "/tmp/lb.stdout", "/tmp/lb.stderr")
 
 
         if dpid == 8: ##napt

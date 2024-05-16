@@ -55,7 +55,7 @@ class FW2 (Firewall):
         self.rules = [
             ## prz - webserver
             [2, 'TCP', 'any', 'any', '100.0.0.40/29', '80', 'allow'], 
-            [2, 'any', 'any', 'any', '100.0.0.40/29', 'any', 'block'], 
+            #[2, 'any', 'any', 'any', '100.0.0.40/29', 'any', 'block'], 
             [2, 'any', 'any', 'any', 'any', 'any', 'allow'],
 
 

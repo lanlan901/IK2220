@@ -94,6 +94,9 @@ if __name__ == "__main__":
                   autoStaticArp=True,
                   build=True,
                   cleanup=True)
+    
+    net.get("h3").cmd("ip route add default via 10.0.0.1")
+    net.get("h4").cmd("ip route add default via 10.0.0.1")
 
     # Start the network
     net.start()

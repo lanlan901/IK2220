@@ -52,16 +52,16 @@ keywords_classfier :: Classifier(
 from_switch -> cnt_in1 -> packets_classifier_from_switch;
 from_server -> cnt_in2 -> packets_classifier_from_server;
 
-packets_classifier_from_switch[0] -> Print("ARP request, allow", -1) -> cnt_arp_req -> to_switch;
-packets_classifier_from_switch[1] -> Strip(14) -> CheckIPHeader -> cnt_ip1 -> ip_classifier;
-packets_classifier_from_switch[2] -> Print("Unwanted packets, discard", -1) -> drop1 -> Discard;
+packets_classifier_from_switch[0] -> Print("ids: ARP request, allow", -1) -> cnt_arp_req -> to_switch;
+packets_classifier_from_switch[1] -> Print("ids: IP packet" , -1) -> Strip(14) -> CheckIPHeader -> cnt_ip1 -> ip_classifier;
+packets_classifier_from_switch[2] -> Print("ids: Unwanted packets, discard", -1) -> drop1 -> Discard;
 
-packets_classifier_from_server[0] -> Print("ARP response, allow", -1) -> cnt_arp_res -> to_server;
-packets_classifier_from_server[1] -> Strip(14) -> CheckIPHeader -> Unstrip(14) -> cnt_ip2 -> to_switch;
-packets_classifier_from_server[2] -> Print("Unwanted packets, discard", -1) -> drop2 -> Discard;
+packets_classifier_from_server[0] -> Print("ids: ARP response, allow", -1) -> cnt_arp_res -> to_server;
+packets_classifier_from_server[1] -> Print("ids: IP packet" , -1) -> Strip(14) -> CheckIPHeader -> Unstrip(14) -> cnt_ip2 -> to_switch;
+packets_classifier_from_server[2] -> Print("ids: Unwanted packets, discard", -1) -> drop2 -> Discard;
 
-ip_classifier[0] -> Unstrip(14) -> Print("ICMP, allow") -> cnt_icmp -> to_server;
-ip_classifier[1] -> Unstrip(14) -> Print("TCP signal, allow") -> to_server;
+ip_classifier[0] -> Unstrip(14) -> Print("ids: ICMP, allow") -> cnt_icmp -> to_server;
+ip_classifier[1] -> Unstrip(14) -> Print("ids: TCP signal, allow") -> to_server;
 ip_classifier[2] -> Unstrip(14) -> cnt_http -> http_classifier;
 
 s :: Search("\n\r\n\r")

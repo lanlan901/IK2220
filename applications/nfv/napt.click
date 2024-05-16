@@ -15,10 +15,10 @@ to_prz :: Queue -> cnt_out1 -> ToDevice($PORT2);
 to_dmz :: Queue -> cnt_out2 -> ToDevice($PORT1);
 
 //ARP
-arp_req_prz :: ARPQuerier($PRZ_IP, 01:02:03:04:05:06);
-arp_req_dmz :: ARPQuerier($DMZ_IP, 06:05:04:03:02:01);
-arp_res_prz :: ARPResponder($PRZ_IP 10.0.0.0/24 01:02:03:04:05:06);
-arp_res_dmz :: ARPResponder($DMZ_IP 100.0.0.0/24 06:05:04:03:02:01);
+arp_req_prz :: ARPQuerier($PRZ_IP, $PORT2);
+arp_req_dmz :: ARPQuerier($DMZ_IP, $PORT1);
+arp_res_prz :: ARPResponder($PRZ_IP $PORT2);
+arp_res_dmz :: ARPResponder($DMZ_IP $PORT1);
 
 // IP rewrite
 ipRewrite :: IPRewriter(pattern $DMZ_IP - - - 0 1);
@@ -67,14 +67,14 @@ ip_classifier_dmz :: IPClassifier(
 from_prz -> cnt_in1 -> packet_classifier_prz;
 from_dmz -> cnt_in2 -> packet_classifier_dmz;
 
-packet_classifier_prz[0] -> arp_req1 -> arp_res_prz -> to_prz;
-packet_classifier_prz[1] -> arp_res1 -> [1]arp_req_prz;
-packet_classifier_prz[2] -> Print("IP packet") -> Strip(14) -> CheckIPHeader -> cnt_ip1 -> ip_classifier_prz;
+packet_classifier_prz[0] -> Print("ARP request", -1) -> arp_req1 -> arp_res_prz -> to_prz;
+packet_classifier_prz[1] -> Print("ARP response", -1) -> arp_res1 -> [1]arp_req_prz;
+packet_classifier_prz[2] -> Print("IP packet", -1) -> Strip(14) -> CheckIPHeader -> cnt_ip1 -> ip_classifier_prz;
 packet_classifier_prz[3] -> drop1 -> Discard;
 
 packet_classifier_dmz[0] -> arp_req2 -> arp_res_dmz -> to_dmz;
 packet_classifier_dmz[1] -> arp_res2 -> [1]arp_req_dmz;
-packet_classifier_dmz[2] -> Print("IP packet") -> trip(14) -> CheckIPHeader -> cnt_ip2 ->ip_classifier_dmz;
+packet_classifier_dmz[2] -> Print("IP packet") -> Strip(14) -> CheckIPHeader -> cnt_ip2 ->ip_classifier_dmz;
 packet_classifier_dmz[3] -> drop2 -> Discard;
 
 // TCP and ICMP handling

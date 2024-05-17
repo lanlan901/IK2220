@@ -17,8 +17,8 @@ to_dmz :: Queue -> Print("napt: dmz-out", -1) -> cnt_out2 -> ToDevice($PORT1);
 //ARP
 arp_req_prz :: ARPQuerier($PRZ_IP, 11:22:33:11:22:33);
 arp_req_dmz :: ARPQuerier($DMZ_IP, 44:55:66:44:55:66);
-arp_res_prz :: ARPResponder($PRZ_IP 100.0.0.0/24 11:22:33:11:22:33);
-arp_res_dmz :: ARPResponder($DMZ_IP 100.0.0.0/24 44:55:66:44:55:66);
+arp_res_prz :: ARPResponder($PRZ_IP 11:22:33:11:22:33);
+arp_res_dmz :: ARPResponder($DMZ_IP 44:55:66:44:55:66);
 
 // IP rewrite
 ip_rw :: IPRewriter(pattern $DMZ_IP - - - 0 1);

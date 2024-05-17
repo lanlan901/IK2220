@@ -35,6 +35,6 @@ sudo tcpdump -i napt-eth2 -n -w napt_eth2.pcap &
 sudo tcpdump -i napt-eth1 -n -w napt_eth1.pcap &
 
 ssh -L 8080:localhost:8080 -p 2222 ik2220@localhost
-
+sudo ovs-ofctl dump-flows fw2
 
 sudo click ./applications/nfv/napt.click

@@ -26,6 +26,7 @@ clean:
 	@echo "project files removed from pox directory!"
 	sudo rm -rf ../pox/ext/*
 	sudo mn --link=tc --topo=mytopo
+	sudo killall click
 	kill $(shell sudo lsof -t -i:8080)
 	kill $(shell sudo lsof -t -i:6633)
 	sudo cp ../pox/ext/results/* ./results

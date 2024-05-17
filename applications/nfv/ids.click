@@ -14,8 +14,8 @@ cnt_http ,cnt_PUT, cnt_POST, cnt_INSP :: Counter;
 // interfaces
 from_switch :: FromDevice($PORT1, METHOD LINUX, SNIFFER false);
 from_server :: FromDevice($PORT2, METHOD LINUX, SNIFFER false);
-to_switch :: Queue -> cnt_out1 -> ToDevice($PORT1, METHOD LINUX);
-to_server :: Queue -> cnt_out2 -> Print("ids, out", -1) -> ToDevice($PORT2, METHOD LINUX);
+to_switch :: Queue -> cnt_out1 -> Print("ids: to switch", -1) -> ToDevice($PORT1, METHOD LINUX);
+to_server :: Queue -> cnt_out2 -> Print("ids: to server", -1) -> ToDevice($PORT2, METHOD LINUX);
 to_insp :: Queue -> ToDevice($PORT3, METHOD LINUX);
 
 // classifier
@@ -52,13 +52,13 @@ keywords_classfier :: Classifier(
 from_switch -> cnt_in1 -> packets_classifier_from_switch;
 from_server -> cnt_in2 -> packets_classifier_from_server;
 
-packets_classifier_from_switch[0] -> Print("ids: ARP request, allow", -1) -> cnt_arp_req -> to_switch;
-packets_classifier_from_switch[1] -> Print("ids: IP packet" , -1) -> Strip(14) -> CheckIPHeader -> cnt_ip1 -> ip_classifier;
-packets_classifier_from_switch[2] -> Print("ids: Unwanted packets, discard", -1) -> drop1 -> Discard;
+packets_classifier_from_switch[0] -> Print("ids: ARP request, allow", -1) -> cnt_arp_req -> to_server;
+packets_classifier_from_switch[1] -> Print("ids: IP packet", -1) -> Strip(14) -> CheckIPHeader -> cnt_ip1 -> ip_classifier;
+packets_classifier_from_switch[2] -> drop1 -> Discard;
 
-packets_classifier_from_server[0] -> Print("ids: ARP response, allow", -1) -> cnt_arp_res -> to_server;
-packets_classifier_from_server[1] -> Print("ids: IP packet" , -1) -> Strip(14) -> CheckIPHeader -> Unstrip(14) -> cnt_ip2 -> to_switch;
-packets_classifier_from_server[2] -> Print("ids: Unwanted packets, discard", -1) -> drop2 -> Discard;
+packets_classifier_from_server[0] -> Print("ids: ARP response, allow", -1) -> cnt_arp_res -> to_switch;
+packets_classifier_from_server[1] -> Print("ids: IP packet to switch" , -1) -> Strip(14) -> CheckIPHeader -> Unstrip(14) -> cnt_ip2 -> to_switch;
+packets_classifier_from_server[2] -> drop2 -> Discard;
 
 ip_classifier[0] -> Unstrip(14) -> Print("ids: ICMP, allow") -> cnt_icmp -> to_server;
 ip_classifier[1] -> Unstrip(14) -> Print("ids: TCP signal, allow") -> to_server;
@@ -68,8 +68,8 @@ s :: Search("\n\r\n\r")
 s[0] -> keywords_classfier;
 s[1] -> to_insp;
 
-http_classifier[0] -> cnt_PUT -> s;
-http_classifier[1] -> cnt_POST -> to_server;
+http_classifier[0] -> Print("ids: PUT", -1) -> cnt_PUT -> s;
+http_classifier[1] -> Print("ids: POST", -1) -> cnt_POST -> to_server;
 http_classifier[2] -> cnt_INSP -> to_insp;
 
 keywords_classfier[0] -> Print("keyword found - cat/etc/passwd", -1) -> cnt_INSP -> to_insp;

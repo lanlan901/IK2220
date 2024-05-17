@@ -17,10 +17,10 @@ drop1, drop2, drop3, drop4 :: Counter;
 // interfaces
 // 1. toward servers
 from_ids :: FromDevice($PORT2, METHOD LINUX, SNIFFER false);
-to_ws :: Queue -> cnt_out1 -> Print("lb: out", -1) -> ToDevice($PORT1, METHOD LINUX);
+to_ws :: Queue -> cnt_out1 -> Print("lb: out to ws", -1) -> ToDevice($PORT1, METHOD LINUX);
 // 2. toward clients
 from_ws :: FromDevice($PORT1, METHOD LINUX, SNIFFER false);
-to_ids :: Queue -> cnt_out2 -> Print("lb: out", -1) -> ToDevice($PORT2, METHOD LINUX);
+to_ids :: Queue -> cnt_out2 -> Print("lb: out to ids", -1) -> ToDevice($PORT2, METHOD LINUX);
 
 // classifier
 from_ws -> Print("packet from server", -1) -> cnt_in1 -> classifier_from_ws :: Classifier(
@@ -58,6 +58,8 @@ roundRobin :: RoundRobinIPMapper(
     100.0.0.45 - 100.0.0.41 - 0 1,
     100.0.0.45 - 100.0.0.42 - 0 1);
 
+
+
 arp_req_ids :: ARPQuerier($VIRTUAL_SERVICE_IP, 12:34:56:12:34:56);
 arp_req_ws :: ARPQuerier($VIRTUAL_SERVICE_IP, 65:43:21:65:43:21);
 arp_res_ids :: ARPResponder($VIRTUAL_SERVICE_IP 12:34:56:12:34:56);
@@ -66,8 +68,8 @@ arp_res_ws :: ARPResponder($VIRTUAL_SERVICE_IP 65:43:21:65:43:21);
 ipPacket_from_ws :: GetIPAddress(16) -> CheckIPHeader -> [0]arp_req_ws -> to_ids;
 ipPacket_from_ids :: GetIPAddress(16) -> CheckIPHeader -> [0]arp_req_ids -> to_ws;
 
-ipRewrite[0] -> Print("lb: IPrewrite", -1) -> ipPacket_from_ids;
-ipRewrite[1] -> ipPacket_from_ws;
+ipRewrite[0] -> ipPacket_from_ws;
+ipRewrite[1] -> ipPacket_from_ids;
 
 classifier_from_ws[0] -> arp_req1 -> arp_res_ws -> to_ws;
 classifier_from_ws[1] -> arp_res1 -> [1]arp_req_ws;
@@ -77,7 +79,7 @@ classifier_from_ws[3] -> drop1 -> Discard;
 
 classifier_from_ids[0] -> arp_req2 -> arp_res_ids -> to_ids;
 classifier_from_ids[1] -> arp_res2 -> [1]arp_req_ids;
-classifier_from_ids[2] -> cnt_serv2 -> Strip(14) -> CheckIPHeader -> Print("lb: IP packet", -1) -> ip_classifier_from_ids;
+classifier_from_ids[2] -> cnt_serv2 -> Strip(14) -> CheckIPHeader -> ip_classifier_from_ids;
 classifier_from_ids[3] -> drop2 -> Discard;
 
 // TCP
@@ -85,8 +87,8 @@ ip_classifier_from_ws[0] -> [0]ipRewrite;
 ip_classifier_from_ids[0] -> [0]ipRewrite;
 
 //ICMP
-ip_classifier_from_ws[1] -> cnt_icmp1 -> ICMPPingResponder -> ipPacket_from_ws;
-ip_classifier_from_ids[1] -> cnt_icmp2 -> ICMPPingResponder -> ipPacket_from_ids;
+ip_classifier_from_ws[1] -> cnt_icmp1 -> ICMPPingResponder ->Unstrip(14) -> Print("lb: ICMP response" , -1) -> to_ws;
+ip_classifier_from_ids[1] -> cnt_icmp2 -> ICMPPingResponder ->Unstrip(14) -> Print("lb: ICMP response" , -1) -> to_ids;
 
 // discard
 ip_classifier_from_ws[2] -> drop3 -> Discard;

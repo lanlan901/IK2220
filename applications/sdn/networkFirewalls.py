@@ -60,7 +60,7 @@ class FW2 (Firewall):
 
 
             [1, 'TCP', '100.0.0.40/24', 'any', 'any', 'any', 'allow'],
-            [1, 'any', 'any', 'any', 'any', 'any', 'block']
+            [1, 'any', 'any', 'any', 'any', 'any', 'allow']
 
             
         ]

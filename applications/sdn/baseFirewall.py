@@ -28,12 +28,7 @@ class Firewall (l2_learning.LearningSwitch):
         self.name = name
         self.enable_tem_reverce = enable
         self.dst_net = dst_net
-        
-        ### COMPLETE THIS PART ###
-        # self.pbztable = {str('00:00:00:00:00:01'), str('00:00:00:00:00:02')}
-        # self.prztable = {str('00:00:00:00:00:03'), str('00:00:00:00:00:04')}
-        # self.webserver = {str('00:00:00:00:00:05'), str('00:00:00:00:00:06'), str('00:00:00:00:00:07')}
-        # self.allowtable = dict()
+    
 
     def check_subnet(self, subnet, ip):
         if subnet == 'any':
@@ -161,6 +156,15 @@ class Firewall (l2_learning.LearningSwitch):
         where = f"switch {dpid} - port {event.port}" 
         core.controller.updatefirstSeenAt(src_mac, where)
 
+        arp_packet = packet.find('arp')
+
+        if arp_packet is not None:
+            #print("arp packet")
+            #if arp_packet.protodst == IPAddr('100.0.0.45') or arp_packet.protodst == IPAddr(""):
+            super(Firewall, self)._handle_PacketIn(event)
+            print("arp allowed")
+            return
+
         access_allowed = False #default block
         ip_packet = packet.find('ipv4')
         
@@ -168,8 +172,8 @@ class Firewall (l2_learning.LearningSwitch):
             #log.debug(f"No IPv4 packet found.")
             return
         
-        #log.debug(f"IP Protocol: {ip_packet.protocol}")
-        #log.debug(ip_packet)
+        log.debug(f"IP Protocol: {ip_packet.protocol}")
+        log.debug(ip_packet)
         access_allowed = self.has_access(ip_packet, event.port)
 
         protocol_handlers = {
@@ -178,7 +182,7 @@ class Firewall (l2_learning.LearningSwitch):
         }
         
         handler = protocol_handlers.get(ip_packet.protocol)
-        #log.debug(f"{self.name}: handler and event.port == 2 and self.enable_tem_reverce = {handler and event.port == 2 and self.enable_tem_reverce}")
+        log.debug(f"{self.name}: handler and event.port == 2 and self.enable_tem_reverce = {handler and event.port == 2 and self.enable_tem_reverce}")
         if handler and event.port == 2 and self.enable_tem_reverce:
             #todo
             if(self.check_subnet(self.dst_net, ip_packet.dstip)
@@ -187,18 +191,12 @@ class Firewall (l2_learning.LearningSwitch):
                 handler(event, packet, src_mac, dst_mac)
             elif access_allowed:
                 super(Firewall, self)._handle_PacketIn(event)
-                log.debug(f"{self.name}: Packet allowed.")
-                  
+                log.debug(f"{self.name}: Packet allowed.")        
             return
         else:
             log.debug(f"{self.name}: not enable reverse")
 
         if access_allowed:
-            #todo
-            # if handler and event.port == 2 and self.enable_tem_reverce:
-            #     handler(event, packet, src_mac, dst_mac)
-            #     return
-
             super(Firewall, self)._handle_PacketIn(event)
             log.debug(f"{self.name}: Packet allowed.")
         else:
@@ -206,7 +204,7 @@ class Firewall (l2_learning.LearningSwitch):
             return
     
     def handle_icmp(self, event, packet, src_mac, dst_mac):
-        #log.debug(f"On {self.name} for ICMP : src address: {src_mac}, dst address: {dst_mac} create return rule")
+        log.debug(f"On {self.name} for ICMP : src address: {src_mac}, dst address: {dst_mac} create return rule")
         msg1 = of.ofp_flow_mod()
         msg1.match = of.ofp_match.from_packet(packet, event.port)
         msg1.idle_timeout = 10
@@ -231,9 +229,9 @@ class Firewall (l2_learning.LearningSwitch):
         #msg2.data = event.ofp # 6a
 
         self.connection.send(msg1)
-        #log.debug(f"match conditions for msg1: {msg1.match}")
+        log.debug(f"match conditions for msg1: {msg1.match}")
         self.connection.send(msg2)
-        #log.debug(f"match conditions for msg2: {msg2.match}")
+        log.debug(f"match conditions for msg2: {msg2.match}")
         pass
 
     def handle_tcp(self, event, packet, src_mac, dst_mac):
@@ -241,16 +239,18 @@ class Firewall (l2_learning.LearningSwitch):
 
         msg3 = of.ofp_flow_mod()
         msg3.match = of.ofp_match.from_packet(packet, event.port)
-        msg3.match.tp_dst = 80
-        msg3.idle_timeout = 2
+        #msg3.match.tp_dst = 80
+        msg3.idle_timeout = 10
         msg3.hard_timeout = 30
+        msg3.match.dl_src = dst_mac  # 反转MAC地址，匹配原始目的MAC作为源MAC
+        msg3.match.dl_dst = src_mac
         msg3.actions.append(of.ofp_action_output(port = 2 if event.port == 1 else 1))
         msg3.data = event.ofp
 
         msg4 = of.ofp_flow_mod()
         msg4.match = msg3.match.flip(in_port = 1)
         msg4.actions.append(of.ofp_action_output(port = event.port))
-        msg4.idle_timeout = 2
+        msg4.idle_timeout = 10
         msg4.hard_timeout = 30
         #msg4.data = event.ofp # 6a
 

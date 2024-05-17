@@ -11,14 +11,14 @@ drop1, drop2, drop3, drop4 :: Counter;
 // interfaces
 from_prz :: FromDevice($PORT2, METHOD LINUX, SNIFFER false);
 from_dmz :: FromDevice($PORT1, METHOD LINUX, SNIFFER false);
-to_prz :: Queue -> cnt_out1 -> ToDevice($PORT2);
-to_dmz :: Queue -> Print("out", -1) -> cnt_out2 -> ToDevice($PORT1);
+to_prz :: Queue -> Print("napt: prz-out", -1) -> cnt_out1 -> ToDevice($PORT2);
+to_dmz :: Queue -> Print("napt: dmz-out", -1) -> cnt_out2 -> ToDevice($PORT1);
 
 //ARP
-arp_req_prz :: ARPQuerier($PRZ_IP, $PORT2);
-arp_req_dmz :: ARPQuerier($DMZ_IP, $PORT1);
-arp_res_prz :: ARPResponder($PRZ_IP $PORT2);
-arp_res_dmz :: ARPResponder($DMZ_IP $PORT1);
+arp_req_prz :: ARPQuerier($PRZ_IP, 11:22:33:11:22:33);
+arp_req_dmz :: ARPQuerier($DMZ_IP, 44:55:66:44:55:66);
+arp_res_prz :: ARPResponder($PRZ_IP 100.0.0.0/24 11:22:33:11:22:33);
+arp_res_dmz :: ARPResponder($DMZ_IP 100.0.0.0/24 44:55:66:44:55:66);
 
 // IP rewrite
 ip_rw :: IPRewriter(pattern $DMZ_IP - - - 0 1);
@@ -67,7 +67,7 @@ packet_classifier_dmz[3] -> drop2 -> Discard;
 
 // prz -> dmz
 ip_classifier_prz[0] -> Print("napt: TCP", -1) -> cnt_ip1 -> ip_rw[0] -> [0]arp_req_dmz -> to_dmz;
-ip_classifier_prz[1] -> Print("napt: ICMP response", -1) -> Discard;
+ip_classifier_prz[1] -> Print("napt: ICMP response from prz to dmz", -1) -> Discard;
 ip_classifier_prz[2] -> cnt_icmp1 -> Print("napt: ICMP request", -1) -> icmp_rw[0] -> Print("ICMP rewrite", -1) -> [0]arp_req_dmz -> to_dmz;
 ip_classifier_prz[3] -> drop3 -> Discard;
 

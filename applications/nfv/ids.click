@@ -8,7 +8,7 @@ define($PORT1 ids-eth1, $PORT2 ids-eth2, $PORT3 ids-eth3)
 
 // counters
 cnt_in1, cnt_in2, cnt_out1, cnt_out2 :: AverageCounter; 
-cnt_arp_req, cnt_arp_res, cnt_ip1, cnt_ip2, cnt_icmp, drop1, drop2 :: Counter;
+cnt_arp_req, cnt_arp_res, cnt_ip1, cnt_ip2, cnt_icmp, drop1, drop2, drop3 :: Counter;
 cnt_http ,cnt_PUT, cnt_POST, cnt_INSP :: Counter;
 
 // interfaces
@@ -23,7 +23,7 @@ packets_classifier_from_switch :: Classifier(12/0806, 12/0800, -);
 
 packets_classifier_from_server :: Classifier(12/0806, 12/0800, -);
 
-ip_classifier :: IPClassifier(proto icmp && icmp type echo, tcp, -);
+ip_classifier :: IPClassifier(proto icmp && icmp type echo, http, -);
 
 http_classifier :: Classifier(
     // PUT
@@ -61,8 +61,8 @@ packets_classifier_from_server[1] -> Print("ids: IP packet to switch" , -1) -> c
 packets_classifier_from_server[2] -> drop2 -> Discard;
 
 ip_classifier[0] -> Unstrip(14) -> Print("ids: ICMP, allow") -> cnt_icmp -> to_server;
-ip_classifier[1] -> Unstrip(14) -> Print("ids: TCP signal, allow") -> to_server;
-ip_classifier[2] -> Unstrip(14) -> cnt_http -> http_classifier;
+ip_classifier[1] -> Unstrip(14) -> Print("ids: http", -1)  -> cnt_http -> http_classifier;
+ip_classifier[2] -> drop3 -> Discard;
 
 s :: Search("\n\r\n\r")
 s[0] -> keywords_classfier;
@@ -70,7 +70,7 @@ s[1] -> to_insp;
 
 http_classifier[0] -> Print("ids: PUT", -1) -> cnt_PUT -> s;
 http_classifier[1] -> Print("ids: POST", -1) -> cnt_POST -> to_server;
-http_classifier[2] -> cnt_INSP -> to_insp;
+http_classifier[2] -> Print("ids: httptoinsp", -1)  -> cnt_INSP -> to_insp;
 
 keywords_classfier[0] -> Print("keyword found - cat/etc/passwd", -1) -> UnstripAnno() -> cnt_INSP -> to_insp;
 keywords_classfier[1] -> Print("keyword found - cat/var/log/", -1) -> UnstripAnno() -> cnt_INSP -> to_insp;

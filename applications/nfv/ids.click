@@ -30,6 +30,8 @@ http_classifier :: Classifier(
     66/505554,
     // POST
     66/504F5354,
+    //tcp sig
+    66/00000000,
     // others
     -
 );
@@ -70,7 +72,8 @@ s[1] -> to_insp;
 
 http_classifier[0] -> Print("ids: PUT", -1) -> cnt_PUT -> s;
 http_classifier[1] -> Print("ids: POST", -1) -> cnt_POST -> to_server;
-http_classifier[2] -> Print("ids: httptoinsp", -1)  -> cnt_INSP -> to_insp;
+http_classifier[2] -> Print("ids: httpstart", -1) -> cnt_POST -> to_server;
+http_classifier[3] -> Print("ids: httptoinsp", -1)  -> cnt_INSP -> to_insp;
 
 keywords_classfier[0] -> Print("keyword found - cat/etc/passwd", -1) -> UnstripAnno() -> cnt_INSP -> to_insp;
 keywords_classfier[1] -> Print("keyword found - cat/var/log/", -1) -> UnstripAnno() -> cnt_INSP -> to_insp;

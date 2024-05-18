@@ -40,3 +40,5 @@ ssh -L 8080:localhost:8080 -p 2222 ik2220@localhost
 sudo ovs-ofctl dump-flows fw2
 https://hpd.gasmi.net/
 sudo click ./applications/nfv/napt.click
+h3 curl -X POST -d "" 100.0.0.4
+h3 curl -X PUT 100.0.0.4

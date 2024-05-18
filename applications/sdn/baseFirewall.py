@@ -185,20 +185,26 @@ class Firewall (l2_learning.LearningSwitch):
         
         handler = protocol_handlers.get(ip_packet.protocol)
         #log.debug(f"{self.name}: handler and event.port == 2 and self.enable_tem_reverce = {handler and event.port == 2 and self.enable_tem_reverce}")
-        if handler and event.port == 2 and self.enable_tem_reverce:
-            #todo
-            if(self.check_subnet(self.dst_net, ip_packet.dstip)
-                # or ip_packet.find('tcp').dstport == 80
-                ):
-                handler(event, packet, src_mac, dst_mac)
-            elif access_allowed:
-                super(Firewall, self)._handle_PacketIn(event)
-                log.debug(f"{self.name}: Packet allowed.")        
-            return
-        else:
-            log.debug(f"{self.name}: not enable reverse")
+        # if handler and event.port == 2 and self.enable_tem_reverce:
+        #     #todo
+        #     if(self.check_subnet(self.dst_net, ip_packet.dstip)
+        #         # or ip_packet.find('tcp').dstport == 80
+        #         ):
+        #         handler(event, packet, src_mac, dst_mac)
+        #     elif access_allowed:
+        #         super(Firewall, self)._handle_PacketIn(event)
+        #         log.debug(f"{self.name}: Packet allowed.")        
+        #     return
+        # else:
+        #     log.debug(f"{self.name}: not enable reverse")
 
         if access_allowed:
+            #todo
+            if handler and event.port == 2 and self.enable_tem_reverce:
+                handler(event, packet, src_mac, dst_mac)
+                log.debug(f"{self.name}: reverse enabled.") 
+                return
+
             super(Firewall, self)._handle_PacketIn(event)
             log.debug(f"{self.name}: Packet allowed.")
         else:

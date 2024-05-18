@@ -51,7 +51,7 @@ class FW2 (Firewall):
 
         ### COMPLETE THIS PART ###
         ##[硬件端口号；协议；源ip；TCP/UDP源端口号；目的ip；TCP/UDP目的端口号；允许或禁止]
-        Firewall.__init__(self, connection, "FW2", True, '100.0.0.1/24')
+        Firewall.__init__(self, connection, "FW2", True)
         self.rules = [
             ## prz - webserver
             [2, 'TCP', 'any', 'any', '100.0.0.40/29', '80', 'allow'], 

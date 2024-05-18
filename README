@@ -31,6 +31,8 @@ sw3 tcpdump -i sw3-eth3 -w pcap/sw3-eth3.pcap &
 sw4 tcpdump -i sw4-eth4 -w pcap/sw4-eth4.pcap &
 
 sudo tcpdump -i fw2-eth2 -n -w fw2_eth2.pcap &
+sudo tcpdump -i sw2-eth2 -n -w sw2_eth2.pcap &
+sudo tcpdump -i sw2-eth3 -n -w sw2_eth3.pcap &
 sudo tcpdump -i napt-eth2 -n -w napt_eth2.pcap &
 sudo tcpdump -i napt-eth1 -n -w napt_eth1.pcap &
 

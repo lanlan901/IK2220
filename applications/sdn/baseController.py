@@ -8,7 +8,7 @@ import webserver
 import subprocess
 import click_wrapper
 import shlex
-from forwarding.l2_learning import LearningSwitch
+from l2_learning import LearningSwitch
 import datetime
 
 
@@ -110,7 +110,6 @@ class controller (object):
         3) clear the firstSeenAt dictionary: it's like starting from an empty state
         """
         for key, value in self.devices.items():
-            # 打印每个设备的类和继承关系
             print(f"{key} is an instance of {type(value)}, base classes: {type(value).__bases__}")
             if hasattr(value, 'macToPort'):
                 print(f"{key}: {value.macToPort}")

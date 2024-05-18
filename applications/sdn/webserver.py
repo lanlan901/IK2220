@@ -38,7 +38,7 @@ def htmlify(content, req, replace=True):
 def macs_map():
     res = ""
     res += f"Global MAC table\n"
-    print("Devices:", controller.devices)
+    
     for key, value in controller.firstSeenAt.items():
         res += f"device{key} : {value[0]} @ {value[1]}\n"
     return htmlify(res, request, True)
@@ -53,9 +53,9 @@ def macs():
 
     res = ""
     for key, value in controller.devices.items():
-
-        res += f"MAC table for switch {key}\n"
-
+        res += f"switch 1-4: l2 learning switch, switch 5,6: firewall"
+        res += f"Processing switch:{key}\n"
+    
         for mac, port in value.macToPort.items():
 
             res += f"Port {port} - MAC{mac}\n"

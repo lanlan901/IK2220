@@ -69,3 +69,36 @@ def curl(client, server, method="GET", payload="test", port=80, expected=200):
         print(f"{client.name} curl to {server_ip}:{port}: Expected HTTP {expected}, Result: Failure, Received: {ret}")
         return False
 
+
+def ping_virtual(client, expected, count=5, wait=1):
+    cmd = f"ping 100.0.0.45 -c {count} -W {wait} >/dev/null 2>&1; echo $?"
+    ret = client.cmd(cmd)
+    success = (int(ret) == 0 and expected) or (int(ret) !=0 and expected == False)
+    if success:
+        print(f"{client.name} ping to 100.0.0.45: Expected {expected}, Result: Success")
+        print("\n")
+    else:
+        print(f"{client.name} ping to 100.0.0.45: Expected {expected}, Result: Failure")
+        print("\n")
+
+def http_test(client, method, method2, expected):
+    cmd = f"curl --connect-timeout 3 --max-time 3 -X {method} -s 100.0.0.45{method2} > /dev/null 2>&1; echo $? "
+    ret = client.cmd(cmd).strip()
+    if ret == "0" and expected == True or (int(ret) !=0 and expected == False):
+        print(client.name, "operates", method, "IDS System works", "correctly")
+        return True
+    else:
+        print(client.name, "operates", method, "Error!!!")
+        return False
+    
+def keyword_test(client, payload, expected):
+
+    cmd = f"curl --connect-timeout 3 --max-time 3 -X PUT -d '{payload}' -s 100.0.0.45/put > /dev/null 2>&1; echo $? "
+
+    ret = client.cmd(cmd).strip()
+    if (int(ret) !=0 and expected == False):
+        print(client.name,"IDS System works", "correctly")
+        return True
+    else:
+        print(client.name,"http request", "failed")
+        return False    

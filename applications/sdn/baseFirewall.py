@@ -140,7 +140,9 @@ class Firewall (l2_learning.LearningSwitch):
         if not packet.parsed:
             log.debug(self.name, ": Incomplete packet received! controller ignores that")
             return
-
+        
+        #log.debug("Packet in %s %s -> %s on port %s" % (event.dpid, packet.src, packet.dst, event.port))
+        
         self.process_packet(event, packet)
 
     def process_packet(self, event, packet):
@@ -172,8 +174,8 @@ class Firewall (l2_learning.LearningSwitch):
             #log.debug(f"No IPv4 packet found.")
             return
         
-        log.debug(f"IP Protocol: {ip_packet.protocol}")
-        log.debug(ip_packet)
+        #log.debug(f"IP Protocol: {ip_packet.protocol}")
+        #log.debug(ip_packet)
         access_allowed = self.has_access(ip_packet, event.port)
 
         protocol_handlers = {
@@ -182,7 +184,7 @@ class Firewall (l2_learning.LearningSwitch):
         }
         
         handler = protocol_handlers.get(ip_packet.protocol)
-        log.debug(f"{self.name}: handler and event.port == 2 and self.enable_tem_reverce = {handler and event.port == 2 and self.enable_tem_reverce}")
+        #log.debug(f"{self.name}: handler and event.port == 2 and self.enable_tem_reverce = {handler and event.port == 2 and self.enable_tem_reverce}")
         if handler and event.port == 2 and self.enable_tem_reverce:
             #todo
             if(self.check_subnet(self.dst_net, ip_packet.dstip)
@@ -229,9 +231,9 @@ class Firewall (l2_learning.LearningSwitch):
         #msg2.data = event.ofp # 6a
 
         self.connection.send(msg1)
-        log.debug(f"match conditions for msg1: {msg1.match}")
+        #log.debug(f"match conditions for msg1: {msg1.match}")
         self.connection.send(msg2)
-        log.debug(f"match conditions for msg2: {msg2.match}")
+        #log.debug(f"match conditions for msg2: {msg2.match}")
         pass
 
     def handle_tcp(self, event, packet, src_mac, dst_mac):
@@ -242,8 +244,6 @@ class Firewall (l2_learning.LearningSwitch):
         #msg3.match.tp_dst = 80
         msg3.idle_timeout = 10
         msg3.hard_timeout = 30
-        msg3.match.dl_src = dst_mac  # 反转MAC地址，匹配原始目的MAC作为源MAC
-        msg3.match.dl_dst = src_mac
         msg3.actions.append(of.ofp_action_output(port = 2 if event.port == 1 else 1))
         msg3.data = event.ofp
 

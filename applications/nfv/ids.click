@@ -19,9 +19,9 @@ to_server :: Queue -> cnt_out2 -> Print("ids: to server", -1) -> ToDevice($PORT2
 to_insp :: Queue -> ToDevice($PORT3, METHOD LINUX);
 
 // classifier
-packets_classifier_from_switch :: Classifier(12/0806 20/0001, 12/0800, -);
+packets_classifier_from_switch :: Classifier(12/0806, 12/0800, -);
 
-packets_classifier_from_server :: Classifier(12/0806 20/0002, 12/0800, -);
+packets_classifier_from_server :: Classifier(12/0806, 12/0800, -);
 
 ip_classifier :: IPClassifier(proto icmp && icmp type echo, tcp, -);
 
@@ -36,15 +36,15 @@ http_classifier :: Classifier(
 
 keywords_classfier :: Classifier(
     // i. cat/etc/passwd
-    209/636174202F6574632F706173737764,
+    0/636174202F6574632F706173737764,
     // ii. cat/var/log/
-    209/636174202F7661722F6C6F672F,
+    0/636174202F7661722F6C6F672F,
     // iii. INSERT
-    208/494E53455254,
+    0/494E53455254,
     // iv. UPDATE
-    208/555044415445,
+    0/555044415445,
     // v. DELETE
-    208/44454C455445,
+    0/44454C455445,
     //others
     -
 );
@@ -57,7 +57,7 @@ packets_classifier_from_switch[1] -> Print("ids: IP packet", -1) -> Strip(14) ->
 packets_classifier_from_switch[2] -> drop1 -> Discard;
 
 packets_classifier_from_server[0] -> Print("ids: ARP response, allow", -1) -> cnt_arp_res -> to_switch;
-packets_classifier_from_server[1] -> Print("ids: IP packet to switch" , -1) -> Strip(14) -> CheckIPHeader -> Unstrip(14) -> cnt_ip2 -> to_switch;
+packets_classifier_from_server[1] -> Print("ids: IP packet to switch" , -1) -> cnt_ip2 -> to_switch;
 packets_classifier_from_server[2] -> drop2 -> Discard;
 
 ip_classifier[0] -> Unstrip(14) -> Print("ids: ICMP, allow") -> cnt_icmp -> to_server;
@@ -72,12 +72,12 @@ http_classifier[0] -> Print("ids: PUT", -1) -> cnt_PUT -> s;
 http_classifier[1] -> Print("ids: POST", -1) -> cnt_POST -> to_server;
 http_classifier[2] -> cnt_INSP -> to_insp;
 
-keywords_classfier[0] -> Print("keyword found - cat/etc/passwd", -1) -> cnt_INSP -> to_insp;
-keywords_classfier[1] -> Print("keyword found - cat/var/log/", -1) -> cnt_INSP -> to_insp;
-keywords_classfier[2] -> Print("keyword found - INSERT", -1) -> cnt_INSP -> to_insp;
-keywords_classfier[3] -> Print("keyword found - UPDATE", -1) -> cnt_INSP -> to_insp;
-keywords_classfier[4] -> Print("keyword found - DELETE", -1) -> cnt_INSP -> to_insp;
-keywords_classfier[5] -> to_server;
+keywords_classfier[0] -> Print("keyword found - cat/etc/passwd", -1) -> UnstripAnno() -> cnt_INSP -> to_insp;
+keywords_classfier[1] -> Print("keyword found - cat/var/log/", -1) -> UnstripAnno() -> cnt_INSP -> to_insp;
+keywords_classfier[2] -> Print("keyword found - INSERT", -1) -> UnstripAnno() -> cnt_INSP -> to_insp;
+keywords_classfier[3] -> Print("keyword found - UPDATE", -1) -> UnstripAnno() -> cnt_INSP -> to_insp;
+keywords_classfier[4] -> Print("keyword found - DELETE", -1) -> UnstripAnno() -> cnt_INSP -> to_insp;
+keywords_classfier[5] -> UnstripAnno() -> to_server;
 
 DriverManager(
     pause, 

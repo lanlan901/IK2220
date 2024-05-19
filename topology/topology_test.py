@@ -150,7 +150,7 @@ if __name__ == "__main__":
         net.get(insp).cmd("tcpdump -i insp-eth0 -w insp.pcap &")
 
 
-    # startup_services(net)
+
     run_tests(net)
 
     # Start the CLI

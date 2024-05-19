@@ -81,8 +81,8 @@ def ping_virtual(client, expected, count=5, wait=1):
         print(f"{client.name} ping to 100.0.0.45: Expected {expected}, Result: Failure")
         print("\n")
 
-def http_test(client, method, method2, expected):
-    cmd = f"curl --connect-timeout 3 --max-time 3 -X {method} -s 100.0.0.45{method2} > /dev/null 2>&1; echo $? "
+def http_test(client, method, expected):
+    cmd = f"curl --connect-timeout 3 --max-time 3 -X {method} -s 100.0.0.45 > /dev/null 2>&1; echo $? "
     ret = client.cmd(cmd).strip()
     if ret == "0" and expected == True or (int(ret) !=0 and expected == False):
         print(client.name, "operates", method, "IDS System works", "correctly")

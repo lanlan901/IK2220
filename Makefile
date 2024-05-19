@@ -1,6 +1,6 @@
 poxdir = /opt/pox/
 OUT_LOG_CTRL_PLANE="../results/output_app.txt"
-OUT_LOG_TEST_RESULT="../results/output_test_prog.txt"
+OUT_LOG_TEST_RESULT="./results/output_test_prog.txt"
 
 # Complete the makefile as you prefer!
 topo:
@@ -18,7 +18,7 @@ app:
 
 test:
 	@echo "starting test scenarios!"
-	make app
+#make app
 	sleep 5 
 	sudo python ./topology/topology_test.py 2>&1 | tee ${OUT_LOG_TEST_RESULT}
 

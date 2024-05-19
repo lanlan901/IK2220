@@ -1,6 +1,7 @@
 Starting web server WS1 on port 80
 Starting web server WS2 on port 80
 Starting web server WS3 on port 80
+tcpdump on insp start
 -----ping test------
 -----h1------
 h1 ping to h2: Expected True, Result: Success
@@ -98,23 +99,38 @@ h4 ping to ws3: Expected False, Result: Success
 
 
 
------curl test------
-h1 curl to 100.0.0.40:80: Expected HTTP 200, Result: Success
-h1 curl to 100.0.0.41:80: Expected HTTP 200, Result: Success
-h1 curl to 100.0.0.42:80: Expected HTTP 200, Result: Success
-h2 curl to 100.0.0.40:80: Expected HTTP 200, Result: Success
-h2 curl to 100.0.0.41:80: Expected HTTP 200, Result: Success
-h2 curl to 100.0.0.42:80: Expected HTTP 200, Result: Success
-h3 curl to 100.0.0.40:80: Expected HTTP 200, Result: Success
-h3 curl to 100.0.0.41:80: Expected HTTP 200, Result: Success
-h3 curl to 100.0.0.42:80: Expected HTTP 200, Result: Success
-h4 curl to 100.0.0.40:80: Expected HTTP 200, Result: Success
-h4 curl to 100.0.0.41:80: Expected HTTP 200, Result: Success
-h4 curl to 100.0.0.42:80: Expected HTTP 200, Result: Success
+------ping virtual IP------
+h1 ping to 100.0.0.45: Expected True, Result: Success
 
 
-mininet> 
-Interrupt
-mininet> 
-Interrupt
+h2 ping to 100.0.0.45: Expected True, Result: Success
+
+
+h3 ping to 100.0.0.45: Expected True, Result: Success
+
+
+h4 ping to 100.0.0.45: Expected True, Result: Success
+
+
+
+
+-----HTTP method Test-----
+h3 operates GET IDS System works correctly
+h3 operates POST IDS System works correctly
+h3 operates HEAD IDS System works correctly
+h3 operates OPTIONS IDS System works correctly
+h3 operates TRACE IDS System works correctly
+h3 operates PUT IDS System works correctly
+h3 operates DELETE IDS System works correctly
+h3 operates CONNECT IDS System works correctly
+
+
+-----Linux and SQL code injection Test-----
+h3 IDS System works correctly
+h3 IDS System works correctly
+h3 IDS System works correctly
+h3 IDS System works correctly
+h3 IDS System works correctly
+
+
 mininet> 

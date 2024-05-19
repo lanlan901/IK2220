@@ -36,7 +36,7 @@ def run_tests(net):
 
 
 
-    # Launch some tests
+    #Launch some tests
     print(f"-----ping test------")
     print(f"-----h1------")
     testing.ping(h1, h2, True)
@@ -56,10 +56,7 @@ def run_tests(net):
     testing.ping(h4, h3, True)
     print("\n")
     print(f"-----webserver------")
-    testing.ping(h1, ws1, False)
-    testing.ping(h2, ws1, False)
-    testing.ping(h3, ws1, False)
-    testing.ping(h4, ws1, False)
+
     print(f"-----ws1------")
     testing.ping(h1, ws1, False)
     testing.ping(h2, ws1, False)

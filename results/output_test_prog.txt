@@ -46,18 +46,6 @@ h4 ping to h3: Expected True, Result: Success
 
 
 -----webserver------
-h1 ping to ws1: Expected False, Result: Success
-
-
-h2 ping to ws1: Expected False, Result: Success
-
-
-h3 ping to ws1: Expected False, Result: Success
-
-
-h4 ping to ws1: Expected False, Result: Success
-
-
 -----ws1------
 h1 ping to ws1: Expected False, Result: Success
 
@@ -115,22 +103,24 @@ h4 ping to 100.0.0.45: Expected True, Result: Success
 
 
 -----HTTP method Test-----
-h3 operates GET IDS System works correctly
-h3 operates POST IDS System works correctly
-h3 operates HEAD IDS System works correctly
-h3 operates OPTIONS IDS System works correctly
-h3 operates TRACE IDS System works correctly
-h3 operates PUT IDS System works correctly
-h3 operates DELETE IDS System works correctly
-h3 operates CONNECT IDS System works correctly
+h3 HTTP method: GET , Expected False, Result: Success
+h3 HTTP method: POST , Expected True, Result: Success
+h3 HTTP method: HEAD , Expected False, Result: Success
+h3 HTTP method: OPTIONS , Expected False, Result: Success
+h3 HTTP method: TRACE , Expected False, Result: Success
+h3 HTTP method: PUT , Expected True, Result: Success
+h3 HTTP method: DELETE , Expected False, Result: Success
+h3 HTTP method: CONNECT , Expected False, Result: Success
 
 
 -----Linux and SQL code injection Test-----
-h3 IDS System works correctly
-h3 IDS System works correctly
-h3 IDS System works correctly
-h3 IDS System works correctly
-h3 IDS System works correctly
+h3 keyword found cat /etc/passwd, expected False, Result: Success
+h3 keyword found cat /var/log/, expected False, Result: Success
+h3 keyword found INSERT, expected False, Result: Success
+h3 keyword found UPDATE, expected False, Result: Success
+h3 keyword found DELETE, expected False, Result: Success
 
 
+mininet> 
+Interrupt
 mininet> 

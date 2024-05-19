@@ -5,7 +5,7 @@ define($DMZ_IP 100.0.0.1)
 // counters
 cnt_in1, cnt_in2, cnt_out1, cnt_out2 :: AverageCounter; 
 arp_req1, arp_req2, arp_res1, arp_res2 :: Counter;
-cnt_ip1, cnt_ip2, cnt_icmp1, cnt_icmp2, cnt_icmp3 :: Counter;
+cnt_tcp1, cnt_tcp2, cnt_icmp1, cnt_icmp2, cnt_icmp3 :: Counter;
 drop1, drop2, drop3, drop4 :: Counter;
 
 // interfaces
@@ -66,23 +66,23 @@ packet_classifier_dmz[2] -> Print("IP packet") -> Strip(14) -> CheckIPHeader -> 
 packet_classifier_dmz[3] -> drop2 -> Discard;
 
 // prz -> dmz
-ip_classifier_prz[0] -> Print("napt: TCP", -1) -> cnt_ip1 -> ip_rw[0] -> [0]arp_req_dmz -> to_dmz;
+ip_classifier_prz[0] -> Print("napt: TCP", -1) -> cnt_tcp1 -> ip_rw[0] -> [0]arp_req_dmz -> to_dmz;
 ip_classifier_prz[1] -> Print("napt: ICMP response from prz to dmz", -1) -> Discard;
 ip_classifier_prz[2] -> cnt_icmp1 -> Print("napt: ICMP request", -1) -> icmp_rw[0] -> Print("ICMP rewrite", -1) -> [0]arp_req_dmz -> to_dmz;
 ip_classifier_prz[3] -> drop3 -> Discard;
 
 // dmz -> prz
-ip_classifier_dmz[0] -> Print("napt: TCP", -1) -> cnt_ip2 -> ip_rw[1] -> [0]arp_req_prz -> to_prz;
+ip_classifier_dmz[0] -> Print("napt: TCP", -1) -> cnt_tcp2 -> ip_rw[1] -> [0]arp_req_prz -> to_prz;
 ip_classifier_dmz[1] -> cnt_icmp2 -> Print("napt: ICMP response from dmz to prz", -1) -> icmp_rw[1] -> [0]arp_req_prz -> to_prz;
 ip_classifier_dmz[2] -> cnt_icmp3 -> Print("napt: ICMP request from dmz to prz", -1) -> ICMPPingResponder -> [0]arp_req_dmz -> to_dmz;
 ip_classifier_dmz[3] -> drop4 -> Discard;
 
 DriverManager(
-    pause, 
+    wait, 
     print > /opt/pox/ext/results/napt.report  "
      =================== NAPT Report ===================
-         Input Packet rate (pps): $(add $(cnt_in1.rate) $(cnt_in2.rate))
-        Output Packet rate (pps): $(add $(cnt_out1.rate) $(cnt_out2.rate))
+      Input Packet rate (pps): $(add $(cnt_in1.rate) $(cnt_in2.rate))
+      Output Packet rate (pps): $(add $(cnt_out1.rate) $(cnt_out2.rate))
 
       Total # of   input packets: $(add $(cnt_in1.count) $(cnt_in2.count))
       Total # of  output packets: $(add $(cnt_out1.count) $(cnt_out2.count))
@@ -90,9 +90,9 @@ DriverManager(
       Total # of   ARP  requests: $(add $(arp_req1.count) $(arp_req2.count))
       Total # of   ARP responses: $(add $(arp_res1.count) $(arp_res2.count))
 
-      Total # of service packets: $(add $(cnt_ip1.count) $(cnt_ip2.count))
-      Total # of    ICMP report:  $(add $(cnt_icmp1.count) $(cnt_icmp2.count)$(cnt_icmp3.count))   
+      Total # of     TCP packets: $(add $(cnt_tcp1.count) $(cnt_tcp2.count))
+      Total # of    ICMP packets: $(add $(cnt_icmp1.count) $(cnt_icmp2.count)$(cnt_icmp3.count))   
       Total # of dropped packets: $(add $(drop1.count) $(drop2.count) $(drop3.count) $(drop4.count) )   
      =================================================
     " 
-);
+, stop);

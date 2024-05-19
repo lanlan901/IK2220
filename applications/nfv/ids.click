@@ -9,14 +9,14 @@ define($PORT1 ids-eth1, $PORT2 ids-eth2, $PORT3 ids-eth3)
 // counters
 cnt_in1, cnt_in2, cnt_out1, cnt_out2 :: AverageCounter; 
 cnt_arp_req, cnt_arp_res, cnt_ip1, cnt_ip2, cnt_icmp, drop1, drop2, drop3 :: Counter;
-cnt_http ,cnt_PUT, cnt_POST, cnt_INSP :: Counter;
+cnt_http ,cnt_PUT, cnt_POST, cnt_insp :: Counter;
 
 // interfaces
 from_switch :: FromDevice($PORT1, METHOD LINUX, SNIFFER false);
 from_server :: FromDevice($PORT2, METHOD LINUX, SNIFFER false);
 to_switch :: Queue -> cnt_out1 -> Print("ids: to switch", -1) -> ToDevice($PORT1, METHOD LINUX);
 to_server :: Queue -> cnt_out2 -> Print("ids: to server", -1) -> ToDevice($PORT2, METHOD LINUX);
-to_insp :: Queue -> ToDevice($PORT3, METHOD LINUX);
+to_insp :: Queue -> cnt_insp -> ToDevice($PORT3, METHOD LINUX);
 
 // classifier
 packets_classifier_from_switch :: Classifier(12/0806, 12/0800, -);
@@ -74,17 +74,17 @@ s[1] -> Print("ids: s1 toinsp", -1) -> to_insp;
 http_classifier[0] -> Print("ids: PUT", -1) -> cnt_PUT -> s;
 http_classifier[1] -> Print("ids: POST", -1) -> cnt_POST -> to_server;
 http_classifier[2] -> Print("ids: httpstart", -1) -> cnt_POST -> to_server;
-http_classifier[3] -> Print("ids: httptoinsp", -1)  -> cnt_INSP -> to_insp;
+http_classifier[3] -> Print("ids: httptoinsp", -1) -> to_insp;
 
-keywords_classfier[0] -> Print("keyword found - cat/etc/passwd", -1) -> UnstripAnno() -> cnt_INSP -> to_insp;
-keywords_classfier[1] -> Print("keyword found - cat/var/log/", -1) -> UnstripAnno() -> cnt_INSP -> to_insp;
-keywords_classfier[2] -> Print("keyword found - INSERT", -1) -> UnstripAnno() -> cnt_INSP -> to_insp;
-keywords_classfier[3] -> Print("keyword found - UPDATE", -1) -> UnstripAnno() -> cnt_INSP -> to_insp;
-keywords_classfier[4] -> Print("keyword found - DELETE", -1) -> UnstripAnno() -> cnt_INSP -> to_insp;
+keywords_classfier[0] -> Print("keyword found - cat/etc/passwd", -1) -> UnstripAnno() -> to_insp;
+keywords_classfier[1] -> Print("keyword found - cat/var/log/", -1) -> UnstripAnno() -> to_insp;
+keywords_classfier[2] -> Print("keyword found - INSERT", -1) -> UnstripAnno() -> to_insp;
+keywords_classfier[3] -> Print("keyword found - UPDATE", -1) -> UnstripAnno() -> to_insp;
+keywords_classfier[4] -> Print("keyword found - DELETE", -1) -> UnstripAnno() -> to_insp;
 keywords_classfier[5] -> Print("PUT to server", -1) -> UnstripAnno() -> to_server;
 
 DriverManager(
-    pause, 
+    wait, 
     print > /opt/pox/ext/results/ids.report  "
       =================== IDS Report ===================
       Input Packet rate (pps): $(add $(cnt_in1.rate) $(cnt_in2.rate))
@@ -102,8 +102,8 @@ DriverManager(
       Total # of   POST  packets:  $(cnt_POST.count) 
 
 
-      Total # of to INSP packets:  $(cnt_INSP.count)
-      Total # of dropped packets:  $(add $(drop1.count)$(drop2.count))
+      Total # of to INSP packets:  $(cnt_insp.count)
+      Total # of dropped packets:  $(add $(drop1.count)$(drop2.count)$(drop3.count))
     =================================================
     " 
-);
+, stop);

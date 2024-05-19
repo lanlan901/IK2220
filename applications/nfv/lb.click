@@ -82,8 +82,8 @@ ip_classifier_from_ws[2] -> drop3 -> Discard;
 
 
 DriverManager(
-    pause, 
-    print > ../../results/lb1.report  "
+    wait, 
+    print > /opt/pox/ext/results/lb1.report "
      =================== LB1 Report ===================
         Input Packet rate (pps): $(add $(cnt_in1.rate) $(cnt_in2.rate))
         Output Packet rate (pps): $(add $(cnt_out1.rate) $(cnt_out2.rate))
@@ -95,9 +95,9 @@ DriverManager(
         Total # of   ARP responses: $(add $(arp_res1.count) $(arp_res2.count))
       
         Total # of service packets: $(add $(cnt_serv1.count) $(cnt_serv2.count))
-        Total # of    ICMP report:  $(add $(cnt_icmp1.count) $(cnt_icmp2.count))
+        Total # of    ICMP packets:  $(add $(cnt_icmp1.count) $(cnt_icmp2.count))
         Total # of dropped packets: $(add $(drop1.count) $(drop2.count) $(drop3.count) $(drop4.count))  
 
      =================================================
      " 
-);
+, stop);

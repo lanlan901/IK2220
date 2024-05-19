@@ -85,10 +85,10 @@ def http_test(client, method, expected):
     cmd = f"curl --connect-timeout 3 --max-time 3 -X {method} -s 100.0.0.45 > /dev/null 2>&1; echo $? "
     ret = client.cmd(cmd).strip()
     if ret == "0" and expected == True or (int(ret) !=0 and expected == False):
-        print(client.name, "operates", method, "IDS System works", "correctly")
+        print(client.name, "HTTP method:", method, f", Expected {expected}, Result: Success")
         return True
     else:
-        print(client.name, "operates", method, "Error!!!")
+        print(client.name, "HTTP method:", method, f", Expected {expected}, Result: Failure")
         return False
     
 def keyword_test(client, payload, expected):
@@ -97,8 +97,8 @@ def keyword_test(client, payload, expected):
 
     ret = client.cmd(cmd).strip()
     if (int(ret) !=0 and expected == False):
-        print(client.name,"IDS System works", "correctly")
+        print(client.name,f"keyword found {payload}, expected {expected}, Result: Success")
         return True
     else:
-        print(client.name,"http request", "failed")
+        print(client.name,f"Linux and SQL injection detection failure")
         return False    

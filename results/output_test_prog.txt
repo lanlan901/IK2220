@@ -122,5 +122,3 @@ h3 keyword found DELETE, expected False, Result: Success
 
 
 mininet> 
-Interrupt
-mininet> 

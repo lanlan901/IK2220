@@ -1,21 +1,21 @@
 
       =================== IDS Report ===================
-      Input Packet rate (pps): 5.75253069013
-      Output Packet rate (pps): 2.63213726384
+      Input Packet rate (pps): 4.15686654969
+      Output Packet rate (pps): 2.66150490624
 
-      Total # of   input packets:  268115
-      Total # of  output packets:  11043
+      Total # of   input packets:  304117
+      Total # of  output packets:  11081
 
-      Total # of     IP  packets:  239104
-      Total # of    ARP  packets:  86
-      Total # of   ICMP  packets:  20
-      Total # of   HTTP  packets:  219 
+      Total # of     IP  packets:  255104
+      Total # of    ARP  packets:  286
+      Total # of   ICMP  packets:  38
+      Total # of   HTTP  packets:  217 
 
-      Total # of    PUT  packets:  42
+      Total # of    PUT  packets:  41
       Total # of   POST  packets:  14 
 
 
-      Total # of to INSP packets:  204
-      Total # of dropped packets:  2150
+      Total # of to INSP packets:  202
+      Total # of dropped packets:  2170
     =================================================
     

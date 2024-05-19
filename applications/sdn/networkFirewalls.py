@@ -32,11 +32,11 @@ class FW1 (Firewall):
         Firewall.__init__(self, connection, "FW1")
         self.rules = [
             #webserver - pbz
-            [1, 'TCP', 'any', 'any', '100.0.0.40/29', '80', 'allow'], 
-            [1, 'any', 'any', 'any', '100.0.0.50/29', 'any', 'allow'], 
+            [1, 'TCP', 'any', 'any', '100.0.0.45', '80', 'allow'], 
+            [1, 'ICMP', 'any', 'any', '100.0.0.45', 'any', 'allow'], 
+            [1, 'any', 'any', 'any', '100.0.0.45', 'any', 'block'], 
             [1, 'any', 'any', 'any', 'any', 'any', 'allow'], 
-            
-            #[2, 'TCP', '100.0.0.40/24', 'any', 'any', 'any', 'allow'],
+              
             [2, 'any', 'any', 'any', 'any', 'any', 'allow']
         ]
 
@@ -54,13 +54,13 @@ class FW2 (Firewall):
         Firewall.__init__(self, connection, "FW2", True)
         self.rules = [
             ## prz - webserver
-            [2, 'TCP', 'any', 'any', '100.0.0.40/29', '80', 'allow'], 
-            #[2, 'any', 'any', 'any', '100.0.0.40/29', 'any', 'block'], 
+            [2, 'TCP', 'any', 'any', '100.0.0.45', '80', 'allow'], 
+            [2, 'ICMP', 'any', 'any', '100.0.0.45', 'any', 'allow'], 
+            [2, 'any', 'any', 'any', '100.0.0.45', 'any', 'block'], 
             [2, 'any', 'any', 'any', 'any', 'any', 'allow'],
 
-
-            [1, 'TCP', '100.0.0.40/24', 'any', 'any', 'any', 'allow'],
-            [1, 'any', 'any', 'any', 'any', 'any', 'allow']
+            [1, 'TCP', '100.0.0.45', 'any', 'any', 'any', 'allow'],
+            [1, 'any', 'any', 'any', 'any', 'any', 'block']
 
             
         ]

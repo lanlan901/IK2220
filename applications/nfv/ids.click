@@ -38,15 +38,15 @@ http_classifier :: Classifier(
 
 keywords_classfier :: Classifier(
     // i. cat/etc/passwd
-    0/636174202F6574632F706173737764,
+    1/636174202F6574632F706173737764,
     // ii. cat/var/log/
-    0/636174202F7661722F6C6F672F,
+    1/636174202F7661722F6C6F672F,
     // iii. INSERT
-    0/494E53455254,
+    1/494E53455254,
     // iv. UPDATE
-    0/555044415445,
+    1/555044415445,
     // v. DELETE
-    0/44454C455445,
+    1/44454C455445,
     //others
     -
 );
@@ -66,9 +66,10 @@ ip_classifier[0] -> Unstrip(14) -> Print("ids: ICMP, allow") -> cnt_icmp -> to_s
 ip_classifier[1] -> Unstrip(14) -> Print("ids: http", -1)  -> cnt_http -> http_classifier;
 ip_classifier[2] -> drop3 -> Discard;
 
-s :: Search("\n\r\n\r")
-s[0] -> keywords_classfier;
-s[1] -> to_insp;
+s :: Search("\n\r")
+s[0] -> Print("http payload", -1) -> keywords_classfier;
+s[1] -> Print("ids: s1 toinsp", -1) -> to_insp;
+
 
 http_classifier[0] -> Print("ids: PUT", -1) -> cnt_PUT -> s;
 http_classifier[1] -> Print("ids: POST", -1) -> cnt_POST -> to_server;
@@ -80,7 +81,7 @@ keywords_classfier[1] -> Print("keyword found - cat/var/log/", -1) -> UnstripAnn
 keywords_classfier[2] -> Print("keyword found - INSERT", -1) -> UnstripAnno() -> cnt_INSP -> to_insp;
 keywords_classfier[3] -> Print("keyword found - UPDATE", -1) -> UnstripAnno() -> cnt_INSP -> to_insp;
 keywords_classfier[4] -> Print("keyword found - DELETE", -1) -> UnstripAnno() -> cnt_INSP -> to_insp;
-keywords_classfier[5] -> UnstripAnno() -> to_server;
+keywords_classfier[5] -> Print("PUT to server", -1) -> UnstripAnno() -> to_server;
 
 DriverManager(
     pause, 

@@ -42,3 +42,4 @@ https://hpd.gasmi.net/
 sudo click ./applications/nfv/napt.click
 h3 curl -X POST -d "" 100.0.0.45
 h3 curl -X PUT 100.0.0.45
+h3 curl -X PUT 100.0.0.45 -d "UPDATE"

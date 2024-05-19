@@ -100,14 +100,14 @@ def run_tests(net):
     # print("\n")
 
     print("-----HTTP method Test-----")
-    testing.http_test(h3, "GET", "/get", False)
-    testing.http_test(h3, "POST", "/post", True)
-    testing.http_test(h3, "HEAD", "/head", False)
-    testing.http_test(h3, "OPTIONS", "/options", False)
-    testing.http_test(h3, "TRACE", "/trace", False)
-    testing.http_test(h3, "PUT", "/put", True)
-    testing.http_test(h3, "DELETE", "/delete", False)
-    testing.http_test(h3, "CONNECT", "/connect", False)
+    testing.http_test(h3, "GET", False)
+    testing.http_test(h3, "POST", True)
+    testing.http_test(h3, "HEAD", False)
+    testing.http_test(h3, "OPTIONS", False)
+    testing.http_test(h3, "TRACE", False)
+    testing.http_test(h3, "PUT", True)
+    testing.http_test(h3, "DELETE", False)
+    testing.http_test(h3, "CONNECT",  False)
     print("\n")
 
     print("-----Linux and SQL code injection Test-----")
@@ -132,11 +132,25 @@ if __name__ == "__main__":
                   autoStaticArp=True,
                   build=True,
                   cleanup=True)
+    
+    net.get("h3").cmd("ip route add default via 10.0.0.1 dev h3-eth0")
+    net.get("h4").cmd("ip route add default via 10.0.0.1 dev h4-eth0")
+    net.get("ws1").cmd("ip route add default via 100.0.0.45 dev ws1-eth0")
+    net.get("ws2").cmd("ip route add default via 100.0.0.45 dev ws2-eth0")
+    net.get("ws3").cmd("ip route add default via 100.0.0.45 dev ws3-eth0")
 
     # Start the network
     net.start()
+    for ws in ["ws1", "ws2", "ws3"]:
+        print("Starting web server %s on port 80" % ws.upper()) 
+        server = net.get(ws)
+        server.cmd("python3 -m http.server 80 &")
+    for insp in ["insp"]:
+        print( "tcpdump on insp start")
+        net.get(insp).cmd("tcpdump -i insp-eth0 -w insp.pcap &")
 
-    startup_services(net)
+
+    # startup_services(net)
     run_tests(net)
 
     # Start the CLI

@@ -121,4 +121,13 @@ h3 keyword found UPDATE, expected False, Result: Success
 h3 keyword found DELETE, expected False, Result: Success
 
 
-mininet> 
+mininet> Traceback (most recent call last):
+  File "/opt/IK2220/./topology/topology_test.py", line 161, in <module>
+    net.stop()
+  File "/usr/lib/python3/dist-packages/mininet/net.py", line 590, in stop
+    success = swclass.batchShutdown( switches )
+  File "/usr/lib/python3/dist-packages/mininet/node.py", line 1291, in batchShutdown
+    run( 'ovs-vsctl ' +
+  File "/usr/lib/python3/dist-packages/mininet/util.py", line 160, in errRun
+    readable = poller.poll()
+KeyboardInterrupt

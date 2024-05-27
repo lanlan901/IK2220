@@ -8,7 +8,7 @@ define($PORT1 ids-eth1, $PORT2 ids-eth2, $PORT3 ids-eth3)
 
 // counters
 cnt_in1, cnt_in2, cnt_out1, cnt_out2 :: AverageCounter; 
-cnt_arp_req, cnt_arp_res, cnt_ip1, cnt_ip2, cnt_icmp, drop1, drop2, drop3 :: Counter;
+cnt_arp_req, cnt_arp_res, cnt_ip1, cnt_ip2, cnt_icmp, cnt_TCPack, cnt_TCPsyn , drop1, drop2, drop3 :: Counter;
 cnt_http ,cnt_PUT, cnt_POST, cnt_insp :: Counter;
 
 // interfaces
@@ -23,15 +23,19 @@ packets_classifier_from_switch :: Classifier(12/0806, 12/0800, -);
 
 packets_classifier_from_server :: Classifier(12/0806, 12/0800, -);
 
-ip_classifier :: IPClassifier(proto icmp && icmp type echo, http, -);
+ip_classifier :: IPClassifier(
+    proto icmp && icmp type echo, 
+    fin ack,
+    syn,
+    http, 
+    -
+    );
 
 http_classifier :: Classifier(
     // PUT
     66/505554,
     // POST
     66/504F5354,
-    //tcp sig
-    66/00000000,
     // others
     -
 );
@@ -63,8 +67,10 @@ packets_classifier_from_server[1] -> Print("ids: IP packet to switch" , -1) -> c
 packets_classifier_from_server[2] -> drop2 -> Discard;
 
 ip_classifier[0] -> Unstrip(14) -> Print("ids: ICMP, allow") -> cnt_icmp -> to_server;
-ip_classifier[1] -> Unstrip(14) -> Print("ids: http", -1)  -> cnt_http -> http_classifier;
-ip_classifier[2] -> drop3 -> Discard;
+ip_classifier[1] -> Unstrip(14) -> Print("ids: TCP ack") -> cnt_TCPack -> to_server;
+ip_classifier[2] -> Unstrip(14) -> Print("ids: TCP syn") -> cnt_TCPsyn -> to_server;
+ip_classifier[3] -> Unstrip(14) -> Print("ids: http", -1)  -> cnt_http -> http_classifier;
+ip_classifier[4] -> drop3 -> Discard;
 
 s :: Search("\n\r")
 s[0] -> Print("http payload", -1) -> keywords_classfier;
@@ -73,8 +79,7 @@ s[1] -> Print("ids: s1 toinsp", -1) -> to_insp;
 
 http_classifier[0] -> Print("ids: PUT", -1) -> cnt_PUT -> s;
 http_classifier[1] -> Print("ids: POST", -1) -> cnt_POST -> to_server;
-http_classifier[2] -> Print("ids: httpstart", -1) -> cnt_POST -> to_server;
-http_classifier[3] -> Print("ids: httptoinsp", -1) -> to_insp;
+http_classifier[2] -> Print("ids: httptoinsp", -1) -> to_insp;
 
 keywords_classfier[0] -> Print("keyword found - cat/etc/passwd", -1) -> UnstripAnno() -> to_insp;
 keywords_classfier[1] -> Print("keyword found - cat/var/log/", -1) -> UnstripAnno() -> to_insp;
@@ -90,20 +95,22 @@ DriverManager(
       Input Packet rate (pps): $(add $(cnt_in1.rate) $(cnt_in2.rate))
       Output Packet rate (pps): $(add $(cnt_out1.rate) $(cnt_out2.rate))
 
-      Total # of   input packets:  $(add $(cnt_in1.count)$(cnt_in2.count))
-      Total # of  output packets:  $(add $(cnt_out1.count)$(cnt_out2.count))
-
-      Total # of     IP  packets:  $(add $(cnt_ip1.count)$(cnt_ip2.count))
-      Total # of    ARP  packets:  $(add $(cnt_arp_req.count)$(cnt_arp_res.count))
-      Total # of   ICMP  packets:  $(cnt_icmp.count)
-      Total # of   HTTP  packets:  $(cnt_http.count) 
-
-      Total # of    PUT  packets:  $(cnt_PUT.count)
-      Total # of   POST  packets:  $(cnt_POST.count) 
-
-
-      Total # of to INSP packets:  $(cnt_insp.count)
-      Total # of dropped packets:  $(add $(drop1.count)$(drop2.count)$(drop3.count))
+      Total # of   input  packets:  $(add $(cnt_in1.count)$(cnt_in2.count))
+      Total # of  output  packets:  $(add $(cnt_out1.count)$(cnt_out2.count))
+ 
+      Total # of     IP   packets:  $(add $(cnt_ip1.count)$(cnt_ip2.count))
+      Total # of    ARP   packets:  $(add $(cnt_arp_req.count)$(cnt_arp_res.count))
+      Total # of   ICMP   packets:  $(cnt_icmp.count)
+      Total # of   HTTP   packets:  $(cnt_http.count)
+      Total # of   TCPack packets:  $(cnt_TCPack.count) 
+      Total # of   TCPsyn packets:  $(cnt_TCPsyn.count)
+ 
+      Total # of    PUT   packets:  $(cnt_PUT.count)
+      Total # of   POST   packets:  $(cnt_POST.count) 
+ 
+ 
+      Total # of to INSP  packets:  $(cnt_insp.count)
+      Total # of dropped  packets:  $(add $(drop1.count)$(drop2.count)$(drop3.count))
     =================================================
     " 
 , stop);
